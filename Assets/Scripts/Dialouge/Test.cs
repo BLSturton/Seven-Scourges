@@ -1,5 +1,6 @@
 using Doublsb.Dialog;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TextScript : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class TextScript : MonoBehaviour
     public string textName;
     public GameObject dialogBox;
 
+    public Image characterFace;
+    public Sprite[] faceList;
     public bool FirstScene = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -45,10 +48,13 @@ public class TextScript : MonoBehaviour
         switch (textNumber)
         {
             case 0:
+                characterFace.GetComponent<UnityEngine.UI.Image>().sprite = faceList[1];
                 dialog = new DialogData("Oh I'm scourging it", "Cetus");
                 dialogManager.Show(dialog);
                 break;
             case 1:
+                characterFace.GetComponent<UnityEngine.UI.Image>().sprite = faceList[3];
+
                 dialog = new DialogData("Literally scourging my shit rn", "Cetus");
                 dialogManager.Show(dialog);
                 break;

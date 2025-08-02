@@ -408,6 +408,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4094011683184477041, guid: d536fa71dd00cf349a228e41212ace48, type: 3}
+      propertyPath: _current_Character
+      value: 
+      objectReference: {fileID: 1631377157}
     - target: {fileID: 4094011683184477044, guid: d536fa71dd00cf349a228e41212ace48, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1495,7 +1499,38 @@ MonoBehaviour:
   inText: 0
   textName: 
   dialogBox: {fileID: 1065326245}
+  characterFace: {fileID: 1631377156}
+  faceList:
+  - {fileID: 7119658320702380795, guid: 7c86f2a0af095b144ad054da9d27c6dd, type: 3}
+  - {fileID: -1957226141556391436, guid: 7c86f2a0af095b144ad054da9d27c6dd, type: 3}
+  - {fileID: -4516560489583864809, guid: 7c86f2a0af095b144ad054da9d27c6dd, type: 3}
+  - {fileID: -3227489227722245298, guid: 7c86f2a0af095b144ad054da9d27c6dd, type: 3}
+  - {fileID: 7617663153381732801, guid: 7c86f2a0af095b144ad054da9d27c6dd, type: 3}
+  - {fileID: 3394175740430000781, guid: 7c86f2a0af095b144ad054da9d27c6dd, type: 3}
+  - {fileID: 6413485514930980494, guid: 7c86f2a0af095b144ad054da9d27c6dd, type: 3}
   FirstScene: 1
+--- !u!114 &1631377156 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8206358605457009696, guid: b1e781a67c6f97f4d9cfb50a61f30655, type: 3}
+  m_PrefabInstance: {fileID: 2011772480}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631377152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1631377157 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8206358605457009699, guid: b1e781a67c6f97f4d9cfb50a61f30655, type: 3}
+  m_PrefabInstance: {fileID: 2011772480}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631377152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2255e66b58bcfa24f9911b3ed2d2488f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1812233187
 GameObject:
   m_ObjectHideFlags: 0
@@ -10002,7 +10037,7 @@ PrefabInstance:
     - target: {fileID: 8206358605457009696, guid: b1e781a67c6f97f4d9cfb50a61f30655, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 9078673355362549320, guid: 7c86f2a0af095b144ad054da9d27c6dd, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 8206358605457009698, guid: b1e781a67c6f97f4d9cfb50a61f30655, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -10129,31 +10164,31 @@ PrefabInstance:
       objectReference: {fileID: 3360848920962080596, guid: 7c86f2a0af095b144ad054da9d27c6dd, type: 3}
     - target: {fileID: 8206358605457009699, guid: b1e781a67c6f97f4d9cfb50a61f30655, type: 3}
       propertyPath: 'Emotion._emotion.Array.data[0]'
-      value: Smile
+      value: CetusSmile
       objectReference: {fileID: 0}
     - target: {fileID: 8206358605457009699, guid: b1e781a67c6f97f4d9cfb50a61f30655, type: 3}
       propertyPath: 'Emotion._emotion.Array.data[1]'
-      value: Pissed
+      value: CetusPissed
       objectReference: {fileID: 0}
     - target: {fileID: 8206358605457009699, guid: b1e781a67c6f97f4d9cfb50a61f30655, type: 3}
       propertyPath: 'Emotion._emotion.Array.data[2]'
-      value: Normal
+      value: CetusNormal
       objectReference: {fileID: 0}
     - target: {fileID: 8206358605457009699, guid: b1e781a67c6f97f4d9cfb50a61f30655, type: 3}
       propertyPath: 'Emotion._emotion.Array.data[3]'
-      value: What
+      value: CetusWhat
       objectReference: {fileID: 0}
     - target: {fileID: 8206358605457009699, guid: b1e781a67c6f97f4d9cfb50a61f30655, type: 3}
       propertyPath: 'Emotion._emotion.Array.data[4]'
-      value: Shock
+      value: CetusShock
       objectReference: {fileID: 0}
     - target: {fileID: 8206358605457009699, guid: b1e781a67c6f97f4d9cfb50a61f30655, type: 3}
       propertyPath: 'Emotion._emotion.Array.data[5]'
-      value: Mad
+      value: CetusMad
       objectReference: {fileID: 0}
     - target: {fileID: 8206358605457009699, guid: b1e781a67c6f97f4d9cfb50a61f30655, type: 3}
       propertyPath: 'Emotion._emotion.Array.data[6]'
-      value: Sad
+      value: CetusSad
       objectReference: {fileID: 0}
     - target: {fileID: 8206358605457009709, guid: b1e781a67c6f97f4d9cfb50a61f30655, type: 3}
       propertyPath: m_Name
