@@ -6,21 +6,26 @@ public class PlayerMove : MonoBehaviour
     public float moveSpeed = 5f;
     public Rigidbody2D rb;
     Vector2 movement;
-
+    public bool canMove;
     //Animation
     public Animator CetusAnim;
 
+    public BoxCollider2D interactBox;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         CetusAnim.SetBool("Idle", true);
+        canMove = true;
     }
     // Update is called once per frame
     void Update()
     {
         //This section detects movement by input, and then plays the animations depending on the input.
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        if (canMove) 
+        {
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
+        }
         if(movement == new Vector2(0, 0))
         {
             CetusAnim.SetBool("Idle", true);
@@ -31,6 +36,7 @@ public class PlayerMove : MonoBehaviour
         }
         if(movement.y == -1) 
         {
+            interactBox.offset = new Vector2(0, -.5f);
             CetusAnim.SetBool("Idle", false);
             CetusAnim.SetBool("WalkDown", true);
             CetusAnim.SetBool("WalkLeft", false);
@@ -38,6 +44,7 @@ public class PlayerMove : MonoBehaviour
         }
         if (movement.y == 1)
         {
+            interactBox.offset = new Vector2(0, 1.5f);
             CetusAnim.SetBool("Idle", false);
             CetusAnim.SetBool("WalkUp", true);
             CetusAnim.SetBool("WalkLeft", false);
@@ -45,6 +52,7 @@ public class PlayerMove : MonoBehaviour
         }
         if (movement.x == -1)
         {
+            interactBox.offset = new Vector2(-1.2f, 0);
             CetusAnim.SetBool("Idle", false);
             CetusAnim.SetBool("WalkLeft", true);
             CetusAnim.SetBool("WalkDown", false);
@@ -52,6 +60,7 @@ public class PlayerMove : MonoBehaviour
         }
         if (movement.x == 1)
         {
+            interactBox.offset = new Vector2(1.2f, 0);
             CetusAnim.SetBool("Idle", false);
             CetusAnim.SetBool("WalkRight", true);
             CetusAnim.SetBool("WalkDown", false);
