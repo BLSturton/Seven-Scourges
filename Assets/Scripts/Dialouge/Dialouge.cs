@@ -27,6 +27,8 @@ public class TextScript : MonoBehaviour
         textName = "Starting Scene";
         startText = false;
        FirstScene = false;
+       
+
     }
 
     // Update is called once per frame
@@ -41,15 +43,13 @@ public class TextScript : MonoBehaviour
                 case "Starting Scene":
                     StartingScene();
                     break;
-                case "Chest":
-                    Chest();
-                    break;
+                
             }
 
         }
         if (startText) 
         {
-            textNumber = 0;
+            
             inText = true;
             switch (textName)
             { 
@@ -59,6 +59,9 @@ public class TextScript : MonoBehaviour
                 case "Chest":
                     
                     Chest();
+                    break;
+                case "Evil Chest":
+                    EvilChest();
                     break;
             }
             startText = false;
@@ -77,16 +80,19 @@ public class TextScript : MonoBehaviour
                 dialogManager.Show(dialog);
                 break;
             case 1:
+                dialogManager.Hide();
                 characterFace.GetComponent<UnityEngine.UI.Image>().sprite = faceList[3];
 
                 dialog = new DialogData("Literally scourging my shit rn", "Cetus");
                 dialogManager.Show(dialog);
                 break;
             case 2:
-                
+                dialogManager.Hide();
+                characterFace.enabled = false;
                 textName = "None";
                 inText = false;
                 playerMove.canMove = true;
+                textNumber = 0;
                 break;
         }
     }
@@ -97,22 +103,78 @@ public class TextScript : MonoBehaviour
         switch (textNumber)
         {
             case 0:
+                dialogManager.Hide();
+                characterFace.enabled = true;
                 playerMove.canMove = false;
                 characterFace.GetComponent<UnityEngine.UI.Image>().sprite = faceList[7];
                 dialog = new DialogData("It's a chest.", "Cetus");
+             
                 dialogManager.Show(dialog);
                 break;
             case 1:
+                dialogManager.Hide();
                 characterFace.GetComponent<UnityEngine.UI.Image>().sprite = faceList[7];
 
                 dialog = new DialogData("There's probably something inside, but Bryce hasn't added in chest functionality yet.", "Cetus");
+
                 dialogManager.Show(dialog);
+              
                 break;
             case 2:
-          
+                dialogManager.Hide();
+                characterFace.GetComponent<UnityEngine.UI.Image>().sprite = faceList[7];
+
+                dialog = new DialogData("Maybe he will later.", "Cetus");
+                dialogManager.Show(dialog);
+
+                break;
+            case 3:
+                dialogManager.Hide();
+                characterFace.enabled = false;
                 textName = "None";
                 inText = false;
                 playerMove.canMove = true;
+                textNumber = -1;
+                break;
+        }
+    }
+    public void EvilChest()
+    {
+        switch (textNumber)
+        {
+            case 0:
+                dialogManager.Hide();
+                characterFace.enabled = true;
+                playerMove.canMove = false;
+                characterFace.GetComponent<UnityEngine.UI.Image>().sprite = faceList[7];
+                dialog = new DialogData("It's a chest...", "Cetus");
+
+                dialogManager.Show(dialog);
+                break;
+            case 1:
+                dialogManager.Hide();
+                characterFace.GetComponent<UnityEngine.UI.Image>().sprite = faceList[7];
+
+                dialog = new DialogData("... Or so you thought.", "Cetus");
+
+                dialogManager.Show(dialog);
+
+                break;
+            case 2:
+                dialogManager.Hide();
+                characterFace.GetComponent<UnityEngine.UI.Image>().sprite = faceList[7];
+
+                dialog = new DialogData("It's actually an EVIL CHEST!!!!!!!!!!", "Cetus");
+                dialogManager.Show(dialog);
+
+                break;
+            case 3:
+                dialogManager.Hide();
+                characterFace.enabled = false;
+                textName = "None";
+                inText = false;
+                playerMove.canMove = true;
+                textNumber = -1;
                 break;
         }
     }

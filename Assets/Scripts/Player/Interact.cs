@@ -15,9 +15,10 @@ public class Interact : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K) && canInteract) 
+        if (Input.GetKeyDown(KeyCode.K) && canInteract && !textScript.startText) 
         {
             textScript.startText = true;
+
         }
     }
 
