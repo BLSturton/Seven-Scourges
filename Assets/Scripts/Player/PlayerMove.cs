@@ -26,7 +26,11 @@ public class PlayerMove : MonoBehaviour
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
         }
-        if(movement == new Vector2(0, 0))
+        else 
+        {
+            movement = new Vector2(0, 0);
+        }
+        if (movement == new Vector2(0, 0))
         {
             CetusAnim.SetBool("Idle", true);
             CetusAnim.SetBool("WalkDown", false);
