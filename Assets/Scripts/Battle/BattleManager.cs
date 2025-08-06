@@ -56,10 +56,27 @@ public class BattleManager : MonoBehaviour
         //Starts enemy turn
         if (enemyTurn) 
         {
+           
             playerBackground.SetActive(false);
             playerObjects.SetActive(false);
             enemyBackground.SetActive(true);
             enemyObjects.SetActive(true);
+            if(enemyList.Length == 1) 
+            {
+                enemyList[0].transform.position = new Vector2(0f, 2f);
+            }
+        }
+        if (!enemyTurn) 
+        {
+            playerBackground.SetActive(true);
+            playerObjects.SetActive(true);
+            enemyBackground.SetActive(false);
+            enemyObjects.SetActive(false);
+            if (enemyList.Length == 1)
+            {
+
+                enemyList[0].transform.position = new Vector2(5f, -.7f);
+            }
 
         }
     }

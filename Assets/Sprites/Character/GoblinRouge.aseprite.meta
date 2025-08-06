@@ -220,8 +220,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 2
-      y: 83
+      x: 4
+      y: 90
       width: 24
       height: 32
     spriteID: 3049c998d66c1ee46b0aed6428094b48
@@ -242,7 +242,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 44
+      y: 50
       width: 24
       height: 32
     spriteID: 053f62de767560b4d9d7d93d48ece188
@@ -262,8 +262,8 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 4
-      y: 4
+      x: 33
+      y: 50
       width: 24
       height: 32
     spriteID: d0a6a7691318de64aae94a3bc9a1a462
@@ -283,11 +283,32 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 33
+      x: 4
+      y: 4
+      width: 26
+      height: 38
+    spriteID: 0ae25a1e6b3ce6d48ad49662228effd4
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: GoblinRouge_4
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 36
       y: 4
       width: 24
       height: 32
-    spriteID: 0ae25a1e6b3ce6d48ad49662228effd4
+    spriteID: 9fba54e6d266ce84b9f1180a9d357923
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -315,7 +336,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 1
-        y: 0
+        y: 6
         width: 24
         height: 32
       spriteId: 7e6fb5ac91ea0514fa487b0343ee84eb
@@ -324,7 +345,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 4
-        y: 0
+        y: 6
         width: 21
         height: 32
       spriteId: b4fe5d3fbd1914243a22337a2062dce3
@@ -333,7 +354,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 3
-        y: 0
+        y: 6
         width: 22
         height: 31
       spriteId: cfd8b7f9dd310da40bc014f724e45748
@@ -342,10 +363,19 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 1
-        y: 0
+        y: 6
         width: 24
         height: 31
       spriteId: 4aeb5416c77c3884c83747eafd57c4f4
+    - name: Frame_4
+      frameIndex: 4
+      additiveSortOrder: 0
+      cellRect:
+        x: 1
+        y: 0
+        width: 26
+        height: 38
+      spriteId: a04460f7f58c04c449859803c710078f
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -391,5 +421,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 32, y: 32}
+  canvasSize: {x: 32, y: 44}
   previousTextureSize: {x: 64, y: 128}
