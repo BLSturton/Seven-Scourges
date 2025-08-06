@@ -88,12 +88,23 @@ public class OptionPicker : MonoBehaviour
         //Confirm Option
         if (Input.GetKeyDown(KeyCode.K))
         {
-            switch (optionNumber)
+            //If attacking
+            if (attackOn)
             {
-                case 0:
-                    attackOn = true;
-                    break;
+                Debug.Log("Cetus is attacking" + battleManager.enemyList[enemyNumber]);
+                attackOn = false;
+                enemyPicker.SetActive(false);
             }
+            if (!actionPicked) 
+            {
+                switch (optionNumber)
+                {
+                    case 0:
+                        attackOn = true;
+                        break;
+                }
+            }
+           
             foreach (GameObject obj in attackOptions)
             {
                 if (obj != null)
@@ -102,7 +113,7 @@ public class OptionPicker : MonoBehaviour
                 }
             }
             actionPicked = true;
-            
+           
         }
         if (attackOn)
         {
