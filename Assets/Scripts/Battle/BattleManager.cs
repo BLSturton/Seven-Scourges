@@ -39,7 +39,7 @@ public class BattleManager : MonoBehaviour
         if (cetusOptionPicker.endTurn) 
         {
             
-            if(partyList.Length > 1) 
+            if(partyList.Length == 2) 
             {
                 raticOptionPicker.myTurn = true;
             }
