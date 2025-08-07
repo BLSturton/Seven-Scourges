@@ -1,11 +1,15 @@
+using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 
 public class BattleManager : MonoBehaviour
 {
     [SerializeField] public GameObject[] enemyList;
     [SerializeField] public GameObject[] partyList;
+    [SerializeField] public GameObject[] partyDodgeList;
+    [SerializeField] public GameObject targetDodger;
     //1 For Cetus, 2 for Ratic
     [SerializeField] public int currentPartyTurn;
     [SerializeField] public bool enemyTurn;
@@ -20,6 +24,8 @@ public class BattleManager : MonoBehaviour
 
     [SerializeField] GameObject actionBox;
 
+
+    [SerializeField] public bool targetPicked;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,6 +37,13 @@ public class BattleManager : MonoBehaviour
         enemyBackground.SetActive(false);
         enemyObjects.SetActive(false);
         actionBox.SetActive(false);
+        foreach (GameObject obj in partyDodgeList)
+        {
+            if (obj != null)
+            {
+                obj.SetActive(false); // Deactivates the GameObject
+            }
+        }
     }
 
     // Update is called once per frame
@@ -75,6 +88,13 @@ public class BattleManager : MonoBehaviour
                 {
                     obj.SetActive(false); // Deactivates the GameObject
                 }
+            }
+            if (!targetPicked) 
+            {
+
+                targetDodger = partyDodgeList[Random.Range(0, partyDodgeList.Length)];
+                targetDodger.SetActive(true);
+                targetPicked = true;
             }
         }
         if (!enemyTurn) 

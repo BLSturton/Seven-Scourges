@@ -239,6 +239,10 @@ MonoBehaviour:
   - {fileID: 1988192300}
   partyList:
   - {fileID: 2054320997}
+  partyDodgeList:
+  - {fileID: 1116902421}
+  - {fileID: 526898362}
+  targetDodger: {fileID: 0}
   currentPartyTurn: 1
   enemyTurn: 0
   cetusOptionPicker: {fileID: 1326397611}
@@ -248,6 +252,7 @@ MonoBehaviour:
   enemyBackground: {fileID: 2109536036}
   enemyObjects: {fileID: 1819342473}
   actionBox: {fileID: 1908234678}
+  targetPicked: 0
 --- !u!4 &382845794
 Transform:
   m_ObjectHideFlags: 0
@@ -544,7 +549,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!50 &526898363
 Rigidbody2D:
   serializedVersion: 5
