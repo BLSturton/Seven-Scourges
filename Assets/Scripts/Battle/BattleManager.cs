@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -17,6 +18,7 @@ public class BattleManager : MonoBehaviour
     [SerializeField] GameObject enemyBackground;
     [SerializeField] GameObject enemyObjects;
 
+    [SerializeField] GameObject actionBox;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,6 +30,7 @@ public class BattleManager : MonoBehaviour
         playerObjects.SetActive(true);
         enemyBackground.SetActive(false);
         enemyObjects.SetActive(false);
+        actionBox.SetActive(false);
     }
 
     // Update is called once per frame
@@ -63,7 +66,15 @@ public class BattleManager : MonoBehaviour
             enemyObjects.SetActive(true);
             if(enemyList.Length == 1) 
             {
-                enemyList[0].transform.position = new Vector2(0f, 2f);
+                enemyList[0].transform.position = new Vector2(0f, 3.5f);
+            }
+            actionBox.SetActive(true);
+            foreach (GameObject obj in partyList)
+            {
+                if (obj != null)
+                {
+                    obj.SetActive(false); // Deactivates the GameObject
+                }
             }
         }
         if (!enemyTurn) 
