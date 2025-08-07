@@ -13,7 +13,7 @@ public class BattleManager : MonoBehaviour
     //1 For Cetus, 2 for Ratic
     [SerializeField] public int currentPartyTurn;
     [SerializeField] public bool enemyTurn;
-
+   
     [SerializeField] OptionPicker cetusOptionPicker;
     [SerializeField] OptionPicker raticOptionPicker;
 
@@ -23,9 +23,11 @@ public class BattleManager : MonoBehaviour
     [SerializeField] GameObject enemyObjects;
 
     [SerializeField] GameObject actionBox;
-
+    
 
     [SerializeField] public bool targetPicked;
+
+    [SerializeField] public bool turnReset;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -52,9 +54,14 @@ public class BattleManager : MonoBehaviour
         if (cetusOptionPicker.endTurn) 
         {
             
-            if(partyList.Length == 2) 
+
+            if (partyList.Length == 2) 
             {
                 raticOptionPicker.myTurn = true;
+                raticOptionPicker.enabled = true;
+                raticOptionPicker.myTurn = true;
+                raticOptionPicker.endTurn = false;
+                raticOptionPicker.actionPicked = false;
             }
             else 
             {
@@ -70,9 +77,11 @@ public class BattleManager : MonoBehaviour
         }
 
         //Starts enemy turn
-        if (enemyTurn) 
+        if (enemyTurn)
         {
-           
+            
+
+
             playerBackground.SetActive(false);
             playerObjects.SetActive(false);
             enemyBackground.SetActive(true);
@@ -96,18 +105,58 @@ public class BattleManager : MonoBehaviour
                 targetDodger.SetActive(true);
                 targetPicked = true;
             }
+            //Have one enemy attack
+            if(enemyList.Length == 1)
+            {
+                if (enemyList[0].CompareTag("GoblinRouge")) 
+                {
+                    RougeScript rougeScript = enemyList[0].GetComponent<RougeScript>();
+                    rougeScript.myTurn = true;
+                    if(rougeScript.attackEnded) 
+                    {
+                        enemyTurn = false;
+                        turnReset = true;
+                        newPlayerTurn();
+                        enemyTurn = false;
+                        
+
+                    }
+                }
+                
+            }
         }
-        if (!enemyTurn) 
+       
+    }
+
+    public void newPlayerTurn() 
+    {
+        if (turnReset) 
         {
             playerBackground.SetActive(true);
             playerObjects.SetActive(true);
             enemyBackground.SetActive(false);
             enemyObjects.SetActive(false);
+            actionBox.SetActive(false);
+            targetDodger.SetActive(false);
+            foreach (GameObject obj in partyList)
+            {
+                if (obj != null)
+                {
+                    obj.SetActive(true);
+                }
+            }
             if (enemyList.Length == 1)
             {
 
                 enemyList[0].transform.position = new Vector2(5f, -.7f);
             }
+            cetusOptionPicker.enabled = true;
+            cetusOptionPicker.myTurn = true;
+            cetusOptionPicker.endTurn = false;
+            cetusOptionPicker.actionPicked = false;
+            cetusOptionPicker.attackOn = false;
+            targetPicked = false;
+            turnReset = false;
 
         }
     }

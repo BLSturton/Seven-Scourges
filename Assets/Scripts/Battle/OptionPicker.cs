@@ -111,7 +111,7 @@ public class OptionPicker : MonoBehaviour
                 //If attacking
                 if (attackOn)
                 {
-
+                    
                     attackOn = false;
                     enemyPicker.SetActive(false);
                     endTurn = true;
@@ -127,6 +127,12 @@ public class OptionPicker : MonoBehaviour
                     }
                 }
 
+               
+                actionPicked = true;
+
+            }
+            if (attackOn)
+            {
                 foreach (GameObject obj in attackOptions)
                 {
                     if (obj != null)
@@ -134,11 +140,6 @@ public class OptionPicker : MonoBehaviour
                         obj.SetActive(false); // Deactivates the GameObject
                     }
                 }
-                actionPicked = true;
-
-            }
-            if (attackOn)
-            {
                 enemyPicker.SetActive(true);
                 //Advance Option
                 if (Input.GetKeyDown(KeyCode.D) && !selectCooldown)
