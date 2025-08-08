@@ -239,8 +239,10 @@ MonoBehaviour:
   - {fileID: 1988192300}
   partyList:
   - {fileID: 2054320997}
+  - {fileID: 499284208}
   partyDodgeList:
   - {fileID: 1116902421}
+  - {fileID: 526898362}
   targetDodger: {fileID: 0}
   currentPartyTurn: 1
   enemyTurn: 0
@@ -252,6 +254,8 @@ MonoBehaviour:
   enemyObjects: {fileID: 1819342473}
   actionBox: {fileID: 1908234678}
   targetPicked: 0
+  turnReset: 0
+  CetusToRatic: 0
 --- !u!4 &382845794
 Transform:
   m_ObjectHideFlags: 0
@@ -502,15 +506,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: -5807419659358606634, guid: c8b7d2ee1132f5247b83f545ddf03b15, type: 3}
+  m_Sprite: {fileID: 7058883358127476211, guid: c8b7d2ee1132f5247b83f545ddf03b15, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.75, y: 0.9375}
+  m_Size: {x: 0.75, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &499284210
@@ -522,7 +526,7 @@ Transform:
   m_GameObject: {fileID: 499284208}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.36, y: -4, z: 0}
+  m_LocalPosition: {x: -4.66, y: -4.67, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

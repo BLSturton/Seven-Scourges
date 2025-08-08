@@ -28,6 +28,7 @@ public class BattleManager : MonoBehaviour
     [SerializeField] public bool targetPicked;
 
     [SerializeField] public bool turnReset;
+    [SerializeField] public bool CetusToRatic;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -57,11 +58,16 @@ public class BattleManager : MonoBehaviour
 
             if (partyList.Length == 2) 
             {
-                raticOptionPicker.myTurn = true;
-                raticOptionPicker.enabled = true;
-                raticOptionPicker.myTurn = true;
-                raticOptionPicker.endTurn = false;
-                raticOptionPicker.actionPicked = false;
+                if (!CetusToRatic) 
+                {
+                    raticOptionPicker.myTurn = true;
+                    raticOptionPicker.enabled = true;
+                    raticOptionPicker.myTurn = true;
+                    raticOptionPicker.endTurn = false;
+                    raticOptionPicker.actionPicked = false;
+                    CetusToRatic = true;
+                }
+               
             }
             else 
             {
@@ -158,7 +164,7 @@ public class BattleManager : MonoBehaviour
             cetusOptionPicker.attackOn = false;
             targetPicked = false;
             turnReset = false;
-
+            CetusToRatic = false;
         }
     }
 }
