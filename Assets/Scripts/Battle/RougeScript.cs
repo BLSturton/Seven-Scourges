@@ -27,6 +27,7 @@ public class RougeScript : MonoBehaviour
             enemyAnimator.SetBool("attackOn", true);
             StartCoroutine(AttackOne());
             attackStarted = true;
+
         }
         if (battleManager.enemyTurn == false) 
         {
@@ -36,11 +37,12 @@ public class RougeScript : MonoBehaviour
 
     public IEnumerator AttackOne() 
     {
+        attackStarted = false;
         Debug.Log("I am attacking you now aaaaaa");
         yield return new WaitForSeconds(3);
         attackEnded = true;
         myTurn = false;
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.01f);
         attackStarted = false;
         attackEnded =false;
     }

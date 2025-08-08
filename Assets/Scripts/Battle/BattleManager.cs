@@ -114,6 +114,7 @@ public class BattleManager : MonoBehaviour
                     rougeScript.myTurn = true;
                     if(rougeScript.attackEnded) 
                     {
+                        rougeScript.myTurn = false;
                         enemyTurn = false;
                         turnReset = true;
                         newPlayerTurn();
