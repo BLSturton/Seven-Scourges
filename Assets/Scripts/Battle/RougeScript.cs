@@ -11,6 +11,8 @@ public class RougeScript : MonoBehaviour
     [SerializeField] public bool myTurn;
     [SerializeField] public bool attackEnded;
     [SerializeField] public bool attackStarted;
+
+    [SerializeField] GameObject dagger;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,10 +23,14 @@ public class RougeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (battleManager.enemyTurn) 
+        {
+            enemyAnimator.SetBool("attackOn", true);
+        }
         if (myTurn && !attackStarted) 
         {
             
-            enemyAnimator.SetBool("attackOn", true);
+            
             StartCoroutine(AttackOne());
             attackStarted = true;
 
@@ -38,12 +44,14 @@ public class RougeScript : MonoBehaviour
     public IEnumerator AttackOne() 
     {
         attackStarted = false;
-        Debug.Log("I am attacking you now aaaaaa");
+        Instantiate(dagger, new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y), new Quaternion(0, 0, 0, 0));
+
         yield return new WaitForSeconds(3);
         attackEnded = true;
         myTurn = false;
         yield return new WaitForSeconds(.01f);
         attackStarted = false;
         attackEnded =false;
+        Debug.Log("Attack over");
     }
 }
