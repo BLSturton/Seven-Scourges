@@ -29,29 +29,35 @@ public class RougeScript : MonoBehaviour
         }
         if (myTurn && !attackStarted) 
         {
-            
-            
-            StartCoroutine(AttackOne());
             attackStarted = true;
+
+
+            StartCoroutine(AttackOne());
+           
 
         }
         if (battleManager.enemyTurn == false) 
         {
             enemyAnimator.SetBool("attackOn", false);
+            attackStarted = false;
+
         }
+
+
     }
 
     public IEnumerator AttackOne() 
     {
-        attackStarted = false;
+       
         Instantiate(dagger, new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y), new Quaternion(0, 0, 0, 0));
 
         yield return new WaitForSeconds(3);
         attackEnded = true;
         myTurn = false;
+        
         yield return new WaitForSeconds(.01f);
-        attackStarted = false;
-        attackEnded =false;
-        Debug.Log("Attack over");
+        
+        attackEnded = false;
+     
     }
 }

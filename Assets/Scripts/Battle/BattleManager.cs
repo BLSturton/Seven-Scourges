@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
@@ -56,13 +57,14 @@ public class BattleManager : MonoBehaviour
             enemyList[0].transform.position = new Vector2(6.2f, -.36f);
             enemyList[1].transform.position = new Vector2(5.5f, -2.8f);
         }
-        if (enemyList.Length == 3) 
+        if (enemyList.Length == 3)
         {
-            enemyList[0].transform.position = new Vector2(4.9f, -1.15f);
-            enemyList[1].transform.position = new Vector2(6f, -1f);
+            enemyList[0].transform.position = new Vector2(4.9f, -.14f);
+            enemyList[1].transform.position = new Vector2(6.3f, -1.53f);
             enemyList[2].transform.position = new Vector2(5.3f, -3.7f);
 
         }
+       
     }
 
     // Update is called once per frame
@@ -172,7 +174,6 @@ public class BattleManager : MonoBehaviour
 
                                     rougeScript.myTurn = false;
                                     rougeScript.attackEnded = false;
-                                    rougeScript.attackStarted = false;
 
                                     RougeScript rougeScript2 = enemyList[1].GetComponent<RougeScript>();
                                     rougeScript2.myTurn = true;
@@ -184,7 +185,6 @@ public class BattleManager : MonoBehaviour
                                         enemyTurn = false;
                                         turnReset = true;
                                         rougeScript2.attackEnded = false;
-                                        rougeScript2.attackStarted = false;
                                         newPlayerTurn();
                                         enemyTurn = false;
 
@@ -209,7 +209,7 @@ public class BattleManager : MonoBehaviour
 
                                 rougeScript.myTurn = false;
                                 rougeScript.attackEnded = false;
-                                rougeScript.attackStarted = false;
+                               
 
                                 RougeScript rougeScript2 = enemyList[1].GetComponent<RougeScript>();
                                 rougeScript2.myTurn = true;
@@ -218,21 +218,18 @@ public class BattleManager : MonoBehaviour
                                     if (enemyList[2].CompareTag("GoblinRouge"))
                                     {
 
-                                        rougeScript.myTurn = false;
-                                        rougeScript.attackEnded = false;
-                                        rougeScript.attackStarted = false;
+                                        rougeScript2.myTurn = false;
+                                        rougeScript2.attackEnded = false;
 
                                         RougeScript rougeScript3 = enemyList[2].GetComponent<RougeScript>();
                                         rougeScript3.myTurn = true;
+                                       
                                         if (rougeScript3.attackEnded)
-                                        {
-
-
+                                        {                                          
                                             rougeScript3.myTurn = false;
                                             enemyTurn = false;
                                             turnReset = true;
                                             rougeScript3.attackEnded = false;
-                                            rougeScript3.attackStarted = false;
                                             newPlayerTurn();
                                             enemyTurn = false;
 
@@ -279,8 +276,8 @@ public class BattleManager : MonoBehaviour
             }
             if (enemyList.Length == 3)
             {
-                enemyList[0].transform.position = new Vector2(4.9f, -1.15f);
-                enemyList[1].transform.position = new Vector2(6f, -1f);
+                enemyList[0].transform.position = new Vector2(4.9f, -.14f);
+                enemyList[1].transform.position = new Vector2(6.3f, -1.53f);
                 enemyList[2].transform.position = new Vector2(5.3f, -3.7f);
 
             }
