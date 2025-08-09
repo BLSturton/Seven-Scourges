@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class RougeScript : MonoBehaviour
+public class EnemyAttacks : MonoBehaviour
 {
     [SerializeField] BattleManager battleManager;
     [SerializeField] GameObject battleManagerObject;

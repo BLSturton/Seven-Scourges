@@ -368,7 +368,6 @@ MonoBehaviour:
   enemyList:
   - {fileID: 1988192300}
   - {fileID: 1726973419}
-  - {fileID: 301203864}
   partyList:
   - {fileID: 2054320997}
   - {fileID: 499284208}
@@ -388,6 +387,7 @@ MonoBehaviour:
   targetPicked: 0
   turnReset: 0
   CetusToRatic: 0
+  enemyAttacks: {fileID: 0}
 --- !u!4 &382845794
 Transform:
   m_ObjectHideFlags: 0

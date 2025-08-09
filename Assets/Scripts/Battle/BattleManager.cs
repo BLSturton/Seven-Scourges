@@ -30,6 +30,8 @@ public class BattleManager : MonoBehaviour
 
     [SerializeField] public bool turnReset;
     [SerializeField] public bool CetusToRatic;
+
+    [SerializeField] EnemyAttacks enemyAttacks;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -89,6 +91,7 @@ public class BattleManager : MonoBehaviour
             }
             else 
             {
+                Debug.Log("True");
               enemyTurn = true;
 
             }
@@ -97,7 +100,7 @@ public class BattleManager : MonoBehaviour
         {
             raticOptionPicker.myTurn = false;
             enemyTurn = true;
-
+            raticOptionPicker.endTurn = false;
         }
 
         //Starts enemy turn
@@ -143,103 +146,88 @@ public class BattleManager : MonoBehaviour
             switch (enemyList.Length) 
             {
                 case 1:
-                    if (enemyList[0].CompareTag("GoblinRouge"))
-                    {
-                        RougeScript rougeScript = enemyList[0].GetComponent<RougeScript>();
-                        rougeScript.myTurn = true;
-                        if (rougeScript.attackEnded)
+
+                    enemyAttacks = enemyList[0].gameObject.GetComponent<EnemyAttacks>();
+                        enemyAttacks.myTurn = true;
+                        if (enemyAttacks.attackEnded)
                         {
-                            rougeScript.myTurn = false;
+                            enemyAttacks.myTurn = false;
                             enemyTurn = false;
                             turnReset = true;
                             newPlayerTurn();
                             enemyTurn = false;
 
                         }
-                    }
+                    
                     break;
                 case 2: 
-                    {
+                    {           
+                            enemyAttacks = enemyList[0].gameObject.GetComponent<EnemyAttacks>();
+                            enemyAttacks.myTurn = true;
 
-                        if (enemyList[0].CompareTag("GoblinRouge"))
-                        {
-                            RougeScript rougeScript = enemyList[0].GetComponent<RougeScript>();
-                            rougeScript.myTurn = true;
-
-                            if (rougeScript.attackEnded)
+                            if (enemyAttacks.attackEnded)
                             {
-                                rougeScript.myTurn = false;
-                                if (enemyList[1].CompareTag("GoblinRouge"))
-                                {
+                                enemyAttacks.myTurn = false;
+                                enemyAttacks.attackEnded = true;
+                                enemyAttacks = enemyList[1].gameObject.GetComponent<EnemyAttacks>();
+                                    enemyAttacks.myTurn = true;
+                            enemyAttacks.attackEnded = false;
 
-                                    rougeScript.myTurn = false;
-                                    rougeScript.attackEnded = false;
-
-                                    RougeScript rougeScript2 = enemyList[1].GetComponent<RougeScript>();
-                                    rougeScript2.myTurn = true;
-                                    if (rougeScript2.attackEnded)
+                            if (enemyAttacks.attackEnded)
                                     {
-                                      
-
-                                        rougeScript2.myTurn = false;
-                                        enemyTurn = false;
+                                        enemyAttacks.myTurn = false;
                                         turnReset = true;
-                                        rougeScript2.attackEnded = false;
-                                        newPlayerTurn();
-                                        enemyTurn = false;
+                                        enemyAttacks.attackEnded = false;
+                                        enemyAttacks.attackStarted = false;
+                                enemyTurn = false;
+
+                                newPlayerTurn();
 
                                     }
-                                }
+                                
 
                             }
-                        }
+                        
                     }
                     break;
                 case 3:
-                    if (enemyList[0].CompareTag("GoblinRouge"))
-                    {
-                        RougeScript rougeScript = enemyList[0].GetComponent<RougeScript>();
-                        rougeScript.myTurn = true;
+                      enemyAttacks = enemyList[0].gameObject.GetComponent<EnemyAttacks>();
+                        enemyAttacks.myTurn = true;
 
-                        if (rougeScript.attackEnded)
+                        if (enemyAttacks.attackEnded)
                         {
-                            rougeScript.myTurn = false;
-                            if (enemyList[1].CompareTag("GoblinRouge"))
-                            {
+                            enemyAttacks.myTurn = false;
+                           
 
-                                rougeScript.myTurn = false;
-                                rougeScript.attackEnded = false;
-                               
+                                enemyAttacks.myTurn = false;
+                                enemyAttacks.attackEnded = true;
 
-                                RougeScript rougeScript2 = enemyList[1].GetComponent<RougeScript>();
-                                rougeScript2.myTurn = true;
-                                if (rougeScript2.attackEnded)
+
+                                enemyAttacks = enemyList[1].gameObject.GetComponent<EnemyAttacks>();
+                                enemyAttacks.myTurn = true;
+                                if (enemyAttacks.attackEnded)
                                 {
-                                    if (enemyList[2].CompareTag("GoblinRouge"))
-                                    {
+                                  
+                                        enemyAttacks.myTurn = false;
+                                        enemyAttacks.attackEnded = false;
 
-                                        rougeScript2.myTurn = false;
-                                        rougeScript2.attackEnded = false;
-
-                                        RougeScript rougeScript3 = enemyList[2].GetComponent<RougeScript>();
-                                        rougeScript3.myTurn = true;
+                                        enemyAttacks = enemyList[2].gameObject.GetComponent<EnemyAttacks>();
+                                        enemyAttacks.myTurn = true;
                                        
-                                        if (rougeScript3.attackEnded)
+                                        if (enemyAttacks.attackEnded)
                                         {                                          
-                                            rougeScript3.myTurn = false;
-                                            enemyTurn = false;
+                                            enemyAttacks.myTurn = false;
                                             turnReset = true;
-                                            rougeScript3.attackEnded = false;
+                                            enemyAttacks.attackEnded = false;
                                             newPlayerTurn();
                                             enemyTurn = false;
 
                                         }
-                                    }
+                                    
 
-                                }
-                            }
-
-                        }
+                               }
+ 
+                        
                     }
                     break;
             }
