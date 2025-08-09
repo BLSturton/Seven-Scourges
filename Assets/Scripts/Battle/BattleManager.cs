@@ -56,6 +56,13 @@ public class BattleManager : MonoBehaviour
             enemyList[0].transform.position = new Vector2(6.2f, -.36f);
             enemyList[1].transform.position = new Vector2(5.5f, -2.8f);
         }
+        if (enemyList.Length == 3) 
+        {
+            enemyList[0].transform.position = new Vector2(4.9f, -1.15f);
+            enemyList[1].transform.position = new Vector2(6f, -1f);
+            enemyList[2].transform.position = new Vector2(5.3f, -3.7f);
+
+        }
     }
 
     // Update is called once per frame
@@ -109,8 +116,12 @@ public class BattleManager : MonoBehaviour
             {
                 enemyList[0].transform.position = new Vector2(-1.7f, 3.5f);
                 enemyList[1].transform.position = new Vector2(1.4f, 3.5f);
-
-
+            }
+            if (enemyList.Length == 3)
+            {
+                enemyList[0].transform.position = new Vector2(-3f, 3.5f);
+                enemyList[1].transform.position = new Vector2(0f, 3.5f);
+                enemyList[2].transform.position = new Vector2(1.6f, 3.5f);
             }
             actionBox.SetActive(true);
             foreach (GameObject obj in partyList)
@@ -184,6 +195,56 @@ public class BattleManager : MonoBehaviour
                         }
                     }
                     break;
+                case 3:
+                    if (enemyList[0].CompareTag("GoblinRouge"))
+                    {
+                        RougeScript rougeScript = enemyList[0].GetComponent<RougeScript>();
+                        rougeScript.myTurn = true;
+
+                        if (rougeScript.attackEnded)
+                        {
+                            rougeScript.myTurn = false;
+                            if (enemyList[1].CompareTag("GoblinRouge"))
+                            {
+
+                                rougeScript.myTurn = false;
+                                rougeScript.attackEnded = false;
+                                rougeScript.attackStarted = false;
+
+                                RougeScript rougeScript2 = enemyList[1].GetComponent<RougeScript>();
+                                rougeScript2.myTurn = true;
+                                if (rougeScript2.attackEnded)
+                                {
+                                    if (enemyList[2].CompareTag("GoblinRouge"))
+                                    {
+
+                                        rougeScript.myTurn = false;
+                                        rougeScript.attackEnded = false;
+                                        rougeScript.attackStarted = false;
+
+                                        RougeScript rougeScript3 = enemyList[2].GetComponent<RougeScript>();
+                                        rougeScript3.myTurn = true;
+                                        if (rougeScript3.attackEnded)
+                                        {
+
+
+                                            rougeScript3.myTurn = false;
+                                            enemyTurn = false;
+                                            turnReset = true;
+                                            rougeScript3.attackEnded = false;
+                                            rougeScript3.attackStarted = false;
+                                            newPlayerTurn();
+                                            enemyTurn = false;
+
+                                        }
+                                    }
+
+                                }
+                            }
+
+                        }
+                    }
+                    break;
             }
            
         }
@@ -215,6 +276,13 @@ public class BattleManager : MonoBehaviour
             {
                 enemyList[0].transform.position = new Vector2(6.2f, -.36f);
                 enemyList[1].transform.position = new Vector2(5.5f, -2.8f);
+            }
+            if (enemyList.Length == 3)
+            {
+                enemyList[0].transform.position = new Vector2(4.9f, -1.15f);
+                enemyList[1].transform.position = new Vector2(6f, -1f);
+                enemyList[2].transform.position = new Vector2(5.3f, -3.7f);
+
             }
             cetusOptionPicker.enabled = true;
             cetusOptionPicker.myTurn = true;
