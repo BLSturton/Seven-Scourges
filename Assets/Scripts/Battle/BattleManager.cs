@@ -30,6 +30,7 @@ public class BattleManager : MonoBehaviour
 
     [SerializeField] public bool turnReset;
     [SerializeField] public bool CetusToRatic;
+ 
 
     [SerializeField] EnemyAttacks enemyAttacks;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -143,93 +144,10 @@ public class BattleManager : MonoBehaviour
                 targetDodger.SetActive(true);
                 targetPicked = true;
             }
-            switch (enemyList.Length) 
+           if(enemyList.Length == 1) 
             {
-                case 1:
-
-                    enemyAttacks = enemyList[0].gameObject.GetComponent<EnemyAttacks>();
-                        enemyAttacks.myTurn = true;
-                        if (enemyAttacks.attackEnded)
-                        {
-                            enemyAttacks.myTurn = false;
-                            enemyTurn = false;
-                            turnReset = true;
-                            newPlayerTurn();
-                            enemyTurn = false;
-
-                        }
-                    
-                    break;
-                case 2: 
-                    {           
-                            enemyAttacks = enemyList[0].gameObject.GetComponent<EnemyAttacks>();
-                            enemyAttacks.myTurn = true;
-
-                            if (enemyAttacks.attackEnded)
-                            {
-                                enemyAttacks.myTurn = false;
-                                enemyAttacks.attackEnded = true;
-                                enemyAttacks = enemyList[1].gameObject.GetComponent<EnemyAttacks>();
-                                    enemyAttacks.myTurn = true;
-                            enemyAttacks.attackEnded = false;
-
-                            if (enemyAttacks.attackEnded)
-                                    {
-                                        enemyAttacks.myTurn = false;
-                                        turnReset = true;
-                                        enemyAttacks.attackEnded = false;
-                                        enemyAttacks.attackStarted = false;
-                                enemyTurn = false;
-
-                                newPlayerTurn();
-
-                                    }
-                                
-
-                            }
-                        
-                    }
-                    break;
-                case 3:
-                      enemyAttacks = enemyList[0].gameObject.GetComponent<EnemyAttacks>();
-                        enemyAttacks.myTurn = true;
-
-                        if (enemyAttacks.attackEnded)
-                        {
-                            enemyAttacks.myTurn = false;
-                           
-
-                                enemyAttacks.myTurn = false;
-                                enemyAttacks.attackEnded = true;
-
-
-                                enemyAttacks = enemyList[1].gameObject.GetComponent<EnemyAttacks>();
-                                enemyAttacks.myTurn = true;
-                                if (enemyAttacks.attackEnded)
-                                {
-                                  
-                                        enemyAttacks.myTurn = false;
-                                        enemyAttacks.attackEnded = false;
-
-                                        enemyAttacks = enemyList[2].gameObject.GetComponent<EnemyAttacks>();
-                                        enemyAttacks.myTurn = true;
-                                       
-                                        if (enemyAttacks.attackEnded)
-                                        {                                          
-                                            enemyAttacks.myTurn = false;
-                                            turnReset = true;
-                                            enemyAttacks.attackEnded = false;
-                                            newPlayerTurn();
-                                            enemyTurn = false;
-
-                                        }
-                                    
-
-                               }
- 
-                        
-                    }
-                    break;
+                enemyList[0].gameObject.GetComponent<EnemyAttacks>().attackLead = true;
+                enemyList[0].gameObject.GetComponent<EnemyAttacks>().AttackSelector();
             }
            
         }
@@ -238,8 +156,7 @@ public class BattleManager : MonoBehaviour
 
     public void newPlayerTurn() 
     {
-        if (turnReset) 
-        {
+            enemyTurn = false;
             playerBackground.SetActive(true);
             playerObjects.SetActive(true);
             enemyBackground.SetActive(false);
@@ -274,12 +191,13 @@ public class BattleManager : MonoBehaviour
             cetusOptionPicker.endTurn = false;
             cetusOptionPicker.actionPicked = false;
             cetusOptionPicker.attackOn = false;
+            cetusOptionPicker.optionOn = false;
 
             raticOptionPicker.myTurn = false;
             raticOptionPicker.endTurn = false;
-            targetPicked = false;
+            raticOptionPicker.optionOn = false;
+        targetPicked = false;
             turnReset = false;
             CetusToRatic = false;
-        }
     }
 }

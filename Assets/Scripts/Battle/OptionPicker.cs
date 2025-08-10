@@ -25,6 +25,8 @@ public class OptionPicker : MonoBehaviour
     //End turn
     [SerializeField] public bool endTurn;
     [SerializeField] public bool myTurn;
+
+    [SerializeField] public bool optionOn;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -41,13 +43,7 @@ public class OptionPicker : MonoBehaviour
     {
         if (myTurn) 
         {
-            foreach (GameObject obj in attackOptions)
-            {
-                if (obj != null)
-                {
-                    obj.SetActive(true); // Deactivates the GameObject
-                }
-            }
+         
             //Advance Option
             if (Input.GetKeyDown(KeyCode.D) && !selectCooldown && !actionPicked)
             {
@@ -103,8 +99,11 @@ public class OptionPicker : MonoBehaviour
             {
                 foreach (GameObject obj in attackOptions)
                 {
+                    Debug.Log("off????");
+
                     if (obj != null)
                     {
+                       
                         obj.SetActive(false); // Deactivates the GameObject
                     }
                 }
@@ -217,5 +216,6 @@ public class OptionPicker : MonoBehaviour
         selectCooldown = false;
     }
     //Starts a new turn after an option is given
+   
    
 }

@@ -157,6 +157,7 @@ MonoBehaviour:
   attackEnded: 0
   attackStarted: 0
   dagger: {fileID: 7777162516969259286, guid: 581f9c7dbc1c6de4f864a925bc67a9a4, type: 3}
+  attackLead: 0
 --- !u!95 &301203866
 Animator:
   serializedVersion: 7
@@ -367,7 +368,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyList:
   - {fileID: 1988192300}
-  - {fileID: 1726973419}
   partyList:
   - {fileID: 2054320997}
   - {fileID: 499284208}
@@ -4355,6 +4355,7 @@ MonoBehaviour:
   attackEnded: 0
   attackStarted: 0
   dagger: {fileID: 7777162516969259286, guid: 581f9c7dbc1c6de4f864a925bc67a9a4, type: 3}
+  attackLead: 0
 --- !u!95 &1726973421
 Animator:
   serializedVersion: 7
@@ -5097,6 +5098,7 @@ MonoBehaviour:
   attackEnded: 0
   attackStarted: 0
   dagger: {fileID: 7777162516969259286, guid: 581f9c7dbc1c6de4f864a925bc67a9a4, type: 3}
+  attackLead: 0
 --- !u!1 &2054320997
 GameObject:
   m_ObjectHideFlags: 0
