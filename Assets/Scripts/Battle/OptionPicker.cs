@@ -36,14 +36,23 @@ public class OptionPicker : MonoBehaviour
         enemyPicker.SetActive(false);
         //Debug
         maxEnemy = 2;
+        foreach (GameObject obj in attackOptions)
+        {
+            if (obj != null)
+            {
+                obj.SetActive(true);
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (myTurn) 
         {
          
+          
             //Advance Option
             if (Input.GetKeyDown(KeyCode.D) && !selectCooldown && !actionPicked)
             {
@@ -99,12 +108,9 @@ public class OptionPicker : MonoBehaviour
             {
                 foreach (GameObject obj in attackOptions)
                 {
-                    Debug.Log("off????");
-
                     if (obj != null)
                     {
-                       
-                        obj.SetActive(false); // Deactivates the GameObject
+                        obj.SetActive(false);
                     }
                 }
                 //If attacking
@@ -132,13 +138,6 @@ public class OptionPicker : MonoBehaviour
             }
             if (attackOn)
             {
-                foreach (GameObject obj in attackOptions)
-                {
-                    if (obj != null)
-                    {
-                        obj.SetActive(false); // Deactivates the GameObject
-                    }
-                }
                 enemyPicker.SetActive(true);
                 //Advance Option
                 if (Input.GetKeyDown(KeyCode.D) && !selectCooldown)
@@ -200,13 +199,7 @@ public class OptionPicker : MonoBehaviour
         }
         else 
         {
-            foreach (GameObject obj in attackOptions)
-            {
-                if (obj != null)
-                {
-                    obj.SetActive(false); // Deactivates the GameObject
-                }
-            }
+           
         }
     }
 
@@ -216,6 +209,16 @@ public class OptionPicker : MonoBehaviour
         selectCooldown = false;
     }
     //Starts a new turn after an option is given
-   
+   public void turnOptionsOn()
+    {
+        Debug.Log("over and over");
+      foreach (GameObject obj in attackOptions)
+                {
+                    if (obj != null)
+                    {
+                        obj.SetActive(true);
+                    }
+                }
+    }
    
 }

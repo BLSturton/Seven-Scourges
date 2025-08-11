@@ -33,6 +33,8 @@ public class BattleManager : MonoBehaviour
  
 
     [SerializeField] EnemyAttacks enemyAttacks;
+
+    [SerializeField] public bool enemyTurnEnd;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -94,7 +96,7 @@ public class BattleManager : MonoBehaviour
             {
                 Debug.Log("True");
               enemyTurn = true;
-
+                cetusOptionPicker.endTurn = false;
             }
         }
         if (raticOptionPicker.endTurn) 
@@ -148,29 +150,27 @@ public class BattleManager : MonoBehaviour
             {
                 enemyList[0].gameObject.GetComponent<EnemyAttacks>().attackLead = true;
                 enemyList[0].gameObject.GetComponent<EnemyAttacks>().AttackSelector();
+               
             }
-           
+            enemyTurn = false;
         }
-       
+        if (enemyTurnEnd) 
+        {
+            newPlayerTurn();
+            if (enemyTurnEnd) 
+            {
+                cetusOptionPicker.turnOptionsOn();
+
+            }
+            enemyTurnEnd = false;
+
+        }
     }
 
     public void newPlayerTurn() 
     {
-            enemyTurn = false;
-            playerBackground.SetActive(true);
-            playerObjects.SetActive(true);
-            enemyBackground.SetActive(false);
-            enemyObjects.SetActive(false);
-            actionBox.SetActive(false);
-            targetDodger.SetActive(false);
-            foreach (GameObject obj in partyList)
-            {
-                if (obj != null)
-                {
-                    obj.SetActive(true);
-                }
-            }
-            if (enemyList.Length == 1)
+        
+        if (enemyList.Length == 1)
             {
                 enemyList[0].transform.position = new Vector2(6.2f, -.36f);
             }
@@ -186,18 +186,26 @@ public class BattleManager : MonoBehaviour
                 enemyList[2].transform.position = new Vector2(5.3f, -3.7f);
 
             }
-            cetusOptionPicker.enabled = true;
-            cetusOptionPicker.myTurn = true;
-            cetusOptionPicker.endTurn = false;
-            cetusOptionPicker.actionPicked = false;
-            cetusOptionPicker.attackOn = false;
-            cetusOptionPicker.optionOn = false;
-
-            raticOptionPicker.myTurn = false;
-            raticOptionPicker.endTurn = false;
-            raticOptionPicker.optionOn = false;
+        playerBackground.SetActive(true);
+        playerObjects.SetActive(true);
+        enemyBackground.SetActive(false);
+        enemyObjects.SetActive(false);
+        actionBox.SetActive(false);
+        turnReset = false;
         targetPicked = false;
-            turnReset = false;
-            CetusToRatic = false;
+
+        targetDodger.SetActive(false);
+        actionBox.SetActive(false);
+        cetusOptionPicker.myTurn = true;
+        cetusOptionPicker.actionPicked = false;
+        cetusOptionPicker.attackOn = false;
+
+        foreach (GameObject obj in partyList)
+        {
+            if (obj != null)
+            {
+                obj.SetActive(true); 
+            }
+        }
     }
 }

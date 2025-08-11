@@ -10,7 +10,6 @@ public class EnemyAttacks : MonoBehaviour
     [SerializeField] Animator enemyAnimator;
 
     [SerializeField] public bool myTurn;
-    [SerializeField] public bool attackEnded;
     [SerializeField] public bool attackStarted;
 
     [SerializeField] GameObject dagger;
@@ -39,14 +38,12 @@ public class EnemyAttacks : MonoBehaviour
 
         }
 
-
+       
     }
 
     public void AttackSelector()
     {
-        attackEnded = false;
-        if (!attackEnded) 
-        {
+        
             if (attackLead)
             {
                 if (this.gameObject.CompareTag("GoblinRouge"))
@@ -61,7 +58,7 @@ public class EnemyAttacks : MonoBehaviour
                     StartCoroutine(AttackOneSupport());
                 }
             }
-        }
+        
        
     }
     public IEnumerator AttackOne() 
@@ -69,14 +66,14 @@ public class EnemyAttacks : MonoBehaviour
 
         Debug.Log("I am attacking now!");
         yield return new WaitForSeconds(3);
-        attackEnded = true;
-        battleManager.newPlayerTurn();
+        battleManager.enemyTurnEnd = true;
+        
     }
     public IEnumerator AttackOneSupport() 
     {
         Debug.Log("I am also attacking!");
         yield return new WaitForSeconds(3);
-        attackEnded = true;
+       
     }
 
 }

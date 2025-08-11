@@ -152,9 +152,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   battleManager: {fileID: 382845793}
   battleManagerObject: {fileID: 382845792}
+  cetusOptionPicker: {fileID: 0}
   enemyAnimator: {fileID: 301203866}
   myTurn: 0
-  attackEnded: 0
   attackStarted: 0
   dagger: {fileID: 7777162516969259286, guid: 581f9c7dbc1c6de4f864a925bc67a9a4, type: 3}
   attackLead: 0
@@ -370,10 +370,8 @@ MonoBehaviour:
   - {fileID: 1988192300}
   partyList:
   - {fileID: 2054320997}
-  - {fileID: 499284208}
   partyDodgeList:
   - {fileID: 1116902421}
-  - {fileID: 526898362}
   targetDodger: {fileID: 0}
   currentPartyTurn: 1
   enemyTurn: 0
@@ -388,6 +386,7 @@ MonoBehaviour:
   turnReset: 0
   CetusToRatic: 0
   enemyAttacks: {fileID: 0}
+  enemyTurnEnd: 0
 --- !u!4 &382845794
 Transform:
   m_ObjectHideFlags: 0
@@ -4143,6 +4142,7 @@ MonoBehaviour:
   enemyPicker: {fileID: 2092236964}
   endTurn: 0
   myTurn: 0
+  optionOn: 0
 --- !u!1 &1465422302
 GameObject:
   m_ObjectHideFlags: 0
@@ -4350,9 +4350,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   battleManager: {fileID: 382845793}
   battleManagerObject: {fileID: 382845792}
+  cetusOptionPicker: {fileID: 0}
   enemyAnimator: {fileID: 1726973421}
   myTurn: 0
-  attackEnded: 0
   attackStarted: 0
   dagger: {fileID: 7777162516969259286, guid: 581f9c7dbc1c6de4f864a925bc67a9a4, type: 3}
   attackLead: 0
@@ -5093,9 +5093,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   battleManager: {fileID: 382845793}
   battleManagerObject: {fileID: 382845792}
+  cetusOptionPicker: {fileID: 1326397611}
   enemyAnimator: {fileID: 1988192303}
   myTurn: 0
-  attackEnded: 0
   attackStarted: 0
   dagger: {fileID: 7777162516969259286, guid: 581f9c7dbc1c6de4f864a925bc67a9a4, type: 3}
   attackLead: 0
@@ -5231,6 +5231,7 @@ MonoBehaviour:
   enemyPicker: {fileID: 2092236964}
   endTurn: 0
   myTurn: 0
+  optionOn: 0
 --- !u!4 &2082054971
 Transform:
   m_ObjectHideFlags: 0
