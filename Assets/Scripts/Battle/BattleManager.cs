@@ -135,9 +135,9 @@ public class BattleManager : MonoBehaviour
             }
             if (enemyList.Length == 3)
             {
-                enemyList[0].transform.position = new Vector2(-3f, 3.5f);
-                enemyList[1].transform.position = new Vector2(0f, 3.5f);
-                enemyList[2].transform.position = new Vector2(1.6f, 3.5f);
+                enemyList[0].transform.position = new Vector2(0f, 3.5f);
+                enemyList[1].transform.position = new Vector2(-2.7f, 3.5f);
+                enemyList[2].transform.position = new Vector2(2.6f, 3.5f);
             }
             actionBox.SetActive(true);
             foreach (GameObject obj in partyList)
@@ -160,6 +160,23 @@ public class BattleManager : MonoBehaviour
                 enemyList[0].gameObject.GetComponent<EnemyAttacks>().attackLead = true;
                 enemyList[0].gameObject.GetComponent<EnemyAttacks>().AttackSelector();
                
+            }
+            if (enemyList.Length == 2)
+            {
+                enemyList[0].gameObject.GetComponent<EnemyAttacks>().attackLead = true;
+                enemyList[0].gameObject.GetComponent<EnemyAttacks>().AttackSelector();
+                enemyList[1].gameObject.GetComponent<EnemyAttacks>().attackLead = false;
+                enemyList[1].gameObject.GetComponent<EnemyAttacks>().AttackSelector();
+
+            }
+            if (enemyList.Length == 3)
+            {
+                enemyList[0].gameObject.GetComponent<EnemyAttacks>().attackLead = true;
+                enemyList[0].gameObject.GetComponent<EnemyAttacks>().AttackSelector();
+                enemyList[1].gameObject.GetComponent<EnemyAttacks>().attackLead = false;
+                enemyList[1].gameObject.GetComponent<EnemyAttacks>().AttackSelector();
+                enemyList[2].gameObject.GetComponent<EnemyAttacks>().attackLead = false;
+                enemyList[2].gameObject.GetComponent<EnemyAttacks>().AttackSelector();
             }
             enemyTurn = false;
         }
