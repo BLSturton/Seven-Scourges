@@ -25,26 +25,19 @@ public class EnemyAttacks : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (battleManager.enemyTurn) 
-        {
-            enemyAnimator.SetBool("attackOn", true);
 
-        }
-     
-        if (battleManager.enemyTurn == false) 
-        {
-            enemyAnimator.SetBool("attackOn", false);
-            attackStarted = false;
-
-        }
 
        
     }
 
     public void AttackSelector()
     {
-        
-            if (attackLead)
+        if (battleManager.enemyTurn)
+        {
+            enemyAnimator.SetBool("attackOn", true);
+
+        }
+        if (attackLead)
             {
                 if (this.gameObject.CompareTag("GoblinRouge"))
                 {
@@ -60,6 +53,15 @@ public class EnemyAttacks : MonoBehaviour
             }
         
        
+    }
+
+    public void AnimationReturn() 
+    {
+       
+            enemyAnimator.SetBool("attackOn", false);
+
+        
+
     }
     public IEnumerator AttackOne() 
     {

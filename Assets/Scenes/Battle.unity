@@ -370,8 +370,10 @@ MonoBehaviour:
   - {fileID: 1988192300}
   partyList:
   - {fileID: 2054320997}
+  - {fileID: 499284208}
   partyDodgeList:
   - {fileID: 1116902421}
+  - {fileID: 526898362}
   targetDodger: {fileID: 0}
   currentPartyTurn: 1
   enemyTurn: 0

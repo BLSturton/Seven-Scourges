@@ -83,12 +83,19 @@ public class BattleManager : MonoBehaviour
             {
                 if (!CetusToRatic) 
                 {
-                    raticOptionPicker.myTurn = true;
+                    Debug.Log("Man");
                     raticOptionPicker.enabled = true;
                     raticOptionPicker.myTurn = true;
                     raticOptionPicker.endTurn = false;
                     raticOptionPicker.actionPicked = false;
                     CetusToRatic = true;
+                    foreach (GameObject obj in raticOptionPicker.attackOptions)
+                    {
+                        if (obj != null)
+                        {
+                            obj.SetActive(true);
+                        }
+                    }
                 }
                
             }
@@ -110,6 +117,7 @@ public class BattleManager : MonoBehaviour
         if (enemyTurn)
         {
             
+                   
 
 
             playerBackground.SetActive(false);
@@ -139,6 +147,7 @@ public class BattleManager : MonoBehaviour
                     obj.SetActive(false); // Deactivates the GameObject
                 }
             }
+          
             if (!targetPicked) 
             {
 
@@ -169,7 +178,15 @@ public class BattleManager : MonoBehaviour
 
     public void newPlayerTurn() 
     {
-        
+        foreach (GameObject obj in enemyList)
+        {
+            if (obj != null)
+            {
+                obj.GetComponent<EnemyAttacks>().AnimationReturn();
+            }
+        }
+        cetusOptionPicker.endTurn = false;
+        CetusToRatic = false;
         if (enemyList.Length == 1)
             {
                 enemyList[0].transform.position = new Vector2(6.2f, -.36f);
@@ -196,10 +213,17 @@ public class BattleManager : MonoBehaviour
 
         targetDodger.SetActive(false);
         actionBox.SetActive(false);
+        raticOptionPicker.myTurn = false;
         cetusOptionPicker.myTurn = true;
         cetusOptionPicker.actionPicked = false;
         cetusOptionPicker.attackOn = false;
+        
+        if(partyList.Length == 2) 
+        {
+            raticOptionPicker.actionPicked = false;
+            raticOptionPicker.attackOn = false;
 
+        }
         foreach (GameObject obj in partyList)
         {
             if (obj != null)

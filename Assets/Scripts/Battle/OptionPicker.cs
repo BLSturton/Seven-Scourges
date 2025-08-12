@@ -34,15 +34,27 @@ public class OptionPicker : MonoBehaviour
         optionNumber = 0;
         selectedOption.transform.localPosition = new Vector2(selectedOption.transform.localPosition.x, selectedOption.transform.localPosition.y + 1);
         enemyPicker.SetActive(false);
-        //Debug
-        maxEnemy = 2;
-        foreach (GameObject obj in attackOptions)
+       if(this.gameObject.name == "CetusOptionManager") 
         {
-            if (obj != null)
+            foreach (GameObject obj in attackOptions)
             {
-                obj.SetActive(true);
+                if (obj != null)
+                {
+                    obj.SetActive(true);
+                }
             }
         }
+        else 
+        {
+            foreach (GameObject obj in attackOptions)
+            {
+                if (obj != null)
+                {
+                    obj.SetActive(false);
+                }
+            }
+        }
+        
     }
 
     // Update is called once per frame
