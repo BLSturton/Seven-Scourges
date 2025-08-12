@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class EnemyAttacks : MonoBehaviour
 {
@@ -41,7 +42,7 @@ public class EnemyAttacks : MonoBehaviour
             {
                 if (this.gameObject.CompareTag("GoblinRouge"))
                 {
-                    StartCoroutine(AttackOne());
+                    StartCoroutine(TripleKnife());
                 }
             }
             else
@@ -63,13 +64,24 @@ public class EnemyAttacks : MonoBehaviour
         
 
     }
-    public IEnumerator AttackOne() 
+    public IEnumerator TripleKnife() 
     {
+        yield return new WaitForSeconds(.4f);
 
-        Debug.Log("I am attacking now!");
-        yield return new WaitForSeconds(3);
+        float knifeSpeed = 5f;
+        GameObject knifeMain = Instantiate(dagger, transform.position, Quaternion.identity);
+        knifeMain.transform.rotation = Quaternion.Euler(0, 0, -180f);
+
+        float timer = 0f;
+        while (timer < 3f)
+        {
+            timer += Time.deltaTime;
+            knifeMain.transform.Translate(Vector2.down * knifeSpeed * Time.deltaTime, Space.World);
+            yield return null;
+        }
+
         battleManager.enemyTurnEnd = true;
-        
+
     }
     public IEnumerator AttackOneSupport() 
     {

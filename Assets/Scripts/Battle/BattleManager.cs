@@ -3,6 +3,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class BattleManager : MonoBehaviour
@@ -24,7 +25,7 @@ public class BattleManager : MonoBehaviour
     [SerializeField] GameObject enemyObjects;
 
     [SerializeField] GameObject actionBox;
-    
+    [SerializeField] GameObject dodgerSpawnPoint;
 
     [SerializeField] public bool targetPicked;
 
@@ -35,9 +36,17 @@ public class BattleManager : MonoBehaviour
     [SerializeField] EnemyAttacks enemyAttacks;
 
     [SerializeField] public bool enemyTurnEnd;
+
+    [SerializeField] public int CetusHP;
+    [SerializeField] public int damageValue;
+
+    [SerializeField] public Text CetusHPVisual;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //Will change later
+        CetusHP = 10;
+        
         currentPartyTurn = 1;
         cetusOptionPicker.myTurn = true;
 
@@ -75,6 +84,8 @@ public class BattleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Displays current HP
+        CetusHPVisual.text = CetusHP.ToString();
         if (cetusOptionPicker.endTurn) 
         {
             
@@ -152,6 +163,7 @@ public class BattleManager : MonoBehaviour
             {
 
                 targetDodger = partyDodgeList[Random.Range(0, partyDodgeList.Length)];
+                targetDodger.transform.position = dodgerSpawnPoint.transform.position;
                 targetDodger.SetActive(true);
                 targetPicked = true;
             }
@@ -246,6 +258,18 @@ public class BattleManager : MonoBehaviour
             if (obj != null)
             {
                 obj.SetActive(true); 
+            }
+        }
+    }
+
+    public void CetusDamage() 
+    {
+        if(CetusHP > 0) 
+        {
+            CetusHP = CetusHP - damageValue;
+            if(CetusHP <= 0) 
+            {
+                Debug.Log("Game over man!");
             }
         }
     }

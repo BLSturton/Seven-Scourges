@@ -1,18 +1,27 @@
+using System.Collections;
 using UnityEngine;
 
 public class BattleMove : MonoBehaviour
 {
     //Move
-    public float moveSpeed = 5f;
-    public Rigidbody2D rb;
-    Vector2 movement;
-    public bool canMove;
+    [SerializeField] public float moveSpeed = 5f;
+    [SerializeField] public Rigidbody2D rb;
+    [SerializeField] Vector2 movement;
+    [SerializeField] public bool canMove;
     //Animation
-    public Animator CetusAnim;
+    [SerializeField] public Animator CetusAnim;
+
+    //Hitreg
+    [SerializeField] public BoxCollider2D hitBox;
+    [SerializeField] public bool canBeHit;
+
+    //Scripts
+    [SerializeField] BattleManager battleManager;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        canBeHit = true;
     }
 
     // Update is called once per frame
@@ -71,5 +80,34 @@ public class BattleMove : MonoBehaviour
         //Move
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
 
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        if (this.gameObject.name == "CetusDodge" && canBeHit) 
+        {
+            StartCoroutine(HitCooldown());
+            if (collision.CompareTag("GoblinRougeAttack"))
+            {
+                battleManager.damageValue = 2;
+                battleManager.CetusDamage();
+            }
+        }
+
+        
+    }
+
+    public IEnumerator HitCooldown() 
+    {
+        canBeHit = false;
+        for (int i = 0; i < 5; i++) 
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            yield return new WaitForSeconds(.1f);
+            this.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            yield return new WaitForSeconds(.1f);
+        }
+        canBeHit = true;
     }
 }
