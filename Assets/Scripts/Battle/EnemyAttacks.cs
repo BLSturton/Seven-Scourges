@@ -66,20 +66,22 @@ public class EnemyAttacks : MonoBehaviour
     }
     public IEnumerator TripleKnife() 
     {
-        yield return new WaitForSeconds(.4f);
-
-        float knifeSpeed = 5f;
-        GameObject knifeMain = Instantiate(dagger, transform.position, Quaternion.identity);
-        knifeMain.transform.rotation = Quaternion.Euler(0, 0, -180f);
-
-        float timer = 0f;
-        while (timer < 3f)
+        for (int i = 0; i < 3; i++) 
         {
-            timer += Time.deltaTime;
-            knifeMain.transform.Translate(Vector2.down * knifeSpeed * Time.deltaTime, Space.World);
-            yield return null;
-        }
+            yield return new WaitForSeconds(.1f);
 
+            float knifeSpeed = 5f;
+            GameObject knifeMain = Instantiate(dagger, transform.position, Quaternion.identity);
+            knifeMain.transform.rotation = Quaternion.Euler(0, 0, -180f);
+
+            float timer = 0f;
+            while (timer < 1.8f)
+            {
+                timer += Time.deltaTime;
+                knifeMain.transform.Translate(Vector2.down * knifeSpeed * Time.deltaTime, Space.World);
+                yield return null;
+            }
+        }
         battleManager.enemyTurnEnd = true;
 
     }
