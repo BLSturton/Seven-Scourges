@@ -54,9 +54,7 @@ public class BattleManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //Will change later
-        CetusHP = 2;
-        RaticHP = 10;
+       
         currentPartyTurn = 1;
         cetusOptionPicker.myTurn = true;
 
@@ -108,6 +106,11 @@ public class BattleManager : MonoBehaviour
             {
                 partyDodgeList.RemoveAll(item => item.name == "CetusDodge");
                 partyList.RemoveAll(item => item.name == "Cetus");
+            }
+            if (RaticDown) 
+            {
+                partyDodgeList.RemoveAll(item => item.name == "RaticDodge");
+                partyList.RemoveAll(item => item.name == "Ratic");
             }
         }
         //Displays current HP
@@ -224,7 +227,14 @@ public class BattleManager : MonoBehaviour
             newPlayerTurn();
             if (enemyTurnEnd) 
             {
-                cetusOptionPicker.turnOptionsOn();
+                if (!CetusDown) 
+                {
+                    cetusOptionPicker.turnOptionsOn();
+                }
+                else 
+                {
+                    raticOptionPicker.turnOptionsOn();
+                }
 
             }
             enemyTurnEnd = false;
@@ -269,12 +279,22 @@ public class BattleManager : MonoBehaviour
 
         targetDodger.SetActive(false);
         actionBox.SetActive(false);
-        raticOptionPicker.myTurn = false;
-        cetusOptionPicker.myTurn = true;
-        cetusOptionPicker.actionPicked = false;
-        cetusOptionPicker.attackOn = false;
-        
-        if(partyList.Count == 2) 
+        if (!CetusDown) 
+        {
+            raticOptionPicker.myTurn = false;
+            cetusOptionPicker.myTurn = true;
+            cetusOptionPicker.actionPicked = false;
+            cetusOptionPicker.attackOn = false;
+        }
+        else
+        {
+            cetusOptionPicker.myTurn = false;
+            raticOptionPicker.myTurn = true;
+            raticOptionPicker.actionPicked = false;
+            raticOptionPicker.attackOn = false;
+        }
+
+        if (partyList.Count == 2)
         {
             raticOptionPicker.actionPicked = false;
             raticOptionPicker.attackOn = false;
