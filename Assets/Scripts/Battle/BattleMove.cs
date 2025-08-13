@@ -94,8 +94,16 @@ public class BattleMove : MonoBehaviour
                 battleManager.CetusDamage();
             }
         }
+        if (this.gameObject.name == "RaticDodge" && canBeHit)
+        {
+            StartCoroutine(HitCooldown());
+            if (collision.CompareTag("GoblinRougeAttack"))
+            {
+                battleManager.damageValue = 2;
+                battleManager.RaticDamage();
+            }
+        }
 
-        
     }
 
     public IEnumerator HitCooldown() 

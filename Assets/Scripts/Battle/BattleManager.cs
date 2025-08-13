@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -8,9 +10,9 @@ using Random = UnityEngine.Random;
 
 public class BattleManager : MonoBehaviour
 {
-    [SerializeField] public GameObject[] enemyList;
-    [SerializeField] public GameObject[] partyList;
-    [SerializeField] public GameObject[] partyDodgeList;
+    [SerializeField] public List<GameObject> enemyList;
+    [SerializeField] public List<GameObject> partyList;
+    [SerializeField] public List<GameObject> partyDodgeList;
     [SerializeField] public GameObject targetDodger;
     //1 For Cetus, 2 for Ratic
     [SerializeField] public int currentPartyTurn;
@@ -38,15 +40,23 @@ public class BattleManager : MonoBehaviour
     [SerializeField] public bool enemyTurnEnd;
 
     [SerializeField] public int CetusHP;
+    [SerializeField] public int RaticHP;
     [SerializeField] public int damageValue;
 
     [SerializeField] public Text CetusHPVisual;
+    [SerializeField] public Text RaticHPVisual;
+
+    [SerializeField] public bool CetusDown;
+    [SerializeField] public bool RaticDown;
+
+    [SerializeField] public GameObject CetusSprite;
+    [SerializeField] public GameObject RaticSprite;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //Will change later
-        CetusHP = 10;
-        
+        CetusHP = 2;
+        RaticHP = 10;
         currentPartyTurn = 1;
         cetusOptionPicker.myTurn = true;
 
@@ -62,16 +72,16 @@ public class BattleManager : MonoBehaviour
                 obj.SetActive(false); // Deactivates the GameObject
             }
         }
-        if (enemyList.Length == 1)
+        if (enemyList.Count == 1)
         {
             enemyList[0].transform.position = new Vector2(6.2f, -.36f);
         }
-        if (enemyList.Length == 2)
+        if (enemyList.Count == 2)
         {
             enemyList[0].transform.position = new Vector2(6.2f, -.36f);
             enemyList[1].transform.position = new Vector2(5.5f, -2.8f);
         }
-        if (enemyList.Length == 3)
+        if (enemyList.Count == 3)
         {
             enemyList[0].transform.position = new Vector2(4.9f, -.14f);
             enemyList[1].transform.position = new Vector2(6.3f, -1.53f);
@@ -84,13 +94,30 @@ public class BattleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Checks if party is down given size
+        if(partyList.Count == 1) 
+        {
+            if (CetusDown) 
+            {
+                Debug.Log("Game over man!");
+            }
+        }
+        if (partyList.Count == 2)
+        {
+            if (CetusDown)
+            {
+                partyDodgeList.RemoveAll(item => item.name == "CetusDodge");
+                partyList.RemoveAll(item => item.name == "Cetus");
+            }
+        }
         //Displays current HP
         CetusHPVisual.text = CetusHP.ToString();
+        RaticHPVisual.text = RaticHP.ToString();
         if (cetusOptionPicker.endTurn) 
         {
             
 
-            if (partyList.Length == 2) 
+            if (partyList.Count == 2) 
             {
                 if (!CetusToRatic) 
                 {
@@ -135,16 +162,16 @@ public class BattleManager : MonoBehaviour
             playerObjects.SetActive(false);
             enemyBackground.SetActive(true);
             enemyObjects.SetActive(true);
-            if(enemyList.Length == 1) 
+            if(enemyList.Count == 1) 
             {
                 enemyList[0].transform.position = new Vector2(0f, 3.5f);
             }
-            if(enemyList.Length == 2) 
+            if(enemyList.Count == 2) 
             {
                 enemyList[0].transform.position = new Vector2(-1.7f, 3.5f);
                 enemyList[1].transform.position = new Vector2(1.4f, 3.5f);
             }
-            if (enemyList.Length == 3)
+            if (enemyList.Count == 3)
             {
                 enemyList[0].transform.position = new Vector2(0f, 3.5f);
                 enemyList[1].transform.position = new Vector2(-2.7f, 3.5f);
@@ -162,18 +189,18 @@ public class BattleManager : MonoBehaviour
             if (!targetPicked) 
             {
 
-                targetDodger = partyDodgeList[Random.Range(0, partyDodgeList.Length)];
+                targetDodger = partyDodgeList[Random.Range(0, partyDodgeList.Count)];
                 targetDodger.transform.position = dodgerSpawnPoint.transform.position;
                 targetDodger.SetActive(true);
                 targetPicked = true;
             }
-           if(enemyList.Length == 1) 
+           if(enemyList.Count == 1) 
             {
                 enemyList[0].gameObject.GetComponent<EnemyAttacks>().attackLead = true;
                 enemyList[0].gameObject.GetComponent<EnemyAttacks>().AttackSelector();
                
             }
-            if (enemyList.Length == 2)
+            if (enemyList.Count == 2)
             {
                 enemyList[0].gameObject.GetComponent<EnemyAttacks>().attackLead = true;
                 enemyList[0].gameObject.GetComponent<EnemyAttacks>().AttackSelector();
@@ -181,7 +208,7 @@ public class BattleManager : MonoBehaviour
                 enemyList[1].gameObject.GetComponent<EnemyAttacks>().AttackSelector();
 
             }
-            if (enemyList.Length == 3)
+            if (enemyList.Count == 3)
             {
                 enemyList[0].gameObject.GetComponent<EnemyAttacks>().attackLead = true;
                 enemyList[0].gameObject.GetComponent<EnemyAttacks>().AttackSelector();
@@ -216,16 +243,16 @@ public class BattleManager : MonoBehaviour
         }
         cetusOptionPicker.endTurn = false;
         CetusToRatic = false;
-        if (enemyList.Length == 1)
+        if (enemyList.Count == 1)
             {
                 enemyList[0].transform.position = new Vector2(6.2f, -.36f);
             }
-            if (enemyList.Length == 2)
+            if (enemyList.Count == 2)
             {
                 enemyList[0].transform.position = new Vector2(6.2f, -.36f);
                 enemyList[1].transform.position = new Vector2(5.5f, -2.8f);
             }
-            if (enemyList.Length == 3)
+            if (enemyList.Count == 3)
             {
                 enemyList[0].transform.position = new Vector2(4.9f, -.14f);
                 enemyList[1].transform.position = new Vector2(6.3f, -1.53f);
@@ -247,7 +274,7 @@ public class BattleManager : MonoBehaviour
         cetusOptionPicker.actionPicked = false;
         cetusOptionPicker.attackOn = false;
         
-        if(partyList.Length == 2) 
+        if(partyList.Count == 2) 
         {
             raticOptionPicker.actionPicked = false;
             raticOptionPicker.attackOn = false;
@@ -269,7 +296,18 @@ public class BattleManager : MonoBehaviour
             CetusHP = CetusHP - damageValue;
             if(CetusHP <= 0) 
             {
-                Debug.Log("Game over man!");
+                CetusDown = true;
+            }
+        }
+    }
+    public void RaticDamage()
+    {
+        if (RaticHP > 0)
+        {
+            RaticHP = RaticHP - damageValue;
+            if (RaticHP <= 0)
+            {
+               RaticDown = true;
             }
         }
     }
