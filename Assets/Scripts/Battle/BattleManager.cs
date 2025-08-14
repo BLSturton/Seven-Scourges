@@ -51,6 +51,8 @@ public class BattleManager : MonoBehaviour
 
     [SerializeField] public GameObject CetusSprite;
     [SerializeField] public GameObject RaticSprite;
+
+    [SerializeField] public CetusSwordSpin swordSpin;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -194,8 +196,10 @@ public class BattleManager : MonoBehaviour
 
                 targetDodger = partyDodgeList[Random.Range(0, partyDodgeList.Count)];
                 targetDodger.transform.position = dodgerSpawnPoint.transform.position;
+                targetDodger.GetComponent<SpriteRenderer>().enabled = true;
                 targetDodger.SetActive(true);
                 targetPicked = true;
+               
             }
            if(enemyList.Count == 1) 
             {
@@ -244,6 +248,7 @@ public class BattleManager : MonoBehaviour
 
     public void newPlayerTurn() 
     {
+        swordSpin.isSpin = false;
         foreach (GameObject obj in enemyList)
         {
             if (obj != null)

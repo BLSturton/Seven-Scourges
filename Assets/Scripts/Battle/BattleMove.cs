@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BattleMove : MonoBehaviour
@@ -17,7 +18,10 @@ public class BattleMove : MonoBehaviour
 
     //Scripts
     [SerializeField] BattleManager battleManager;
+    [SerializeField] CetusSwordSpin swordSpin;
+    [SerializeField] CooldownWipe cooldownWipe; 
 
+    [SerializeField] public bool isDash;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -73,19 +77,44 @@ public class BattleMove : MonoBehaviour
             CetusAnim.SetBool("WalkDown", false);
             CetusAnim.SetBool("WalkUp", false);
         }
+       
     }
 
     private void FixedUpdate()
     {
         //Move
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        if (!isDash) 
+        {
+            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
 
+        }
+        if (this.gameObject.name == "RaticDodge" && Input.GetKeyDown(KeyCode.K))
+        {
+            
+            StartCoroutine(Dash());
+        }
     }
 
+    public IEnumerator Dash() 
+    {
+        isDash = true;
+
+        float dashTime = .3f; // Total time for rotation in seconds
+        float dashSpeed = 30f; // Degrees per second
+        float elapsedTime = 0f;
+        
+        while (elapsedTime < dashTime)
+        {
+            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+
+            elapsedTime += Time.deltaTime;
+            yield return null; // Wait until next frame
+        }
+        isDash = false;
+    }
     public void OnTriggerEnter2D(Collider2D collision)
     {
-
-        if (this.gameObject.name == "CetusDodge" && canBeHit) 
+         if (this.gameObject.name == "CetusDodge" && canBeHit && swordSpin.isSafe == false)
         {
             StartCoroutine(HitCooldown());
             if (collision.CompareTag("GoblinRougeAttack"))
@@ -94,6 +123,7 @@ public class BattleMove : MonoBehaviour
                 battleManager.CetusDamage();
             }
         }
+
         if (this.gameObject.name == "RaticDodge" && canBeHit)
         {
             StartCoroutine(HitCooldown());

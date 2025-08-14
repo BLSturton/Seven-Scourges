@@ -10,30 +10,27 @@ public class CetusSwordSpin : MonoBehaviour
 
     [SerializeField] public bool canSpin;
     [SerializeField] public bool isSpin;
+    [SerializeField] public bool isSafe;
 
     [SerializeField] Animator animator;
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] BoxCollider2D boxCollider;
 
+    [SerializeField] GameObject coolDown;
+    [SerializeField] CooldownWipe cooldownWipe;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
      spriteRenderer.enabled = false;   
+        boxCollider.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(battleManager.targetPicked) 
-        {
-            canSpin = true;
-        }
-        else 
-        {
-            canSpin = false;
-        }
+      
 
-        if(Input.GetKeyDown(KeyCode.K) && canSpin && !isSpin) 
+        if(Input.GetKeyDown(KeyCode.K) && !isSpin) 
         {
            isSpin = true;
             StartCoroutine(SwordSpin());
@@ -43,14 +40,14 @@ public class CetusSwordSpin : MonoBehaviour
     public IEnumerator SwordSpin() 
     {
         spriteRenderer.enabled = true;
-        animator.SetBool("SpinOn", false);
-        yield return new WaitForSeconds(.2f);
+        boxCollider.enabled = true;
+
         animator.SetBool("SpinOn", true);
 
-        float rotationTime = .5f; // Total time for rotation in seconds
+        float rotationTime = .3f; // Total time for rotation in seconds
         float rotationSpeed = 1080f; // Degrees per second
         float elapsedTime = 0f;
-
+        isSafe = true;
         while (elapsedTime < rotationTime)
         {
             float rotationThisFrame = rotationSpeed * Time.deltaTime;
@@ -61,18 +58,23 @@ public class CetusSwordSpin : MonoBehaviour
 
         animator.SetBool("SpinOn", false);
         spriteRenderer.enabled = false;
+        boxCollider.enabled = false;
 
-        yield return new WaitForSeconds(.5f);
+        isSafe = false;
+        cooldownWipe.StartCooldown();
+        yield return new WaitForSeconds(1.7f);
         isSpin = false;
+
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.CompareTag("GoblinRougeAttack"))
+        if (collision.CompareTag("GoblinRougeAttack") && isSafe)
         {
+            Debug.Log("Trigger");
             Debug.Log("Aaa");
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
         }
     }
 }
