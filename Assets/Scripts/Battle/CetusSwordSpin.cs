@@ -6,6 +6,8 @@ public class CetusSwordSpin : MonoBehaviour
 {
     [SerializeField] OptionPicker cetusOptionPicker;
     [SerializeField] BattleManager battleManager;
+    [SerializeField] BattleMove battleMove;
+
     [SerializeField] GameObject Cetus;
 
     [SerializeField] public bool canSpin;
@@ -18,10 +20,12 @@ public class CetusSwordSpin : MonoBehaviour
 
     [SerializeField] GameObject coolDown;
     [SerializeField] CooldownWipe cooldownWipe;
+    [SerializeField] float coolDownTimer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-     spriteRenderer.enabled = false;   
+        coolDownTimer = battleMove.ultCoolDown;
+       spriteRenderer.enabled = false;   
         boxCollider.enabled = false;
     }
 
@@ -62,7 +66,7 @@ public class CetusSwordSpin : MonoBehaviour
 
         isSafe = false;
         cooldownWipe.StartCooldown();
-        yield return new WaitForSeconds(1.7f);
+        yield return new WaitForSeconds(coolDownTimer);
         isSpin = false;
 
     }

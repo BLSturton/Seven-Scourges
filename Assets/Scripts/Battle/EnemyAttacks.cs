@@ -87,7 +87,6 @@ public class EnemyAttacks : MonoBehaviour
     }
     public IEnumerator AttackOneSupport() 
     {
-        Debug.Log("I am also attacking!");
         yield return new WaitForSeconds(3);
        
     }

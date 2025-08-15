@@ -20,6 +20,7 @@ public class BattleManager : MonoBehaviour
    
     [SerializeField] OptionPicker cetusOptionPicker;
     [SerializeField] OptionPicker raticOptionPicker;
+ 
 
     [SerializeField] GameObject playerBackground;
     [SerializeField] GameObject playerObjects;
@@ -126,7 +127,6 @@ public class BattleManager : MonoBehaviour
             {
                 if (!CetusToRatic) 
                 {
-                    Debug.Log("Man");
                     raticOptionPicker.enabled = true;
                     raticOptionPicker.myTurn = true;
                     raticOptionPicker.endTurn = false;
@@ -144,7 +144,6 @@ public class BattleManager : MonoBehaviour
             }
             else 
             {
-                Debug.Log("True");
               enemyTurn = true;
                 cetusOptionPicker.endTurn = false;
             }
@@ -199,7 +198,15 @@ public class BattleManager : MonoBehaviour
                 targetDodger.GetComponent<SpriteRenderer>().enabled = true;
                 targetDodger.SetActive(true);
                 targetPicked = true;
-               
+                if(targetDodger.gameObject.name == "RaticDodge") 
+                {
+                    targetDodger.GetComponent<BattleMove>().canDash = true;
+                    targetDodger.GetComponent<BattleMove>().isDash = false;
+                    targetDodger.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+
+                }
+
+
             }
            if(enemyList.Count == 1) 
             {

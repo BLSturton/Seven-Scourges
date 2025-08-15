@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Renderer))]
@@ -6,12 +7,15 @@ public class CooldownWipe : MonoBehaviour
     [SerializeField] private float cooldownDuration = 3f;
     [SerializeField] private bool startHidden = true;
 
+    [SerializeField] BattleManager battleManager;
+    [SerializeField] BattleMove battleMove;
     private Material cooldownMaterial;
-    private float cooldownTimer = 1.7f;
-    private bool isOnCooldown = false;
+    private float cooldownTimer;
+    public bool isOnCooldown = false;
 
     void Start()
     {
+        cooldownTimer = battleMove.ultCoolDown;
         // Get the renderer and create a material instance (to avoid modifying the original)
         Renderer rend = GetComponent<Renderer>();
         cooldownMaterial = rend.material;
@@ -19,6 +23,7 @@ public class CooldownWipe : MonoBehaviour
         if (startHidden)
             gameObject.SetActive(false);
     }
+
 
     public void StartCooldown()
     {
@@ -30,6 +35,7 @@ public class CooldownWipe : MonoBehaviour
 
     void Update()
     {
+        
         if (isOnCooldown)
         {
             cooldownTimer -= Time.deltaTime;
@@ -42,5 +48,12 @@ public class CooldownWipe : MonoBehaviour
                 gameObject.SetActive(false);
             }
         }
+        if (battleManager.turnReset == true) 
+        {
+            isOnCooldown = false;
+            gameObject.SetActive(false);
+           
+        }
     }
+    
 }

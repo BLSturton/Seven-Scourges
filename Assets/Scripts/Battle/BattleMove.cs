@@ -22,6 +22,9 @@ public class BattleMove : MonoBehaviour
     [SerializeField] CooldownWipe cooldownWipe; 
 
     [SerializeField] public bool isDash;
+    [SerializeField] public bool canDash;
+
+    [SerializeField] public float ultCoolDown;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,8 +34,12 @@ public class BattleMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //This section detects movement by input, and then plays the animations depending on the input.
-        if (canMove)
+        if (battleManager.turnReset == true)
+        {
+            cooldownWipe.isOnCooldown = false;
+        }
+            //This section detects movement by input, and then plays the animations depending on the input.
+            if (canMove)
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
@@ -77,7 +84,11 @@ public class BattleMove : MonoBehaviour
             CetusAnim.SetBool("WalkDown", false);
             CetusAnim.SetBool("WalkUp", false);
         }
-       
+        if (this.gameObject.name == "RaticDodge" && Input.GetKeyDown(KeyCode.K) && canDash && !isDash)
+        {
+            Debug.Log("Dodging");
+            StartCoroutine(Dash());
+        }
     }
 
     private void FixedUpdate()
@@ -86,31 +97,47 @@ public class BattleMove : MonoBehaviour
         if (!isDash) 
         {
             rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-
-        }
-        if (this.gameObject.name == "RaticDodge" && Input.GetKeyDown(KeyCode.K))
-        {
             
-            StartCoroutine(Dash());
         }
+       
     }
 
     public IEnumerator Dash() 
     {
+        canDash = false;
         isDash = true;
 
-        float dashTime = .3f; // Total time for rotation in seconds
-        float dashSpeed = 30f; // Degrees per second
-        float elapsedTime = 0f;
-        
-        while (elapsedTime < dashTime)
-        {
-            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        // Capture dash direction immediately when input is pressed
+        Vector2 dashDirection = movement.normalized;
 
-            elapsedTime += Time.deltaTime;
-            yield return null; // Wait until next frame
+        // If no direction is pressed, default to facing right (or choose another default)
+        if (dashDirection == Vector2.zero)
+        {
+            canDash = true;
+            isDash = false;
+            yield break;
+
         }
+        this.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
+        float dashDuration = 0.15f; // Total duration of dash
+        float dashSpeed = 15f;     // Speed of dash
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < dashDuration)
+        {
+            rb.MovePosition(rb.position + dashDirection * dashSpeed * Time.fixedDeltaTime);
+            elapsedTime += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate(); // Wait for next physics update
+        }
+        this.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+
         isDash = false;
+        cooldownWipe.StartCooldown();
+
+        yield return new WaitForSeconds(ultCoolDown); // Cooldown before can dash again
+        canDash = true;
+
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
