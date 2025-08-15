@@ -198,13 +198,13 @@ public class OptionPicker : MonoBehaviour
                 switch (enemyNumber)
                 {
                     case 0:
-                        enemyPicker.transform.position = new Vector2(4.75f, .2f);
+                        enemyPicker.transform.position = battleManager.enemyList[0].transform.position - new Vector3(1, 0, 0);
                         break;
                     case 1:
-                        enemyPicker.transform.position = new Vector2(6f, -1.2f);
+                        enemyPicker.transform.position = battleManager.enemyList[1].transform.position - new Vector3(1, 0, 0);
                         break;
                     case 2:
-                        enemyPicker.transform.position = new Vector2(4.5f, -2.5f);
+                        enemyPicker.transform.position = battleManager.enemyList[2].transform.position - new Vector3(1, 0, 0);
                         break;
                 }
             }
