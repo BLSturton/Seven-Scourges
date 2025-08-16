@@ -22,8 +22,12 @@ public class OptionPicker : MonoBehaviour
     [SerializeField] public int maxEnemy;
     [SerializeField] public GameObject enemyPicker;
     [SerializeField] public CetusAttack cetusAttack;
-    [SerializeField] public GameObject cetusAction;
+    [SerializeField] public GameObject cetusAttackAction;
     [SerializeField] public GameObject actionBox;
+
+    [SerializeField] public RaticAttack raticAttack;
+    [SerializeField] public GameObject raticAttackAction;
+    [SerializeField] public GameObject countdownText;
     //End turn
     [SerializeField] public bool endTurn;
     [SerializeField] public bool myTurn;
@@ -35,8 +39,9 @@ public class OptionPicker : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        cetusAction.SetActive(false);
-
+        cetusAttackAction.SetActive(false);
+        raticAttackAction.SetActive(false);
+        countdownText.SetActive(false);
         selectedOption = attackOptions[0];
         optionNumber = 0;
         selectedOption.transform.localPosition = new Vector2(selectedOption.transform.localPosition.x, selectedOption.transform.localPosition.y + 1);
@@ -141,13 +146,14 @@ public class OptionPicker : MonoBehaviour
                     actionBox.SetActive(true);
                     if(this.gameObject.name == "CetusOptionManager") 
                     {
-                        
-                        cetusAction.SetActive(true);
+
+                        cetusAttackAction.SetActive(true);
                         cetusAttack.StartAttack();
                     }
                     if (this.gameObject.name == "RaticOptionManager")
                     {
-                        Debug.Log("fard");
+                        raticAttackAction.SetActive(true);
+                        raticAttack.StartAttack();
                     }
                    
                 }
