@@ -30,6 +30,7 @@ public class OptionPicker : MonoBehaviour
 
     [SerializeField] public bool optionOn;
 
+    [SerializeField] public GameObject targetEnemy;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -140,6 +141,7 @@ public class OptionPicker : MonoBehaviour
                     actionBox.SetActive(true);
                     if(this.gameObject.name == "CetusOptionManager") 
                     {
+                        
                         cetusAction.SetActive(true);
                         cetusAttack.StartAttack();
                     }
@@ -147,8 +149,7 @@ public class OptionPicker : MonoBehaviour
                     {
                         Debug.Log("fard");
                     }
-                    //endTurn = true;
-                    //myTurn = false;
+                   
                 }
                 if (!actionPicked)
                 {
@@ -215,12 +216,17 @@ public class OptionPicker : MonoBehaviour
                 {
                     case 0:
                         enemyPicker.transform.position = battleManager.enemyList[0].transform.position - new Vector3(1, 0, 0);
+                        targetEnemy = battleManager.enemyList[0];
                         break;
                     case 1:
                         enemyPicker.transform.position = battleManager.enemyList[1].transform.position - new Vector3(1, 0, 0);
+                        targetEnemy = battleManager.enemyList[1];
+
                         break;
                     case 2:
                         enemyPicker.transform.position = battleManager.enemyList[2].transform.position - new Vector3(1, 0, 0);
+                        targetEnemy = battleManager.enemyList[2];
+
                         break;
                 }
             }

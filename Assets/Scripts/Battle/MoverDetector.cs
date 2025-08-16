@@ -18,7 +18,6 @@ public class MoverDetector : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("dew it!");
 
         hitNow = true;
     }

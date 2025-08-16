@@ -21,8 +21,10 @@ public class CetusAttack : MonoBehaviour
 
     [SerializeField] public int nextPoint;
 
+    [SerializeField] EnemyHealth enemyHealth;
     
     [SerializeField] MoverDetector moverDetector;
+    [SerializeField] OptionPicker cetusOptionPicker;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -81,7 +83,16 @@ public class CetusAttack : MonoBehaviour
             {
                 moveSpeed = 8;
                 nextPoint = 1;
-                targetBall.transform.position = TargetWayPoints2[Random.Range(0, 3)].transform.position;
+                if (targetBall.transform.position != TargetWayPoints1[0].transform.position) 
+                {
+                    targetBall.transform.position = TargetWayPoints2[Random.Range(0, 2)].transform.position;
+
+                }
+                else 
+                {
+                    targetBall.transform.position = TargetWayPoints2[Random.Range(1, 2)].transform.position;
+
+                }
                 hitFirstTarget = true;
             }
             else 
@@ -90,10 +101,23 @@ public class CetusAttack : MonoBehaviour
                 EndAttack();
             }
         }
+        if(moverDetector.hitNow == false && Input.GetKeyDown(KeyCode.K)) 
+        {
+            if (hitFirstTarget) 
+            {
+                EndAttack();
+            }
+            else 
+            {
+                attackFailed = true;
+                EndAttack();
+            }
+        }
     }
 
     public void StartAttack() 
     {
+        enemyHealth = cetusOptionPicker.targetEnemy.gameObject.GetComponent<EnemyHealth>();
         moveSpeed = 6;
         targetBall.transform.position = TargetWayPoints1[Random.Range(0, 3)].transform.position;
         moverBall.transform.position = moverWayPoints[0].transform.position;
@@ -108,16 +132,22 @@ public class CetusAttack : MonoBehaviour
         if(hitFirstTarget && !hitSecondTarget) 
         {
             Debug.Log("good");
+            enemyHealth.health = enemyHealth.health - 1;
+            
         }
         if (hitSecondTarget) 
         {
             Debug.Log("Exellent!~");
+            enemyHealth.health = enemyHealth.health - 2;
+
         }
         hitFirstTarget = false;
         hitSecondTarget = false;
         attackFailed = false;
         actionBox.SetActive(false);
         this.gameObject.SetActive(false);
+        cetusOptionPicker.endTurn = true;
+        cetusOptionPicker.myTurn = false;
     }
   
 }

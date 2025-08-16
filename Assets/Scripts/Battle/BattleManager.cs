@@ -95,6 +95,10 @@ public class BattleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(enemyList.Count == 0) 
+        {
+            Debug.Log("Your winner :)");
+        }
         //Checks if party is down given size
         if(partyList.Count == 1) 
         {
