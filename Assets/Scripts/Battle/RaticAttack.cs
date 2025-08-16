@@ -29,10 +29,11 @@ public class RaticAttack : MonoBehaviour
     [SerializeField] public bool bone2Bottom;
 
     [SerializeField] EnemyHealth enemyHealth;
-
+    [SerializeField] MoverDetector moverDetector;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
     }
 
     // Update is called once per frame
@@ -103,6 +104,21 @@ public class RaticAttack : MonoBehaviour
                     {
                         bone1Bottom = false;
                     }
+                }
+            }
+        }
+        if (moverDetector.hitNow) 
+        {
+            if (!midWay) 
+            {
+                attackFailed = true;
+                EndAttack();
+            }
+            else 
+            {
+                if (midWay)
+                {
+                    EndAttack();
                 }
             }
         }
