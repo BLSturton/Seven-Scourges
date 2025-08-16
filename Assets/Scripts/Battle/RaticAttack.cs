@@ -115,11 +115,8 @@ public class RaticAttack : MonoBehaviour
                 EndAttack();
             }
             else 
-            {
-                if (midWay)
-                {
-                    EndAttack();
-                }
+            {  
+                EndAttack();
             }
         }
     }
@@ -139,17 +136,14 @@ public class RaticAttack : MonoBehaviour
     {
         if (attackFailed)
         {
-            Debug.Log("missed");
         }
         if (midWay && !fullWay)
         {
-            Debug.Log("good");
             enemyHealth.health = enemyHealth.health - 1;
 
         }
         if (fullWay)
         {
-            Debug.Log("Exellent!~");
             enemyHealth.health = enemyHealth.health - 2;
 
         }

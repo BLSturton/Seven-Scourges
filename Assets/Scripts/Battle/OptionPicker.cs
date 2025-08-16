@@ -16,7 +16,7 @@ public class OptionPicker : MonoBehaviour
 
     [SerializeField] public bool actionPicked;
     [SerializeField] public bool attackOn;
-
+    [SerializeField] public bool specialOn;
     //Attack
     [SerializeField] public int enemyNumber;
     [SerializeField] public int maxEnemy;
@@ -24,6 +24,9 @@ public class OptionPicker : MonoBehaviour
     [SerializeField] public CetusAttack cetusAttack;
     [SerializeField] public GameObject cetusAttackAction;
     [SerializeField] public GameObject actionBox;
+
+    //Special 
+    [SerializeField] public GameObject specialBox;
 
     [SerializeField] public RaticAttack raticAttack;
     [SerializeField] public GameObject raticAttackAction;
@@ -39,6 +42,7 @@ public class OptionPicker : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        specialBox.SetActive(false);
         cetusAttackAction.SetActive(false);
         raticAttackAction.SetActive(false);
         countdownText.SetActive(false);
@@ -157,12 +161,17 @@ public class OptionPicker : MonoBehaviour
                     }
                    
                 }
+                //If Special-ing
+               
                 if (!actionPicked)
                 {
                     switch (optionNumber)
                     {
                         case 0:
                             attackOn = true;
+                            break;
+                        case 1:
+                            specialOn = true;
                             break;
                     }
                 }
@@ -234,6 +243,19 @@ public class OptionPicker : MonoBehaviour
                         targetEnemy = battleManager.enemyList[2];
 
                         break;
+                }
+            }
+
+            if (specialOn)
+            {
+                specialBox.SetActive(true);
+                if (this.gameObject.name == "CetusOptionManager")
+                {
+                    specialBox.transform.position = new Vector2(-1.8f, -.84f);
+                }
+                if (this.gameObject.name == "RaticOptionManager")
+                {
+                    specialBox.transform.position = new Vector2(-.92f, -3.36f);
                 }
             }
         }
