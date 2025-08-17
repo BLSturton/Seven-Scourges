@@ -28,6 +28,9 @@ public class OptionPicker : MonoBehaviour
     //Special 
     [SerializeField] public GameObject styleBox;
     [SerializeField] public GameObject[] styles;
+    [SerializeField] public GameObject[] styleText;
+    [SerializeField] public int styleNumber;
+    [SerializeField] public int maxStyle;
 
     [SerializeField] public RaticAttack raticAttack;
     [SerializeField] public GameObject raticAttackAction;
@@ -85,10 +88,10 @@ public class OptionPicker : MonoBehaviour
     void Update()
     {
 
-        if (myTurn) 
+        if (myTurn)
         {
-         
-          
+
+
             //Advance Option
             if (Input.GetKeyDown(KeyCode.D) && !selectCooldown && !actionPicked)
             {
@@ -152,11 +155,11 @@ public class OptionPicker : MonoBehaviour
                 //If attacking
                 if (attackOn)
                 {
-                    
+
                     attackOn = false;
                     enemyPicker.SetActive(false);
                     actionBox.SetActive(true);
-                    if(this.gameObject.name == "CetusOptionManager") 
+                    if (this.gameObject.name == "CetusOptionManager")
                     {
 
                         cetusAttackAction.SetActive(true);
@@ -167,10 +170,27 @@ public class OptionPicker : MonoBehaviour
                         raticAttackAction.SetActive(true);
                         raticAttack.StartAttack();
                     }
-                   
+
                 }
                 //If Special-ing
-               
+                if (specialOn) 
+                {
+                    styleBox.SetActive(false);
+                    foreach (GameObject obj in styles)
+                    {
+                        if (obj != null)
+                        {
+                            obj.SetActive(false);
+                        }
+                    }
+                    if (styleNumber == 0) 
+                    {
+                        if(this.gameObject.name == "CetusOptionManager") 
+                        {
+                            
+                        }
+                    }
+                }
                 if (!actionPicked)
                 {
                     switch (optionNumber)
@@ -184,10 +204,11 @@ public class OptionPicker : MonoBehaviour
                     }
                 }
 
-               
+
                 actionPicked = true;
 
             }
+            //Attack
             if (attackOn)
             {
                 enemyPicker.SetActive(true);
@@ -254,28 +275,83 @@ public class OptionPicker : MonoBehaviour
                 }
             }
 
+
             if (specialOn)
             {
                 styleBox.SetActive(true);
+                enemyPicker.SetActive(true);
+                styles[0].SetActive(true);
+                styles[1].SetActive(true);
                 if (this.gameObject.name == "CetusOptionManager")
                 {
-                    styles[0].SetActive(true);
-                    styles[1].SetActive(true);
+                   
+                    styleText[0].SetActive(true);
+                    styleText[1].SetActive(true);
 
                 }
                 if (this.gameObject.name == "RaticOptionManager")
                 {
-                    styles[2].SetActive(true);
-                    styles[3].SetActive(true);
+                    styleText[2].SetActive(true);
+                    styleText[3].SetActive(true);
+                }
+                if (Input.GetKeyDown(KeyCode.D) && !selectCooldown)
+                {
+                    if (styleNumber == maxStyle)
+                    {
+                        
+                        selectedOption = styles[0];
+                        styleNumber = 0;
+                        selectCooldown = true;
+                        StartCoroutine(AttackWait());
+                    }
+                    else
+                    {
+                        selectedOption = styles[styleNumber + 1];
+                        styleNumber++;
+                        selectCooldown = true;
 
+                        StartCoroutine(AttackWait());
+                    }
+                }
+                if (Input.GetKeyDown(KeyCode.A) && !selectCooldown)
+                {
+                    if (styleNumber == 0)
+                    {
+
+                        selectedOption = styles[1];
+                        styleNumber = 1;
+                        selectCooldown = true;
+                        StartCoroutine(AttackWait());
+                    }
+                    else
+                    {
+                        selectedOption = styles[styleNumber - 1];
+                        styleNumber--;
+                        selectCooldown = true;
+
+                        StartCoroutine(AttackWait());
+                    }
+                }
+                switch (styleNumber)
+                {
+                    case 0:
+                            enemyPicker.transform.position = styles[0].transform.position - new Vector3(1, -1, 0);                       
+                    
+                        break;
+                    case 1:
+                        enemyPicker.transform.position = styles[1].transform.position - new Vector3(1, -1, 0);
+                       
+                        break;
+               
                 }
             }
         }
-        else 
+        else
         {
-           
+
         }
     }
+    
 
     public IEnumerator AttackWait() 
     {
