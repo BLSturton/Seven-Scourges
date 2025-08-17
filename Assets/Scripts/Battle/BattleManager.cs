@@ -44,6 +44,9 @@ public class BattleManager : MonoBehaviour
     [SerializeField] public int RaticHP;
     [SerializeField] public int damageValue;
 
+    [SerializeField] public int CetusSP;
+    [SerializeField] public int RaticSP;
+
     [SerializeField] public Text CetusHPVisual;
     [SerializeField] public Text RaticHPVisual;
 

@@ -26,7 +26,8 @@ public class OptionPicker : MonoBehaviour
     [SerializeField] public GameObject actionBox;
 
     //Special 
-    [SerializeField] public GameObject specialBox;
+    [SerializeField] public GameObject styleBox;
+    [SerializeField] public GameObject[] styles;
 
     [SerializeField] public RaticAttack raticAttack;
     [SerializeField] public GameObject raticAttackAction;
@@ -42,7 +43,14 @@ public class OptionPicker : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        specialBox.SetActive(false);
+        foreach (GameObject obj in styles)
+        {
+            if (obj != null)
+            {
+                obj.SetActive(false);
+            }
+        }
+        styleBox.SetActive(false);
         cetusAttackAction.SetActive(false);
         raticAttackAction.SetActive(false);
         countdownText.SetActive(false);
@@ -248,14 +256,18 @@ public class OptionPicker : MonoBehaviour
 
             if (specialOn)
             {
-                specialBox.SetActive(true);
+                styleBox.SetActive(true);
                 if (this.gameObject.name == "CetusOptionManager")
                 {
-                    specialBox.transform.position = new Vector2(-1.8f, -.84f);
+                    styles[0].SetActive(true);
+                    styles[1].SetActive(true);
+
                 }
                 if (this.gameObject.name == "RaticOptionManager")
                 {
-                    specialBox.transform.position = new Vector2(-.92f, -3.36f);
+                    styles[2].SetActive(true);
+                    styles[3].SetActive(true);
+
                 }
             }
         }

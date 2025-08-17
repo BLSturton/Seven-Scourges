@@ -8,6 +8,7 @@ public class RaticAttack : MonoBehaviour
     [SerializeField] GameObject barOutline;
     [SerializeField] GameObject boneSaw;
     [SerializeField] GameObject[] bones;
+    [SerializeField] GameObject[] boneSpawns;
     [SerializeField] GameObject startPoint;
     [SerializeField] GameObject endPoint;
     [SerializeField] GameObject midPoint;
@@ -125,10 +126,13 @@ public class RaticAttack : MonoBehaviour
     {
         enemyHealth = raticOptionPicker.targetEnemy.gameObject.GetComponent<EnemyHealth>();
 
+        bones[0].transform.position = boneSpawns[Random.Range(0, 2)].transform.position;
+        bones[1].transform.position = boneSpawns[Random.Range(3, 5)].transform.position;
+
         barOutline.SetActive(true);
         boneSaw.SetActive(true);
         countDown.gameObject.SetActive(true);
-        countDown.text = "6";
+        countDown.text = "7";
         boneSaw.transform.position = startPoint.transform.position;
         StartCoroutine(CountDown());
     }
@@ -158,6 +162,8 @@ public class RaticAttack : MonoBehaviour
     }
     public IEnumerator CountDown() 
     {
+        yield return new WaitForSeconds(1f);
+        countDown.text = "6";
         yield return new WaitForSeconds(1f);
         countDown.text = "5";
         yield return new WaitForSeconds(1f);
