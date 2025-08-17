@@ -31,6 +31,7 @@ public class OptionPicker : MonoBehaviour
     [SerializeField] public GameObject[] styleText;
     [SerializeField] public int styleNumber;
     [SerializeField] public int maxStyle;
+    [SerializeField] Taunt taunt;
 
     [SerializeField] public RaticAttack raticAttack;
     [SerializeField] public GameObject raticAttackAction;
@@ -178,6 +179,7 @@ public class OptionPicker : MonoBehaviour
                     styleBox.SetActive(false);
                     foreach (GameObject obj in styles)
                     {
+                        enemyPicker.SetActive(false);
                         if (obj != null)
                         {
                             obj.SetActive(false);
@@ -187,7 +189,8 @@ public class OptionPicker : MonoBehaviour
                     {
                         if(this.gameObject.name == "CetusOptionManager") 
                         {
-                            
+                            taunt.StartAttack();
+                            specialOn = false;
                         }
                     }
                 }
@@ -200,6 +203,10 @@ public class OptionPicker : MonoBehaviour
                             break;
                         case 1:
                             specialOn = true;
+                            styleBox.SetActive(true);
+                            enemyPicker.SetActive(true);
+                            styles[0].SetActive(true);
+                            styles[1].SetActive(true);
                             break;
                     }
                 }
@@ -278,10 +285,7 @@ public class OptionPicker : MonoBehaviour
 
             if (specialOn)
             {
-                styleBox.SetActive(true);
-                enemyPicker.SetActive(true);
-                styles[0].SetActive(true);
-                styles[1].SetActive(true);
+               
                 if (this.gameObject.name == "CetusOptionManager")
                 {
                    
