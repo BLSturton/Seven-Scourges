@@ -63,6 +63,8 @@ public class BattleManager : MonoBehaviour
     [SerializeField] public GameObject RaticSprite;
 
     [SerializeField] public CetusSwordSpin swordSpin;
+
+    [SerializeField] public GameObject hellfallObject;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -104,8 +106,12 @@ public class BattleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if(enemyList.Count == 0) 
+        if (cetusOptionPicker.styles.Length == 1)
+        {
+            Debug.Log("yeah");
+            hellfallObject.SetActive(false);
+        }
+        if (enemyList.Count == 0) 
         {
             Debug.Log("Your winner :)");
         }

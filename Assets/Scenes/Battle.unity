@@ -762,6 +762,8 @@ MonoBehaviour:
   CetusHP: 10
   RaticHP: 10
   damageValue: 0
+  CetusDef: 0
+  RaticDef: 0
   CetusSP: 6
   RaticSP: 6
   CetusHPVisual: {fileID: 2046087064}
@@ -773,6 +775,7 @@ MonoBehaviour:
   CetusSprite: {fileID: 2054320997}
   RaticSprite: {fileID: 499284208}
   swordSpin: {fileID: 2139165530}
+  hellfallObject: {fileID: 2003708709}
 --- !u!4 &382845794
 Transform:
   m_ObjectHideFlags: 0
@@ -6244,7 +6247,6 @@ MonoBehaviour:
   styleBox: {fileID: 1213028186}
   styles:
   - {fileID: 1616494561}
-  - {fileID: 2003708709}
   styleText:
   - {fileID: 1368057052}
   - {fileID: 1204840665}
@@ -9003,7 +9005,7 @@ MonoBehaviour:
   - {fileID: 1715729020}
   styleNumber: 0
   maxStyle: 1
-  taunt: {fileID: 0}
+  taunt: {fileID: 28875113}
   raticAttack: {fileID: 1818019870}
   raticAttackAction: {fileID: 1818019868}
   countdownText: {fileID: 148085422}
