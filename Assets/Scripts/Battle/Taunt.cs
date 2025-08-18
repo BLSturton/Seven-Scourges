@@ -1,13 +1,13 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Taunt : MonoBehaviour
 {
 
     [SerializeField] public GameObject actionBox;
     [SerializeField] public GameObject[] words;
-    [SerializeField] public GameObject[] currentWords;
 
     [SerializeField] public GameObject[] wordSpawns;
     [SerializeField] public GameObject mover;
@@ -22,6 +22,11 @@ public class Taunt : MonoBehaviour
     [SerializeField] public BoxCollider2D moverHit;
 
     [SerializeField] public int wordsHit;
+
+    [SerializeField] Text countDown;
+
+    [SerializeField] OptionPicker cetusOptionPicker;
+
     // Start is called once before the first
     // execution of Update after the MonoBehaviour is created
     void Start()
@@ -44,8 +49,33 @@ public class Taunt : MonoBehaviour
         mover.transform.position = moverSpawn.transform.position;
         actionBox.SetActive(true);
         StartCoroutine(WordSpawn());
+        countDown.gameObject.SetActive(true);
+        StartCoroutine(CountDown());
     }
 
+    public void EndAttack() 
+    {
+        if(wordsHit < 5) 
+        {
+            Debug.Log("Missed!");
+        }
+        if(wordsHit >= 5 && wordsHit < 9) 
+        {
+            Debug.Log("Good!");
+        }
+        if(wordsHit >= 9) 
+        {
+            Debug.Log("Peroihnjefoiasuehf");
+
+        }
+        mover.SetActive(false);
+        wordsHit = 0;
+        actionBox.SetActive(false);
+        this.gameObject.SetActive(false);
+        countDown.gameObject.SetActive(false);
+        cetusOptionPicker.endTurn = true;
+        cetusOptionPicker.myTurn = false;
+    }
     public void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
@@ -53,7 +83,7 @@ public class Taunt : MonoBehaviour
     }
     public IEnumerator WordSpawn() 
     {
-        for (int i = 0; i < 5; i++) 
+        for (int i = 0; i < 7; i++) 
         {
             Vector3 randomPosition = Vector3.Lerp(wordSpawns[0].transform.position, wordSpawns[1].transform.position, Random.Range(0f, 1f));
            Instantiate(words[Random.Range(0, words.Length)], randomPosition, Quaternion.identity);
@@ -63,6 +93,23 @@ public class Taunt : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
     }
+    public IEnumerator CountDown()
+    {
+        yield return new WaitForSeconds(1f);
+        countDown.text = "6";
+        yield return new WaitForSeconds(1f);
+        countDown.text = "5";
+        yield return new WaitForSeconds(1f);
+        countDown.text = "4";
+        yield return new WaitForSeconds(1f);
+        countDown.text = "3";
+        yield return new WaitForSeconds(1f);
+        countDown.text = "2";
+        yield return new WaitForSeconds(1f);
+        countDown.text = "1";
+        yield return new WaitForSeconds(1f);
+        countDown.text = "0";
+        EndAttack();
+    }
 
-    
 }

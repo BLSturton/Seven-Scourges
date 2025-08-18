@@ -20,7 +20,6 @@ public class MoverDetector : MonoBehaviour
     {
         if(wordHit && Input.GetKeyDown(KeyCode.K)) 
         {
-            Debug.Log("twerking my shit rn");
             taunt.wordsHit = taunt.wordsHit + 1;
 
             Destroy(touchedWord);

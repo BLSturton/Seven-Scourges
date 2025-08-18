@@ -176,19 +176,22 @@ public class OptionPicker : MonoBehaviour
                 //If Special-ing
                 if (specialOn) 
                 {
-                    styleBox.SetActive(false);
-                    foreach (GameObject obj in styles)
-                    {
-                        enemyPicker.SetActive(false);
-                        if (obj != null)
-                        {
-                            obj.SetActive(false);
-                        }
-                    }
+                    
                     if (styleNumber == 0) 
                     {
-                        if(this.gameObject.name == "CetusOptionManager") 
+                        if(this.gameObject.name == "CetusOptionManager" && battleManager.CetusSP >= 2) 
                         {
+                            battleManager.CetusSP = battleManager.CetusSP - 2;
+                            styleBox.SetActive(false);
+                            foreach (GameObject obj in styles)
+                            {
+                                enemyPicker.SetActive(false);
+                                if (obj != null)
+                                {
+                                    obj.SetActive(false);
+                                }
+                            }
+                            taunt.gameObject.SetActive(true);
                             taunt.StartAttack();
                             specialOn = false;
                         }

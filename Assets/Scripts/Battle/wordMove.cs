@@ -6,7 +6,7 @@ public class wordMove : MonoBehaviour
 
     [SerializeField] public bool onLeft;
 
-    [SerializeField] public float wordSpeed = 4f;
+    [SerializeField] public float wordSpeed = 3f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,7 +27,7 @@ public class wordMove : MonoBehaviour
     {
         if (onLeft) 
         {
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(5f, transform.position.y), wordSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(5f, transform.position.y), Random.Range(wordSpeed, wordSpeed+2) * Time.deltaTime);
              if(transform.position.x >= 5) 
             {
                 Destroy(gameObject);
@@ -35,7 +35,7 @@ public class wordMove : MonoBehaviour
         }
         else 
         {
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(-5f, transform.position.y), wordSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(-5f, transform.position.y), Random.Range(wordSpeed, wordSpeed + 2) * Time.deltaTime);
             if (transform.position.x <= -5)
             {
                 Destroy(gameObject);

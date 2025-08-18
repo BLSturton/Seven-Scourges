@@ -49,6 +49,8 @@ public class BattleManager : MonoBehaviour
 
     [SerializeField] public Text CetusHPVisual;
     [SerializeField] public Text RaticHPVisual;
+    [SerializeField] public Text CetusSPVisual;
+    [SerializeField] public Text RaticSPVisual;
 
     [SerializeField] public bool CetusDown;
     [SerializeField] public bool RaticDown;
@@ -98,6 +100,7 @@ public class BattleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if(enemyList.Count == 0) 
         {
             Debug.Log("Your winner :)");
@@ -126,6 +129,9 @@ public class BattleManager : MonoBehaviour
         //Displays current HP
         CetusHPVisual.text = CetusHP.ToString();
         RaticHPVisual.text = RaticHP.ToString();
+        //SP
+        CetusSPVisual.text = CetusSP.ToString();
+        RaticSPVisual.text = RaticSP.ToString();
         if (cetusOptionPicker.endTurn) 
         {
             
