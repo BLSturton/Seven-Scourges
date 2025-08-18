@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 using Random = UnityEngine.Random;
 
 public class BattleManager : MonoBehaviour
@@ -14,6 +16,7 @@ public class BattleManager : MonoBehaviour
     [SerializeField] public List<GameObject> partyList;
     [SerializeField] public List<GameObject> partyDodgeList;
     [SerializeField] public GameObject targetDodger;
+    [SerializeField] public GameObject RaticDodge;
     //1 For Cetus, 2 for Ratic
     [SerializeField] public int currentPartyTurn;
     [SerializeField] public bool enemyTurn;
@@ -267,6 +270,19 @@ public class BattleManager : MonoBehaviour
 
     public void newPlayerTurn() 
     {
+        if(cetusOptionPicker.tauntTurns != 0) 
+        {
+            cetusOptionPicker.tauntTurns = cetusOptionPicker.tauntTurns - 1;
+        }
+        if(cetusOptionPicker.tauntTurns == 0)
+        {
+            cetusOptionPicker.tauntOn = false;
+
+            RaticDodge.SetActive(true);
+            partyDodgeList.Add(RaticDodge);
+            RaticDodge.SetActive(false);
+
+        }
         cetusOptionPicker.canGoBack = true;
         raticOptionPicker.canGoBack = true;
         swordSpin.isSpin = false;

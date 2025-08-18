@@ -743,6 +743,7 @@ MonoBehaviour:
   - {fileID: 1116902421}
   - {fileID: 526898362}
   targetDodger: {fileID: 0}
+  RaticDodge: {fileID: 526898362}
   currentPartyTurn: 1
   enemyTurn: 0
   cetusOptionPicker: {fileID: 1326397611}
