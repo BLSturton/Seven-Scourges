@@ -32,6 +32,10 @@ public class OptionPicker : MonoBehaviour
     [SerializeField] public int styleNumber;
     [SerializeField] public int maxStyle;
     [SerializeField] Taunt taunt;
+    [SerializeField] public bool tauntOn;
+    [SerializeField] public int tauntTurns;
+    [SerializeField] Diagnosis diagnosis;
+    [SerializeField] public bool diagnosisOn;
 
     [SerializeField] public RaticAttack raticAttack;
     [SerializeField] public GameObject raticAttackAction;
@@ -45,8 +49,7 @@ public class OptionPicker : MonoBehaviour
     [SerializeField] public bool canGoBack;
     [SerializeField] public GameObject targetEnemy;
 
-    [SerializeField] public bool tauntOn;
-    [SerializeField] public int tauntTurns;
+  
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -221,6 +224,25 @@ public class OptionPicker : MonoBehaviour
                             taunt.StartAttack();
                             specialOn = false;
                         }
+                        if (this.gameObject.name == "RaticOptionManager" && battleManager.RaticSP >= 2)
+                        {
+                            battleManager.RaticSP = battleManager.RaticSP - 2;
+                            styleBox.SetActive(false);
+                            foreach (GameObject obj in styles)
+                            {
+                                enemyPicker.SetActive(false);
+                                if (obj != null)
+                                {
+                                    obj.SetActive(false);
+                                }
+                            }
+                            canGoBack = false;
+
+                            diagnosisOn = true;
+                            specialOn = false;
+                            
+                           
+                        }
                     }
                 }
                 if (!actionPicked)
@@ -245,8 +267,14 @@ public class OptionPicker : MonoBehaviour
 
             }
             //Attack
-            if (attackOn)
+            if (attackOn || diagnosisOn)
             {
+                if(Input.GetKeyDown(KeyCode.K) && diagnosisOn) 
+                {
+
+                    diagnosis.gameObject.SetActive(true);
+                    diagnosis.StartAttack();
+                }
                 enemyPicker.SetActive(true);
                 //Advance Option
                 if (Input.GetKeyDown(KeyCode.D) && !selectCooldown)

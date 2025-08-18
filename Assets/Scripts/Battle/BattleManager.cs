@@ -108,7 +108,6 @@ public class BattleManager : MonoBehaviour
     {
         if (cetusOptionPicker.styles.Length == 1)
         {
-            Debug.Log("yeah");
             hellfallObject.SetActive(false);
         }
         if (enemyList.Count == 0) 
