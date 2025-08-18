@@ -42,11 +42,16 @@ public class OptionPicker : MonoBehaviour
 
     [SerializeField] public bool optionOn;
 
+    [SerializeField] public bool canGoBack;
     [SerializeField] public GameObject targetEnemy;
-    
+
+    [SerializeField] public bool tauntOn;
+    [SerializeField] public int tauntTurns;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        canGoBack = true;
+
         foreach (GameObject obj in styles)
         {
             if (obj != null)
@@ -142,7 +147,24 @@ public class OptionPicker : MonoBehaviour
                 }
 
             }
+            //Reverse
+            if (Input.GetKeyDown(KeyCode.L) && canGoBack) 
+            {
+                foreach (GameObject obj in attackOptions)
+                {
+                    if (obj != null)
+                    {
+                        obj.SetActive(true);
+                    }
+                    
 
+                }
+                actionPicked = false;
+                attackOn = false;
+                specialOn = false;
+                enemyPicker.SetActive(false);
+                styleBox.SetActive(false);
+            }
             //Confirm Option
             if (Input.GetKeyDown(KeyCode.K))
             {
@@ -162,12 +184,14 @@ public class OptionPicker : MonoBehaviour
                     actionBox.SetActive(true);
                     if (this.gameObject.name == "CetusOptionManager")
                     {
-
+                        canGoBack = false;
                         cetusAttackAction.SetActive(true);
                         cetusAttack.StartAttack();
                     }
                     if (this.gameObject.name == "RaticOptionManager")
                     {
+                        canGoBack = false;
+
                         raticAttackAction.SetActive(true);
                         raticAttack.StartAttack();
                     }
@@ -191,6 +215,8 @@ public class OptionPicker : MonoBehaviour
                                     obj.SetActive(false);
                                 }
                             }
+                            canGoBack = false;
+
                             taunt.gameObject.SetActive(true);
                             taunt.StartAttack();
                             specialOn = false;
@@ -293,7 +319,7 @@ public class OptionPicker : MonoBehaviour
                 {
                    
                     styleText[0].SetActive(true);
-                    styleText[1].SetActive(true);
+                    styleText[0].SetActive(true);
 
                 }
                 if (this.gameObject.name == "RaticOptionManager")

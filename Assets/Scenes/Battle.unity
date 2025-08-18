@@ -186,6 +186,7 @@ MonoBehaviour:
   wordsHit: 0
   countDown: {fileID: 148085423}
   cetusOptionPicker: {fileID: 1326397611}
+  battleManager: {fileID: 382845793}
 --- !u!1 &38116232
 GameObject:
   m_ObjectHideFlags: 0
@@ -6245,8 +6246,8 @@ MonoBehaviour:
   - {fileID: 2003708709}
   styleText:
   - {fileID: 1368057052}
-  - {fileID: 693943124}
   - {fileID: 1204840665}
+  - {fileID: 1715729020}
   - {fileID: 1715729020}
   styleNumber: 0
   maxStyle: 1
@@ -6257,7 +6258,10 @@ MonoBehaviour:
   endTurn: 0
   myTurn: 0
   optionOn: 0
+  canGoBack: 0
   targetEnemy: {fileID: 0}
+  tauntOn: 0
+  tauntTurns: 0
 --- !u!1 &1344018213
 GameObject:
   m_ObjectHideFlags: 0
@@ -9005,7 +9009,10 @@ MonoBehaviour:
   endTurn: 0
   myTurn: 0
   optionOn: 0
+  canGoBack: 0
   targetEnemy: {fileID: 0}
+  tauntOn: 0
+  tauntTurns: 0
 --- !u!4 &2082054971
 Transform:
   m_ObjectHideFlags: 0

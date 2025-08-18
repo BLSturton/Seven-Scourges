@@ -27,6 +27,7 @@ public class Taunt : MonoBehaviour
 
     [SerializeField] OptionPicker cetusOptionPicker;
 
+    [SerializeField] public BattleManager battleManager;
     // Start is called once before the first
     // execution of Update after the MonoBehaviour is created
     void Start()
@@ -62,11 +63,17 @@ public class Taunt : MonoBehaviour
         if(wordsHit >= 5 && wordsHit < 9) 
         {
             Debug.Log("Good!");
+            cetusOptionPicker.tauntOn = true;
+            battleManager.partyDodgeList.RemoveAll(item => item.name == "RaticDodge");
+            cetusOptionPicker.tauntTurns = 1;
         }
         if(wordsHit >= 9) 
         {
             Debug.Log("Peroihnjefoiasuehf");
+            cetusOptionPicker.tauntOn = true;
+            battleManager.partyDodgeList.RemoveAll(item => item.name == "RaticDodge");
 
+            cetusOptionPicker.tauntTurns = 2;
         }
         GameObject[] objectsToDestroy = GameObject.FindGameObjectsWithTag("WordTaunt");
 

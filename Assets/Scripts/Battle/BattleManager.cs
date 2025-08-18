@@ -171,11 +171,10 @@ public class BattleManager : MonoBehaviour
         //Starts enemy turn
         if (enemyTurn)
         {
-            
-                   
 
+           
 
-            playerBackground.SetActive(false);
+                playerBackground.SetActive(false);
             playerObjects.SetActive(false);
             enemyBackground.SetActive(true);
             enemyObjects.SetActive(true);
@@ -268,6 +267,8 @@ public class BattleManager : MonoBehaviour
 
     public void newPlayerTurn() 
     {
+        cetusOptionPicker.canGoBack = true;
+        raticOptionPicker.canGoBack = true;
         swordSpin.isSpin = false;
         foreach (GameObject obj in enemyList)
         {
