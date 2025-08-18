@@ -65,6 +65,7 @@ public class Taunt : MonoBehaviour
             Debug.Log("Good!");
             cetusOptionPicker.tauntOn = true;
             battleManager.partyDodgeList.RemoveAll(item => item.name == "RaticDodge");
+            battleManager.CetusDef = battleManager.CetusDef + 1;
             cetusOptionPicker.tauntTurns = 1;
         }
         if(wordsHit >= 9) 
@@ -72,6 +73,7 @@ public class Taunt : MonoBehaviour
             Debug.Log("Peroihnjefoiasuehf");
             cetusOptionPicker.tauntOn = true;
             battleManager.partyDodgeList.RemoveAll(item => item.name == "RaticDodge");
+            battleManager.CetusDef = battleManager.CetusDef + 1;
 
             cetusOptionPicker.tauntTurns = 2;
         }

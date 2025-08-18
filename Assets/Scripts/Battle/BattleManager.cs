@@ -46,7 +46,8 @@ public class BattleManager : MonoBehaviour
     [SerializeField] public int CetusHP;
     [SerializeField] public int RaticHP;
     [SerializeField] public int damageValue;
-
+    [SerializeField] public int CetusDef;
+    [SerializeField] public int RaticDef;
     [SerializeField] public int CetusSP;
     [SerializeField] public int RaticSP;
 
@@ -274,10 +275,10 @@ public class BattleManager : MonoBehaviour
         {
             cetusOptionPicker.tauntTurns = cetusOptionPicker.tauntTurns - 1;
         }
-        if(cetusOptionPicker.tauntTurns == 0)
+        if(cetusOptionPicker.tauntTurns == 0 && cetusOptionPicker.tauntOn)
         {
             cetusOptionPicker.tauntOn = false;
-
+            CetusDef = CetusDef - 1;
             RaticDodge.SetActive(true);
             partyDodgeList.Add(RaticDodge);
             RaticDodge.SetActive(false);
@@ -355,7 +356,7 @@ public class BattleManager : MonoBehaviour
     {
         if(CetusHP > 0) 
         {
-            CetusHP = CetusHP - damageValue;
+            CetusHP = CetusHP + CetusDef - damageValue;
             if(CetusHP <= 0) 
             {
                 CetusDown = true;
@@ -366,7 +367,7 @@ public class BattleManager : MonoBehaviour
     {
         if (RaticHP > 0)
         {
-            RaticHP = RaticHP - damageValue;
+            RaticHP = RaticHP + RaticDef - damageValue;
             if (RaticHP <= 0)
             {
                RaticDown = true;
