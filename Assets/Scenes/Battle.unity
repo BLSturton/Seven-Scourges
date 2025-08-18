@@ -172,7 +172,6 @@ MonoBehaviour:
   - {fileID: 6432440860706540886, guid: f1e8b9f5e3097ba4496f45265bdaa78c, type: 3}
   - {fileID: 6137159439267278999, guid: 3cf63e90a2ce2104a8e8485cd7d3c7db, type: 3}
   - {fileID: 2831084880761230302, guid: dec23827b7e1b7245b1c38a9c3d67223, type: 3}
-  currentWords: []
   wordSpawns:
   - {fileID: 914581880}
   - {fileID: 1852768195}
@@ -182,9 +181,11 @@ MonoBehaviour:
   moverSpawn: {fileID: 232944612}
   movement: {x: 0, y: 0}
   rb: {fileID: 1112498791}
-  moveSpeed: 3.5
+  moveSpeed: 5
   moverHit: {fileID: 1112498792}
   wordsHit: 0
+  countDown: {fileID: 148085423}
+  cetusOptionPicker: {fileID: 1326397611}
 --- !u!1 &38116232
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,10 +760,12 @@ MonoBehaviour:
   CetusHP: 10
   RaticHP: 10
   damageValue: 0
-  CetusSP: 0
-  RaticSP: 0
+  CetusSP: 6
+  RaticSP: 6
   CetusHPVisual: {fileID: 2046087064}
   RaticHPVisual: {fileID: 1756516840}
+  CetusSPVisual: {fileID: 38116234}
+  RaticSPVisual: {fileID: 1210333029}
   CetusDown: 0
   RaticDown: 0
   CetusSprite: {fileID: 2054320997}

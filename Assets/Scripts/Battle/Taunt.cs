@@ -68,6 +68,13 @@ public class Taunt : MonoBehaviour
             Debug.Log("Peroihnjefoiasuehf");
 
         }
+        GameObject[] objectsToDestroy = GameObject.FindGameObjectsWithTag("WordTaunt");
+
+        // Loop through the array and destroy each GameObject
+        foreach (GameObject obj in objectsToDestroy)
+        {
+            Destroy(obj);
+        }
         mover.SetActive(false);
         wordsHit = 0;
         actionBox.SetActive(false);
@@ -109,6 +116,7 @@ public class Taunt : MonoBehaviour
         countDown.text = "1";
         yield return new WaitForSeconds(1f);
         countDown.text = "0";
+
         EndAttack();
     }
 
