@@ -18,6 +18,10 @@ public class Taunt : MonoBehaviour
     [SerializeField] public Rigidbody2D rb;
 
     [SerializeField] public float moveSpeed;
+
+    [SerializeField] public BoxCollider2D moverHit;
+
+    [SerializeField] public int wordsHit;
     // Start is called once before the first
     // execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,6 +35,7 @@ public class Taunt : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+
     }
 
     public void StartAttack() 
@@ -58,4 +63,6 @@ public class Taunt : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
     }
+
+    
 }

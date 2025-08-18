@@ -9,6 +9,7 @@ TagManager:
   - GoblinRougeAttack
   - Attack
   - SwordSpin
+  - WordTaunt
   layers:
   - Default
   - TransparentFX

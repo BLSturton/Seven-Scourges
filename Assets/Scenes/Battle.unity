@@ -183,6 +183,8 @@ MonoBehaviour:
   movement: {x: 0, y: 0}
   rb: {fileID: 1112498791}
   moveSpeed: 3.5
+  moverHit: {fileID: 1112498792}
+  wordsHit: 0
 --- !u!1 &38116232
 GameObject:
   m_ObjectHideFlags: 0
@@ -1225,6 +1227,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitBox: {fileID: 486185409}
   hitNow: 0
+  taunt: {fileID: 0}
+  wordHit: 0
+  touchedWord: {fileID: 0}
 --- !u!1 &499284208
 GameObject:
   m_ObjectHideFlags: 0
@@ -4432,7 +4437,7 @@ Transform:
   m_GameObject: {fileID: 914581880}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.83, y: 2.65, z: 0}
+  m_LocalPosition: {x: -7.83, y: 1.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4571,7 +4576,7 @@ Transform:
   m_GameObject: {fileID: 1029860151}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.36, y: 2.65, z: 0}
+  m_LocalPosition: {x: 0.36, y: 1.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5313,6 +5318,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitBox: {fileID: 1112498792}
   hitNow: 0
+  taunt: {fileID: 28875113}
+  wordHit: 0
+  touchedWord: {fileID: 0}
 --- !u!212 &1112498794
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5914,7 +5922,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1213028187
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5979,7 +5987,7 @@ Transform:
   m_GameObject: {fileID: 1213028186}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -730.07, y: -370.87, z: 0}
+  m_LocalPosition: {x: -734.5, y: -380.96, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6560,6 +6568,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitBox: {fileID: 0}
   hitNow: 0
+  taunt: {fileID: 0}
+  wordHit: 0
+  touchedWord: {fileID: 0}
 --- !u!50 &1462501677
 Rigidbody2D:
   serializedVersion: 5
