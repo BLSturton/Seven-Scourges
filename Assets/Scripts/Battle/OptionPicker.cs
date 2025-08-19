@@ -265,8 +265,10 @@ public class OptionPicker : MonoBehaviour
                             specialOn = true;
                             styleBox.SetActive(true);
                             enemyPicker.SetActive(true);
-                            styles[0].SetActive(true);
-                            styles[1].SetActive(true);
+                            foreach (GameObject obj in styles) 
+                            {
+                                obj.SetActive(true);
+                            }
                             break;
                     }
                 }

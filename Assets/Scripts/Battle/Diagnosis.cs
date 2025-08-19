@@ -26,6 +26,8 @@ public class Diagnosis : MonoBehaviour
     [SerializeField] public int booksHit;
 
     [SerializeField] public GameObject DialogAsset;
+
+    [SerializeField] public bool goAgain;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -180,11 +182,22 @@ public class Diagnosis : MonoBehaviour
 
     public void EndAttackForReal() 
     {
-        Debug.Log("BALLER");
         actionBox.SetActive(false);
-        booksHit = 0;
         this.gameObject.SetActive(false);
-        raticOptionPicker.endTurn = true;
-        raticOptionPicker.myTurn = false;
+        if (booksHit == 3) 
+        {
+            Debug.Log("bbb");
+            goAgain = true;
+            booksHit = 0;
+
+        }
+        else 
+        {
+            raticOptionPicker.endTurn = true;
+            raticOptionPicker.myTurn = false;
+            booksHit = 0;
+
+        }
+
     }
 }

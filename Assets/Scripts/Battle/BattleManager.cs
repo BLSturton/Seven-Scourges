@@ -65,6 +65,8 @@ public class BattleManager : MonoBehaviour
     [SerializeField] public CetusSwordSpin swordSpin;
 
     [SerializeField] public GameObject hellfallObject;
+
+    [SerializeField] Diagnosis diagnosis;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -141,10 +143,25 @@ public class BattleManager : MonoBehaviour
         //SP
         CetusSPVisual.text = CetusSP.ToString();
         RaticSPVisual.text = RaticSP.ToString();
-        if (cetusOptionPicker.endTurn) 
+        if (cetusOptionPicker.endTurn || diagnosis.goAgain) 
         {
-            
-
+            if (diagnosis.goAgain) 
+            {
+                    raticOptionPicker.enabled = true;
+                    raticOptionPicker.myTurn = true;
+                    raticOptionPicker.endTurn = false;
+                    raticOptionPicker.actionPicked = false;
+                    CetusToRatic = true;
+                    foreach (GameObject obj in raticOptionPicker.attackOptions)
+                    {
+                        if (obj != null)
+                        {
+                            obj.SetActive(true);
+                        }
+                    }
+                    diagnosis.goAgain = false;
+                
+            }
             if (partyList.Count == 2) 
             {
                 if (!CetusToRatic) 
