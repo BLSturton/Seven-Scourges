@@ -21,8 +21,11 @@ public class Diagnosis : MonoBehaviour
     [SerializeField] public bool book3left;
 
     [SerializeField] MoverDetector moverDetector;
+    [SerializeField] TextScript dialouge;
 
     [SerializeField] public int booksHit;
+
+    [SerializeField] public GameObject DialogAsset;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -32,6 +35,7 @@ public class Diagnosis : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.K)) 
         {
             if (moverDetector.hitNow) 
@@ -152,17 +156,35 @@ public class Diagnosis : MonoBehaviour
                 Debug.Log("Failed!");
                 break;
             case 2:
-                Debug.Log("Good");
+                FindEnemy();
                 break;
             case 3:
-                Debug.Log("Sexellent!");
+                FindEnemy();
                 break;
         }
+      
+    }
+    public void FindEnemy() 
+    {
+        DialogAsset.SetActive(true);
+        actionBox.SetActive(false);
+        this.gameObject.SetActive(false);
+        switch (raticOptionPicker.targetEnemy.tag) 
+        {
+            case "GoblinRouge":
+                dialouge.textName = "GoblinRouge";
+                dialouge.startText = true;
+                    break;
+        }
+    }
+
+    public void EndAttackForReal() 
+    {
+        Debug.Log("BALLER");
         actionBox.SetActive(false);
         booksHit = 0;
         this.gameObject.SetActive(false);
         raticOptionPicker.endTurn = true;
         raticOptionPicker.myTurn = false;
     }
-
 }

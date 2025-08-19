@@ -1,7 +1,8 @@
 using Doublsb.Dialog;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class TextScript : MonoBehaviour
 {
     public DialogManager dialogManager;
@@ -16,18 +17,26 @@ public class TextScript : MonoBehaviour
     public Image characterFace;
     public Sprite[] faceList;
     public bool FirstScene = true;
+
+    [SerializeField] Diagnosis diagnosis;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //Starts the very first cutscene
-        inText = true;
-        startText = true;
-        textNumber = 0;
-        StartingScene();
-        textName = "Starting Scene";
-        startText = false;
-       FirstScene = false;
-       
+        Scene scene = SceneManager.GetActiveScene();
+        if(scene == SceneManager.GetSceneByName("Beach")) 
+        {
+            //Starts the very first cutscene
+            inText = true;
+            startText = true;
+            textNumber = 0;
+            StartingScene();
+            textName = "Starting Scene";
+            startText = false;
+            FirstScene = false;
+        }
+        
+
 
     }
 
@@ -43,7 +52,9 @@ public class TextScript : MonoBehaviour
                 case "Starting Scene":
                     StartingScene();
                     break;
-                
+                case "GoblinRouge":
+                    GoblinRougeDiagnosis();
+                    break;
             }
 
         }
@@ -62,6 +73,9 @@ public class TextScript : MonoBehaviour
                     break;
                 case "Evil Chest":
                     EvilChest();
+                    break;
+                case "GoblinRouge":
+                    GoblinRougeDiagnosis();
                     break;
             }
             startText = false;
@@ -93,6 +107,51 @@ public class TextScript : MonoBehaviour
                 inText = false;
                 playerMove.canMove = true;
                 textNumber = 0;
+                break;
+        }
+    }
+
+    //Diagnosis
+    public void GoblinRougeDiagnosis()
+    {
+        inText = true;
+        switch (textNumber)
+        {
+            case 0:
+
+                dialog = new DialogData("This is a Goblin Rouge. HP is 2, attack is 2, and defense is 0.", "Cetus");
+
+                dialogManager.Show(dialog);
+                break;
+            case 1:
+                dialogManager.Hide();
+
+                dialog = new DialogData("They're the lowest ranking members of the Green Brigade. Pretty much the definition of fodder.", "Cetus");
+
+                dialogManager.Show(dialog);
+                break;
+            case 2:
+                dialogManager.Hide();
+
+                dialog = new DialogData("They don't know how knives work, so they just kinda throw them and hope for the best.", "Cetus");
+
+                dialogManager.Show(dialog);
+                break;
+            case 3:
+                dialogManager.Hide();
+
+                dialog = new DialogData("While they lack in power, they make up for it in number... Kinda.", "Cetus");
+
+                dialogManager.Show(dialog);
+                break;
+            case 4:
+                dialogManager.Hide();
+                characterFace.enabled = false;
+                textName = "None";
+                inText = false;
+                textNumber = -1;
+                diagnosis.EndAttackForReal();
+
                 break;
         }
     }
