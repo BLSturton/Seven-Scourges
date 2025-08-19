@@ -32,7 +32,7 @@ public class EnemyHealth : MonoBehaviour
         hpText.text = health.ToString();
         if (battleManager.diagnosisList.Contains(this.gameObject.tag)) 
         {
-            this.gameObject.SetActive(true);
+            healthObj.SetActive(true);
         }
     }
     

@@ -36,6 +36,10 @@ public class OptionPicker : MonoBehaviour
     [SerializeField] public int tauntTurns;
     [SerializeField] Diagnosis diagnosis;
     [SerializeField] public bool diagnosisOn;
+    [SerializeField] GameObject CetusStyle;
+    [SerializeField] GameObject RaticStyle;
+    [SerializeField] GameObject CetusStyle2;
+    [SerializeField] GameObject RaticStyle2;
 
     [SerializeField] public RaticAttack raticAttack;
     [SerializeField] public GameObject raticAttackAction;
@@ -162,6 +166,7 @@ public class OptionPicker : MonoBehaviour
                     
 
                 }
+               
                 actionPicked = false;
                 attackOn = false;
                 specialOn = false;
@@ -354,12 +359,22 @@ public class OptionPicker : MonoBehaviour
                    
                     styleText[0].SetActive(true);
                     styleText[0].SetActive(true);
-
+                    CetusStyle.SetActive(true);
+                    RaticStyle.SetActive(false);
+                    if (styles.Length > 1) 
+                    {
+                        CetusStyle2.SetActive(true);
+                    }
+                    RaticStyle2.SetActive(false);
                 }
                 if (this.gameObject.name == "RaticOptionManager")
                 {
                     styleText[2].SetActive(true);
                     styleText[3].SetActive(true);
+                    CetusStyle.SetActive(false);
+                    RaticStyle.SetActive(true);
+                    CetusStyle2.SetActive(false);
+                    RaticStyle2.SetActive(true);
                 }
                 if (Input.GetKeyDown(KeyCode.D) && !selectCooldown)
                 {
