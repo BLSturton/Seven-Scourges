@@ -245,14 +245,22 @@ MonoBehaviour:
   - {fileID: 267648953}
   - {fileID: 152648066}
   questionMark: {fileID: 933255739}
+  actionBox: {fileID: 1908234678}
+  raticOptionPicker: {fileID: 2082054970}
   bookSpeed1: 3
   bookSpeed2: 5
   bookSpeed3: 7
   leftPoint: {fileID: 2033517333}
   rightPoint: {fileID: 181539590}
+  QuestionMarkSpawns:
+  - {fileID: 169511191}
+  - {fileID: 485743011}
+  - {fileID: 1629887426}
   book1left: 0
   book2left: 0
   book3left: 0
+  moverDetector: {fileID: 933255744}
+  booksHit: 0
 --- !u!1 &38116232
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,7 +519,7 @@ Transform:
   m_GameObject: {fileID: 152648066}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.995, y: -2.002, z: 0}
+  m_LocalPosition: {x: -5.995, y: -2.012, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -643,7 +651,7 @@ Transform:
   m_GameObject: {fileID: 169511190}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.62, y: 1.497, z: 0}
+  m_LocalPosition: {x: -3.62, y: 1.192, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -905,7 +913,7 @@ Transform:
   m_GameObject: {fileID: 267648953}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.995, y: -0.4, z: 0}
+  m_LocalPosition: {x: -5.995, y: -0.294, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1479,7 +1487,7 @@ Transform:
   m_GameObject: {fileID: 485743010}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.62, y: -0.405, z: 0}
+  m_LocalPosition: {x: -3.62, y: -0.587, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4967,6 +4975,7 @@ GameObject:
   - component: {fileID: 933255743}
   - component: {fileID: 933255742}
   - component: {fileID: 933255741}
+  - component: {fileID: 933255744}
   m_Layer: 0
   m_Name: QuestionMark
   m_TagString: Untagged
@@ -5117,6 +5126,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &933255744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933255739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d5a727799a55f64b86c660bfcd00418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitBox: {fileID: 933255742}
+  hitNow: 0
+  taunt: {fileID: 0}
+  wordHit: 0
+  touchedWord: {fileID: 0}
 --- !u!1 &940907571
 GameObject:
   m_ObjectHideFlags: 0
@@ -8025,7 +8051,7 @@ Transform:
   m_GameObject: {fileID: 1629887425}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.62, y: -2.119, z: 0}
+  m_LocalPosition: {x: -3.62, y: -2.3009999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9398,7 +9424,7 @@ Transform:
   m_GameObject: {fileID: 2013936221}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.995, y: 1.557, z: 0}
+  m_LocalPosition: {x: -5.995, y: 1.519, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
