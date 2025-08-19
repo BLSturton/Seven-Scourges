@@ -171,6 +171,15 @@ public class OptionPicker : MonoBehaviour
             //Confirm Option
             if (Input.GetKeyDown(KeyCode.K))
             {
+                if (diagnosisOn) 
+                {
+
+                    diagnosis.gameObject.SetActive(true);
+                    diagnosis.StartAttack();
+                    diagnosisOn = false;
+                    enemyPicker.SetActive(false);
+                    actionBox.SetActive(true);
+                }
                 foreach (GameObject obj in attackOptions)
                 {
                     if (obj != null)
@@ -269,12 +278,7 @@ public class OptionPicker : MonoBehaviour
             //Attack
             if (attackOn || diagnosisOn)
             {
-                if(Input.GetKeyDown(KeyCode.K) && diagnosisOn) 
-                {
-
-                    diagnosis.gameObject.SetActive(true);
-                    diagnosis.StartAttack();
-                }
+            
                 enemyPicker.SetActive(true);
                 //Advance Option
                 if (Input.GetKeyDown(KeyCode.D) && !selectCooldown)
