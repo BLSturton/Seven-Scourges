@@ -415,10 +415,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5566405924253322418, guid: ee63ae828732c8b4d8aed5b1229cec98, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee63ae828732c8b4d8aed5b1229cec98, type: 3}
 --- !u!1 &148085422
 GameObject:
@@ -7089,6 +7086,10 @@ MonoBehaviour:
   tauntTurns: 0
   diagnosis: {fileID: 32473318}
   diagnosisOn: 0
+  CetusStyle: {fileID: 1616494561}
+  RaticStyle: {fileID: 1230642212}
+  CetusStyle2: {fileID: 2003708709}
+  RaticStyle2: {fileID: 909386387}
   raticAttack: {fileID: 1818019870}
   raticAttackAction: {fileID: 1818019868}
   countdownText: {fileID: 148085422}
@@ -7859,10 +7860,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5566405924253322418, guid: ee63ae828732c8b4d8aed5b1229cec98, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee63ae828732c8b4d8aed5b1229cec98, type: 3}
 --- !u!1 &1590858568
 GameObject:
@@ -10325,6 +10323,10 @@ MonoBehaviour:
   tauntTurns: 0
   diagnosis: {fileID: 32473318}
   diagnosisOn: 0
+  CetusStyle: {fileID: 1616494561}
+  RaticStyle: {fileID: 1230642212}
+  CetusStyle2: {fileID: 2003708709}
+  RaticStyle2: {fileID: 909386387}
   raticAttack: {fileID: 1818019870}
   raticAttackAction: {fileID: 1818019868}
   countdownText: {fileID: 148085422}
@@ -13064,10 +13066,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5566405924253322418, guid: ee63ae828732c8b4d8aed5b1229cec98, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee63ae828732c8b4d8aed5b1229cec98, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

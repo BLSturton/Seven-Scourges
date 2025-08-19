@@ -166,7 +166,15 @@ public class OptionPicker : MonoBehaviour
                     
 
                 }
-               
+                //Come back and add item and defend
+                if (attackOn) 
+                {
+                    selectedOption = attackOptions[0];  
+                }
+                if (specialOn)
+                {
+                    selectedOption = attackOptions[1];
+                }
                 actionPicked = false;
                 attackOn = false;
                 specialOn = false;
