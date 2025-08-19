@@ -40,7 +40,8 @@ public class OptionPicker : MonoBehaviour
     [SerializeField] GameObject RaticStyle;
     [SerializeField] GameObject CetusStyle2;
     [SerializeField] GameObject RaticStyle2;
-
+    [SerializeField] HellfallFangs hellfallFangs;
+    
     [SerializeField] public RaticAttack raticAttack;
     [SerializeField] public GameObject raticAttackAction;
     [SerializeField] public GameObject countdownText;
@@ -264,6 +265,46 @@ public class OptionPicker : MonoBehaviour
                             specialOn = false;
                             
                            
+                        }
+                    }
+                    if (styleNumber == 1)
+                    {
+                        if (this.gameObject.name == "CetusOptionManager" && battleManager.CetusSP >= 3)
+                        {
+                            battleManager.CetusSP = battleManager.CetusSP - 3;
+                            styleBox.SetActive(false);
+                            foreach (GameObject obj in styles)
+                            {
+                                enemyPicker.SetActive(false);
+                                if (obj != null)
+                                {
+                                    obj.SetActive(false);
+                                }
+                            }
+                            canGoBack = false;
+                            actionBox.SetActive(true);
+                            hellfallFangs.gameObject.SetActive(true);
+                            hellfallFangs.StartAttack();
+                            specialOn = false;
+                        }
+                        if (this.gameObject.name == "RaticOptionManager" && battleManager.RaticSP >= 2)
+                        {
+                            battleManager.RaticSP = battleManager.RaticSP - 2;
+                            styleBox.SetActive(false);
+                            foreach (GameObject obj in styles)
+                            {
+                                enemyPicker.SetActive(false);
+                                if (obj != null)
+                                {
+                                    obj.SetActive(false);
+                                }
+                            }
+                            canGoBack = false;
+
+                            diagnosisOn = true;
+                            specialOn = false;
+
+
                         }
                     }
                 }
