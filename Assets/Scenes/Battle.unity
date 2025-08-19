@@ -263,6 +263,8 @@ MonoBehaviour:
   dialouge: {fileID: 1519747135}
   booksHit: 0
   DialogAsset: {fileID: 1112834119}
+  goAgain: 0
+  battleManager: {fileID: 382845793}
 --- !u!1 &38116232
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,11 +374,11 @@ PrefabInstance:
       objectReference: {fileID: 382845792}
     - target: {fileID: 8771507366397093189, guid: ee63ae828732c8b4d8aed5b1229cec98, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.21881
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8771507366397093189, guid: ee63ae828732c8b4d8aed5b1229cec98, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.87859
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8771507366397093189, guid: ee63ae828732c8b4d8aed5b1229cec98, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1362,6 +1364,8 @@ MonoBehaviour:
   RaticSprite: {fileID: 499284208}
   swordSpin: {fileID: 2139165530}
   hellfallObject: {fileID: 2003708709}
+  diagnosis: {fileID: 32473318}
+  diagnosisList: []
 --- !u!4 &382845794
 Transform:
   m_ObjectHideFlags: 0
@@ -7811,11 +7815,11 @@ PrefabInstance:
       objectReference: {fileID: 382845792}
     - target: {fileID: 8771507366397093189, guid: ee63ae828732c8b4d8aed5b1229cec98, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.21881
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8771507366397093189, guid: ee63ae828732c8b4d8aed5b1229cec98, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.87859
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8771507366397093189, guid: ee63ae828732c8b4d8aed5b1229cec98, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13009,11 +13013,11 @@ PrefabInstance:
       objectReference: {fileID: 382845792}
     - target: {fileID: 8771507366397093189, guid: ee63ae828732c8b4d8aed5b1229cec98, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8771507366397093189, guid: ee63ae828732c8b4d8aed5b1229cec98, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.14
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8771507366397093189, guid: ee63ae828732c8b4d8aed5b1229cec98, type: 3}
       propertyPath: m_LocalPosition.z

@@ -28,6 +28,9 @@ public class Diagnosis : MonoBehaviour
     [SerializeField] public GameObject DialogAsset;
 
     [SerializeField] public bool goAgain;
+
+    [SerializeField] BattleManager battleManager;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -159,9 +162,19 @@ public class Diagnosis : MonoBehaviour
                 break;
             case 2:
                 FindEnemy();
+                if(battleManager.diagnosisList.Contains(raticOptionPicker.targetEnemy.tag.ToString()) == false)
+                {
+                    battleManager.diagnosisList.Add(raticOptionPicker.targetEnemy.tag.ToString());
+
+                }
                 break;
             case 3:
                 FindEnemy();
+                if (battleManager.diagnosisList.Contains(raticOptionPicker.targetEnemy.tag.ToString()) == false)
+                {
+                    battleManager.diagnosisList.Add(raticOptionPicker.targetEnemy.tag.ToString());
+
+                }
                 break;
         }
       
@@ -186,7 +199,6 @@ public class Diagnosis : MonoBehaviour
         this.gameObject.SetActive(false);
         if (booksHit == 3) 
         {
-            Debug.Log("bbb");
             goAgain = true;
             booksHit = 0;
 

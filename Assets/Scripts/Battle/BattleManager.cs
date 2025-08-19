@@ -67,6 +67,8 @@ public class BattleManager : MonoBehaviour
     [SerializeField] public GameObject hellfallObject;
 
     [SerializeField] Diagnosis diagnosis;
+
+    [SerializeField] public List<string> diagnosisList;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
