@@ -1,13 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class HellfallFangs : MonoBehaviour
 {
-    [SerializeField] public GameObject[] swords;
+    [SerializeField] public List<GameObject> swords;
     [SerializeField] public GameObject goal;
     [SerializeField] public float gravityScale;
     [SerializeField] public GameObject spawn1;
     [SerializeField] public GameObject spawn2;
     [SerializeField] public OptionPicker cetusOptionPicker;
+
+    [SerializeField] MoverDetector moverLeft;
+    [SerializeField] MoverDetector moverRight;
+
+    [SerializeField] public bool hitLeft;
+    [SerializeField] public bool hitRight;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,7 +25,11 @@ public class HellfallFangs : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(moverLeft.hitNow && Input.GetKeyDown(KeyCode.K) && !hitLeft) 
+            {
+                hitLeft = true;
+                swords.Find(obj => obj.name == "Sword1").SetActive(false);
+            }
     }
     public void StartAttack() 
     {
@@ -33,5 +45,21 @@ public class HellfallFangs : MonoBehaviour
             }
             obj.GetComponent<Rigidbody2D>().gravityScale = 0;
         }
+        StartCoroutine(bladeDrop());
+    }
+
+    public IEnumerator bladeDrop()
+    {
+        foreach (GameObject obj in swords) 
+        {
+            yield return new WaitForSeconds(Random.Range(1f, 1.5f));
+            swords[0].GetComponent<Rigidbody2D>().gravityScale = Random.Range(gravityScale, gravityScale + 1f);
+            yield return new WaitForSeconds(.2f);
+            swords[1].GetComponent<Rigidbody2D>().gravityScale = gravityScale + 1f;
+
+
+        }
+
+
     }
 }
