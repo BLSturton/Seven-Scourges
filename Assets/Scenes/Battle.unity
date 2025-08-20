@@ -9970,7 +9970,7 @@ MonoBehaviour:
   sawSpeed: 1.3
   reverseSpeed: 0.7
   boneSpeed1: 1
-  boneSpeed2: 2
+  boneSpeed2: 1.5
   attackFailed: 0
   midWay: 0
   fullWay: 0
@@ -10276,7 +10276,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1831660129
 Transform:
   m_ObjectHideFlags: 0
@@ -10319,10 +10319,14 @@ MonoBehaviour:
   spawn1: {fileID: 1017168630}
   spawn2: {fileID: 684516185}
   cetusOptionPicker: {fileID: 1326397611}
+  battleManager: {fileID: 382845793}
   moverLeft: {fileID: 1105651877}
   moverRight: {fileID: 243209250}
   hitLeft: 0
   hitRight: 0
+  target1: {fileID: 0}
+  target2: {fileID: 0}
+  actionBox: {fileID: 1908234678}
 --- !u!1 &1852768195
 GameObject:
   m_ObjectHideFlags: 0

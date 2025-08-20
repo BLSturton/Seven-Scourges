@@ -10,12 +10,17 @@ public class HellfallFangs : MonoBehaviour
     [SerializeField] public GameObject spawn1;
     [SerializeField] public GameObject spawn2;
     [SerializeField] public OptionPicker cetusOptionPicker;
+    [SerializeField] public BattleManager battleManager;
 
     [SerializeField] MoverDetector moverLeft;
     [SerializeField] MoverDetector moverRight;
 
     [SerializeField] public bool hitLeft;
     [SerializeField] public bool hitRight;
+
+    [SerializeField] GameObject target1;
+    [SerializeField] GameObject target2;
+    [SerializeField] GameObject actionBox;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -72,11 +77,32 @@ public class HellfallFangs : MonoBehaviour
         }
         if(hitLeft && !hitRight || hitRight && !hitLeft) 
         {
-            Debug.Log("Good");
+                target1 = battleManager.enemyList[Random.Range(0, battleManager.enemyList.Count)];
+            target1.GetComponent<EnemyHealth>().health = target1.GetComponent<EnemyHealth>().health - 1;
+            if (target1.GetComponent<EnemyHealth>().health <= 0)
+            {
+                battleManager.enemyList.Remove(target1);
+            }
+            target2 = battleManager.enemyList[Random.Range(0, battleManager.enemyList.Count)];
+
+                target2.GetComponent<EnemyHealth>().health = target2.GetComponent<EnemyHealth>().health - 1;
+
+            
         }
         if(hitLeft && hitRight) 
         {
-            Debug.Log("Exellent!");
+            target1 = battleManager.enemyList[Random.Range(0, battleManager.enemyList.Count)];
+            target1.GetComponent<EnemyHealth>().health = target1.GetComponent<EnemyHealth>().health - 2;
+            if (target1.GetComponent<EnemyHealth>().health <= 0) 
+            {
+                battleManager.enemyList.Remove(target1);
+            }
+            target2 = battleManager.enemyList[Random.Range(0, battleManager.enemyList.Count)];
+            target2.GetComponent<EnemyHealth>().health = target2.GetComponent<EnemyHealth>().health - 2;
         }
+        this.gameObject.SetActive(false);
+        actionBox.SetActive(false);
+        cetusOptionPicker.endTurn = true;
+        cetusOptionPicker.myTurn = false;
     }
 }
