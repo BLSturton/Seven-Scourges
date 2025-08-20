@@ -30,6 +30,11 @@ public class HellfallFangs : MonoBehaviour
                 hitLeft = true;
                 swords.Find(obj => obj.name == "Sword1").SetActive(false);
             }
+        if (moverRight.hitNow && Input.GetKeyDown(KeyCode.L) && !hitRight)
+        {
+            hitRight = true;
+            swords.Find(obj => obj.name == "Sword2").SetActive(false);
+        }
     }
     public void StartAttack() 
     {
@@ -50,16 +55,28 @@ public class HellfallFangs : MonoBehaviour
 
     public IEnumerator bladeDrop()
     {
-        foreach (GameObject obj in swords) 
-        {
+       
             yield return new WaitForSeconds(Random.Range(1f, 1.5f));
             swords[0].GetComponent<Rigidbody2D>().gravityScale = Random.Range(gravityScale, gravityScale + 1f);
             yield return new WaitForSeconds(.2f);
             swords[1].GetComponent<Rigidbody2D>().gravityScale = gravityScale + 1f;
+        yield return new WaitForSeconds(1f);
+        EndAttack();
+    }
 
-
+    public void EndAttack() 
+    {
+        if(!hitLeft && !hitRight) 
+        {
+            Debug.Log("Failed");
         }
-
-
+        if(hitLeft && !hitRight || hitRight && !hitLeft) 
+        {
+            Debug.Log("Good");
+        }
+        if(hitLeft && hitRight) 
+        {
+            Debug.Log("Exellent!");
+        }
     }
 }
