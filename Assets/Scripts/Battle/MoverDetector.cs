@@ -9,6 +9,8 @@ public class MoverDetector : MonoBehaviour
 
     [SerializeField] public bool wordHit;
     [SerializeField] public GameObject touchedWord;
+
+    [SerializeField] FirstAid firstAid;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -34,6 +36,19 @@ public class MoverDetector : MonoBehaviour
         {
             wordHit = true;
             touchedWord = collision.gameObject;
+        }
+
+        if(collision.gameObject == firstAid.lines[0]) 
+        {
+            firstAid.hitLine = firstAid.lines[0];
+        }
+        if (collision.gameObject == firstAid.lines[1])
+        {
+            firstAid.hitLine = firstAid.lines[1];
+        }
+        if (collision.gameObject == firstAid.lines[2])
+        {
+            firstAid.hitLine = firstAid.lines[2];
         }
     }
     public void OnTriggerExit2D(Collider2D collision)

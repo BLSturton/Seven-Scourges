@@ -17,6 +17,8 @@ public class HellfallFangs : MonoBehaviour
 
     [SerializeField] public bool hitLeft;
     [SerializeField] public bool hitRight;
+    [SerializeField] public bool missedLeft;
+    [SerializeField] public bool missedRight;
 
     [SerializeField] GameObject target1;
     [SerializeField] GameObject target2;
@@ -24,25 +26,35 @@ public class HellfallFangs : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(moverLeft.hitNow && Input.GetKeyDown(KeyCode.K) && !hitLeft) 
+        if(moverLeft.hitNow && Input.GetKeyDown(KeyCode.K) && !hitLeft && !missedLeft) 
             {
                 hitLeft = true;
                 swords.Find(obj => obj.name == "Sword1").SetActive(false);
             }
-        if (moverRight.hitNow && Input.GetKeyDown(KeyCode.L) && !hitRight)
+        if(Input.GetKeyDown(KeyCode.K) && moverLeft.hitNow  == false) 
+        {
+            missedLeft = true;
+        }
+        if (moverRight.hitNow && Input.GetKeyDown(KeyCode.L) && !hitRight && !missedRight)
         {
             hitRight = true;
             swords.Find(obj => obj.name == "Sword2").SetActive(false);
         }
+        if (Input.GetKeyDown(KeyCode.K) && moverRight.hitNow == false)
+        {
+            missedRight = true;
+        }
+
+       
     }
     public void StartAttack() 
     {
+        this.gameObject.SetActive(true);
         foreach (GameObject obj in swords) 
         {
             if(obj == swords[0]) 

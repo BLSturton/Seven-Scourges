@@ -32,8 +32,7 @@ public class Taunt : MonoBehaviour
     // execution of Update after the MonoBehaviour is created
     void Start()
     {
-        actionBox.SetActive(false);
-        mover.SetActive(false);
+       
     }
 
     // Update is called once per frame

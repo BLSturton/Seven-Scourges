@@ -41,7 +41,7 @@ public class OptionPicker : MonoBehaviour
     [SerializeField] GameObject CetusStyle2;
     [SerializeField] GameObject RaticStyle2;
     [SerializeField] HellfallFangs hellfallFangs;
-    
+    [SerializeField] FirstAid firstAid;
     [SerializeField] public RaticAttack raticAttack;
     [SerializeField] public GameObject raticAttackAction;
     [SerializeField] public GameObject countdownText;
@@ -59,7 +59,7 @@ public class OptionPicker : MonoBehaviour
     void Start()
     {
         canGoBack = true;
-
+        firstAid.gameObject.SetActive(false);
         foreach (GameObject obj in styles)
         {
             if (obj != null)
@@ -287,9 +287,9 @@ public class OptionPicker : MonoBehaviour
                             hellfallFangs.StartAttack();
                             specialOn = false;
                         }
-                        if (this.gameObject.name == "RaticOptionManager" && battleManager.RaticSP >= 2)
+                        if (this.gameObject.name == "RaticOptionManager" && battleManager.RaticSP >= 3)
                         {
-                            battleManager.RaticSP = battleManager.RaticSP - 2;
+                            battleManager.RaticSP = battleManager.RaticSP - 3;
                             styleBox.SetActive(false);
                             foreach (GameObject obj in styles)
                             {
@@ -300,8 +300,9 @@ public class OptionPicker : MonoBehaviour
                                 }
                             }
                             canGoBack = false;
-
-                            diagnosisOn = true;
+                            actionBox.SetActive(true);
+                            firstAid.gameObject.SetActive(true);
+                            firstAid.StartAttack();
                             specialOn = false;
 
 
