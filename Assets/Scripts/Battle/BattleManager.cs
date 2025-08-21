@@ -45,6 +45,8 @@ public class BattleManager : MonoBehaviour
 
     [SerializeField] public int CetusHP;
     [SerializeField] public int RaticHP;
+    [SerializeField] public int CetusMaxHP;
+    [SerializeField] public int RaticMaxHP;
     [SerializeField] public int damageValue;
     [SerializeField] public int CetusDef;
     [SerializeField] public int RaticDef;

@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.ComponentModel;
 public class TextScript : MonoBehaviour
 {
     public DialogManager dialogManager;
@@ -19,7 +20,7 @@ public class TextScript : MonoBehaviour
     public bool FirstScene = true;
 
     [SerializeField] Diagnosis diagnosis;
-
+    [SerializeField] Inventory inventory;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -70,6 +71,9 @@ public class TextScript : MonoBehaviour
                 case "Chest":
                     
                     Chest();
+                    break;
+                case "OpenedChest":
+
                     break;
                 case "Evil Chest":
                     EvilChest();
@@ -158,7 +162,7 @@ public class TextScript : MonoBehaviour
     //For Chest
     public void Chest() 
     {
-     
+
         switch (textNumber)
         {
             case 0:
@@ -166,7 +170,7 @@ public class TextScript : MonoBehaviour
                 characterFace.enabled = true;
                 playerMove.canMove = false;
                 characterFace.GetComponent<UnityEngine.UI.Image>().sprite = faceList[7];
-                dialog = new DialogData("It's a chest.", "Cetus");
+                dialog = new DialogData("This chest is filled with meat. Somehow, it's not spoiled.", "Cetus");
              
                 dialogManager.Show(dialog);
                 break;
@@ -174,29 +178,50 @@ public class TextScript : MonoBehaviour
                 dialogManager.Hide();
                 characterFace.GetComponent<UnityEngine.UI.Image>().sprite = faceList[7];
 
-                dialog = new DialogData("There's probably something inside, but Bryce hasn't added in chest functionality yet.", "Cetus");
-
+                dialog = new DialogData("You took some dried meat.", "Cetus");
+                inventory.itemList.Add("Dried Meat");
                 dialogManager.Show(dialog);
               
                 break;
             case 2:
-                dialogManager.Hide();
-                characterFace.GetComponent<UnityEngine.UI.Image>().sprite = faceList[7];
-
-                dialog = new DialogData("Maybe he will later.", "Cetus");
-                dialogManager.Show(dialog);
-
-                break;
-            case 3:
                 dialogManager.Hide();
                 characterFace.enabled = false;
                 textName = "None";
                 inText = false;
                 playerMove.canMove = true;
                 textNumber = -1;
+                transform.Find("Chest").gameObject.name = "OpenedChest";
+
                 break;
+          
         }
     }
+
+    public void OpenedChest() 
+    {
+        switch (textNumber) 
+        {
+            case 0:
+                dialogManager.Hide();
+                characterFace.enabled = true;
+                playerMove.canMove = false;
+                characterFace.GetComponent<UnityEngine.UI.Image>().sprite = faceList[7];
+                dialog = new DialogData("It's empty.", "Cetus");
+
+                dialogManager.Show(dialog);
+                break;
+            case 2:
+                dialogManager.Hide();
+                characterFace.enabled = false;
+                textName = "None";
+                inText = false;
+                playerMove.canMove = true;
+                textNumber = -1;
+
+                break;
+        }
+
+        }
     public void EvilChest()
     {
         switch (textNumber)

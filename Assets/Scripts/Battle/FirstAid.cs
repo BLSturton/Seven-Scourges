@@ -20,6 +20,7 @@ public class FirstAid : MonoBehaviour
     [SerializeField] public int SnipsHit;
 
     [SerializeField] OptionPicker raticOptionPicker;
+    [SerializeField] BattleManager battleManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -42,14 +43,14 @@ public class FirstAid : MonoBehaviour
                 cutLine[0].SetActive(true);
                 cutLine[0].transform.position = lines[0].transform.position;
                 lines[0].SetActive(false);
-                scissorSpeed = scissorSpeed + 1f;
+                scissorSpeed = scissorSpeed + 1.5f;
             }
             if (hitLine == lines[1])
             {
                 cutLine[1].SetActive(true);
                 cutLine[1].transform.position = lines[1].transform.position;
                 lines[1].SetActive(false);
-                scissorSpeed = scissorSpeed + 1f;
+                scissorSpeed = scissorSpeed + 1.5f;
 
             }
             if (hitLine == lines[2])
@@ -57,7 +58,7 @@ public class FirstAid : MonoBehaviour
                 cutLine[2].SetActive(true);
                 cutLine[2].transform.position = lines[2].transform.position;
                 lines[2].SetActive(false);
-                scissorSpeed = scissorSpeed + 1f;
+                scissorSpeed = scissorSpeed + 1.5f;
 
             }
 
@@ -90,19 +91,53 @@ public class FirstAid : MonoBehaviour
 
     public void EndAttack() 
     {
-        if(SnipsHit == 0) 
+        if(SnipsHit == 0 || SnipsHit == 1) 
         {
             Debug.Log("Missed!");
         }
-        if(SnipsHit == 1) 
+        if(SnipsHit == 2)
         {
-            Debug.Log("Good");
+            if(raticOptionPicker.enemyNumber == 0) 
+            {
+                if (battleManager.CetusHP < battleManager.CetusMaxHP) 
+                {
+                    battleManager.CetusHP = battleManager.CetusHP + 1;
+                }
+            }
+            if (raticOptionPicker.enemyNumber == 1)
+            {
+                if (battleManager.RaticHP < battleManager.RaticMaxHP)
+                {
+                    battleManager.RaticHP = battleManager.RaticHP + 1;
+                }
+            }
         }
-        if(SnipsHit == 2) 
+        if (SnipsHit == 3)
         {
-            Debug.Log("gexellent!");
+            if (raticOptionPicker.enemyNumber == 0)
+            {
+                if (battleManager.CetusHP == battleManager.CetusMaxHP -1)
+                {
+                    battleManager.CetusHP = battleManager.CetusHP + 1;
+                }
+                if (battleManager.CetusHP < battleManager.CetusMaxHP -1)
+                {
+                    battleManager.CetusHP = battleManager.CetusHP + 2;
+                }
+            }
+            if (raticOptionPicker.enemyNumber == 1)
+            {
+                if (battleManager.RaticHP == battleManager.RaticMaxHP - 1)
+                {
+                    battleManager.RaticHP = battleManager.RaticHP + 1;
+                }
+                if (battleManager.RaticHP < battleManager.RaticMaxHP - 1)
+                {
+                    battleManager.RaticHP = battleManager.RaticHP + 2;
+                }
+            }
         }
-        SnipsHit = 0;
+                SnipsHit = 0;
         scissorSpeed = 2f;
         this.gameObject.SetActive(false);
         raticOptionPicker.endTurn = true;

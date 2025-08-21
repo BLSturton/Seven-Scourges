@@ -1826,6 +1826,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2349595}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &318096542
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 318096543}
+  m_Layer: 0
+  m_Name: CetusPickerSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &318096543
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318096542}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.345, y: 0.962, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2054320999}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &322549426
 GameObject:
   m_ObjectHideFlags: 0
@@ -1969,8 +2000,10 @@ MonoBehaviour:
   CetusToRatic: 0
   enemyAttacks: {fileID: 0}
   enemyTurnEnd: 0
-  CetusHP: 10
-  RaticHP: 10
+  CetusHP: 8
+  RaticHP: 9
+  CetusMaxHP: 10
+  RaticMaxHP: 10
   damageValue: 0
   CetusDef: 0
   RaticDef: 0
@@ -2653,7 +2686,8 @@ Transform:
   m_LocalPosition: {x: -4.66, y: -4.67, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1594220844}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &505352955
@@ -8927,6 +8961,7 @@ MonoBehaviour:
   RaticStyle2: {fileID: 909386387}
   hellfallFangs: {fileID: 1831660130}
   firstAid: {fileID: 1384577950}
+  firstAidOn: 0
   raticAttack: {fileID: 1818019870}
   raticAttackAction: {fileID: 1818019868}
   countdownText: {fileID: 148085422}
@@ -9153,9 +9188,11 @@ MonoBehaviour:
   hitLine: {fileID: 1527742797}
   scissorSpawn: {fileID: 911886952}
   scissorEnd: {fileID: 659084356}
-  scissorSpeed: 1.5
+  scissorSpeed: 2
   scissorAnim: {fileID: 1196593310}
   SnipsHit: 0
+  raticOptionPicker: {fileID: 2082054970}
+  battleManager: {fileID: 382845793}
 --- !u!1 &1389778814
 GameObject:
   m_ObjectHideFlags: 0
@@ -9960,6 +9997,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1818019869}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1594220843
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1594220844}
+  m_Layer: 0
+  m_Name: RaticPickerSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1594220844
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594220843}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.414, y: 0.899, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 499284210}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1616494561
 GameObject:
@@ -12459,7 +12527,8 @@ Transform:
   m_LocalPosition: {x: -5.47, y: -1.8, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 318096543}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2082054969
@@ -12531,6 +12600,7 @@ MonoBehaviour:
   RaticStyle2: {fileID: 909386387}
   hellfallFangs: {fileID: 0}
   firstAid: {fileID: 1384577950}
+  firstAidOn: 0
   raticAttack: {fileID: 1818019870}
   raticAttackAction: {fileID: 1818019868}
   countdownText: {fileID: 148085422}

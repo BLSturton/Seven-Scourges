@@ -42,6 +42,7 @@ public class OptionPicker : MonoBehaviour
     [SerializeField] GameObject RaticStyle2;
     [SerializeField] HellfallFangs hellfallFangs;
     [SerializeField] FirstAid firstAid;
+    [SerializeField] public bool firstAidOn;
     [SerializeField] public RaticAttack raticAttack;
     [SerializeField] public GameObject raticAttackAction;
     [SerializeField] public GameObject countdownText;
@@ -54,7 +55,7 @@ public class OptionPicker : MonoBehaviour
     [SerializeField] public bool canGoBack;
     [SerializeField] public GameObject targetEnemy;
 
-  
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -194,6 +195,14 @@ public class OptionPicker : MonoBehaviour
                     enemyPicker.SetActive(false);
                     actionBox.SetActive(true);
                 }
+                if (firstAidOn) 
+                {
+                    firstAidOn = false;
+                    enemyPicker.SetActive(false);
+                    actionBox.SetActive(true);
+                    firstAid.gameObject.SetActive(true);
+                    firstAid.StartAttack();
+                }
                 foreach (GameObject obj in attackOptions)
                 {
                     if (obj != null)
@@ -300,12 +309,8 @@ public class OptionPicker : MonoBehaviour
                                 }
                             }
                             canGoBack = false;
-                            actionBox.SetActive(true);
-                            firstAid.gameObject.SetActive(true);
-                            firstAid.StartAttack();
                             specialOn = false;
-
-
+                            firstAidOn = true;
                         }
                     }
                 }
@@ -397,6 +402,69 @@ public class OptionPicker : MonoBehaviour
                         targetEnemy = battleManager.enemyList[2];
 
                         break;
+                }
+            }
+            if (firstAidOn) 
+            {
+
+                enemyPicker.SetActive(true);
+                //Advance Option
+                if (Input.GetKeyDown(KeyCode.D) && !selectCooldown)
+                {
+                    if (enemyNumber == 1)
+                    {
+
+                        selectedOption = battleManager.partyList[0];
+                        enemyNumber = 0;
+                        selectCooldown = true;
+                        StartCoroutine(AttackWait());
+                    }
+                    else
+                    {
+                        selectedOption = battleManager.partyList[enemyNumber + 1];
+                        enemyNumber++;
+                        selectCooldown = true;
+
+                        StartCoroutine(AttackWait());
+                    }
+
+                }
+                //Reverse Option
+                if (Input.GetKeyDown(KeyCode.A) && !selectCooldown)
+                {
+                    if (enemyNumber == 0)
+                    {
+
+                        selectedOption = battleManager.partyList[1];
+                        enemyNumber = 1;
+                        selectCooldown = true;
+                        StartCoroutine(AttackWait());
+                    }
+                    else
+                    {
+                        selectedOption = battleManager.partyList[enemyNumber - 1];
+                        enemyNumber--;
+                        selectCooldown = true;
+
+                        StartCoroutine(AttackWait());
+                    }
+
+                }
+
+                //Moves selector
+                switch (enemyNumber)
+                {
+                    case 0:
+                        enemyPicker.transform.position = battleManager.partyList[0].transform.position - new Vector3(1, -1.5f, 0);
+                        targetEnemy = battleManager.partyList[0];
+                        break;
+                    case 1:
+                        enemyPicker.transform.position = battleManager.partyList[1].transform.position - new Vector3(1, -1.5f, 0);
+                        targetEnemy = battleManager.partyList[1];
+                        break;
+                   
+
+                   
                 }
             }
 
