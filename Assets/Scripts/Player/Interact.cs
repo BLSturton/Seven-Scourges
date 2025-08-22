@@ -18,7 +18,6 @@ public class Interact : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K) && canInteract && !textScript.startText) 
         {
             textScript.startText = true;
-
         }
     }
 
@@ -28,7 +27,9 @@ public class Interact : MonoBehaviour
         {
             canInteract = true;
             
-            textScript.textName = collision.gameObject.name; 
+            textScript.textName = collision.gameObject.name;
+            textScript.selectedObject = collision.gameObject;
+
         }
     }
     private void OnTriggerExit2D(Collider2D collision)

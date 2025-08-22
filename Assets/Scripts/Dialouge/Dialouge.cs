@@ -14,7 +14,7 @@ public class TextScript : MonoBehaviour
     public string textName;
     public GameObject dialogBox;
     public bool startText;
-
+    [SerializeField] public GameObject selectedObject;
     public Image characterFace;
     public Sprite[] faceList;
     public bool FirstScene = true;
@@ -73,10 +73,10 @@ public class TextScript : MonoBehaviour
                     Chest();
                     break;
                 case "OpenedChest":
-
+                    OpenedChest();
                     break;
-                case "Evil Chest":
-                    EvilChest();
+                case "MeadChest":
+                    MeadChest();
                     break;
                 case "GoblinRouge":
                     GoblinRougeDiagnosis();
@@ -190,7 +190,7 @@ public class TextScript : MonoBehaviour
                 inText = false;
                 playerMove.canMove = true;
                 textNumber = -1;
-                transform.Find("Chest").gameObject.name = "OpenedChest";
+                selectedObject.name = "OpenedChest";
 
                 break;
           
@@ -222,7 +222,7 @@ public class TextScript : MonoBehaviour
         }
 
         }
-    public void EvilChest()
+    public void MeadChest()
     {
         switch (textNumber)
         {
@@ -231,7 +231,7 @@ public class TextScript : MonoBehaviour
                 characterFace.enabled = true;
                 playerMove.canMove = false;
                 characterFace.GetComponent<UnityEngine.UI.Image>().sprite = faceList[7];
-                dialog = new DialogData("It's a chest...", "Cetus");
+                dialog = new DialogData("The chest is frothing with mead.", "Cetus");
 
                 dialogManager.Show(dialog);
                 break;
@@ -239,7 +239,7 @@ public class TextScript : MonoBehaviour
                 dialogManager.Hide();
                 characterFace.GetComponent<UnityEngine.UI.Image>().sprite = faceList[7];
 
-                dialog = new DialogData("... Or so you thought.", "Cetus");
+                dialog = new DialogData("It's just kinda... In there.", "Cetus");
 
                 dialogManager.Show(dialog);
 
@@ -248,7 +248,9 @@ public class TextScript : MonoBehaviour
                 dialogManager.Hide();
                 characterFace.GetComponent<UnityEngine.UI.Image>().sprite = faceList[7];
 
-                dialog = new DialogData("It's actually an EVIL CHEST!!!!!!!!!!", "Cetus");
+                dialog = new DialogData("You scoop it all in a bottle.", "Cetus");
+                inventory.itemList.Add("Mead");
+
                 dialogManager.Show(dialog);
 
                 break;
@@ -259,6 +261,8 @@ public class TextScript : MonoBehaviour
                 inText = false;
                 playerMove.canMove = true;
                 textNumber = -1;
+                selectedObject.name = "OpenedChest";
+
                 break;
         }
     }
