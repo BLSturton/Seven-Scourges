@@ -9,7 +9,9 @@ TagManager:
   - GoblinRougeAttack
   - Attack
   - SwordSpin
-  - WordTaunt
+  - InventorySystem
+  - CetusHP
+  - RaticHP
   layers:
   - Default
   - TransparentFX

@@ -6,8 +6,10 @@ public class Inventory : MonoBehaviour
 {
     [SerializeField] public List<string> itemList;
     [SerializeField] public List<GameObject> itemVisual;
-    [SerializeField] public bool inventoryOn;
 
+
+    [SerializeField] public bool inventoryOn;
+    [SerializeField] public bool canInventory;
     [SerializeField] GameObject inventoryImage;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -15,12 +17,17 @@ public class Inventory : MonoBehaviour
         inventoryOn = false;
         inventoryImage.SetActive(false);
     }
-    
+    private void Awake()
+    {
+
+        
+
+    }
 
     // Update is called once per frame
     void Update()
     {
-      if(Input.GetKeyDown(KeyCode.J) && !inventoryOn) 
+      if(Input.GetKeyDown(KeyCode.J) && !inventoryOn && canInventory) 
         {
             inventoryOn = true;
             inventoryImage.SetActive(true);
@@ -30,10 +37,12 @@ public class Inventory : MonoBehaviour
                 if (obj == itemVisual[0] && itemList.Count >= 0)
                 {
                     obj.GetComponent<TextMeshProUGUI>().text = itemList[0];
+                  
                 }
                 if (obj == itemVisual[1] && itemList.Count >= 1)
                 {
                     obj.GetComponent<TextMeshProUGUI>().text = itemList[1];
+                    
                 }
                 if (obj == itemVisual[2] && itemList.Count >= 2)
                 {
@@ -69,6 +78,7 @@ public class Inventory : MonoBehaviour
                 }
 
             }
+         
         }
         if (Input.GetKeyDown(KeyCode.J) && inventoryOn) 
         {

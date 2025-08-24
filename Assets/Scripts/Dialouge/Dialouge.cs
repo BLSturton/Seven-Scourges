@@ -61,7 +61,7 @@ public class TextScript : MonoBehaviour
         }
         if (startText) 
         {
-            
+            inventory.canInventory = false;
             inText = true;
             switch (textName)
             { 
@@ -111,6 +111,7 @@ public class TextScript : MonoBehaviour
                 inText = false;
                 playerMove.canMove = true;
                 textNumber = 0;
+                inventory.canInventory = true;
                 break;
         }
     }
@@ -191,6 +192,7 @@ public class TextScript : MonoBehaviour
                 playerMove.canMove = true;
                 textNumber = -1;
                 selectedObject.name = "OpenedChest";
+                inventory.canInventory = true;
 
                 break;
           
@@ -217,6 +219,7 @@ public class TextScript : MonoBehaviour
                 inText = false;
                 playerMove.canMove = true;
                 textNumber = -1;
+                inventory.canInventory = true;
 
                 break;
         }
@@ -262,6 +265,7 @@ public class TextScript : MonoBehaviour
                 playerMove.canMove = true;
                 textNumber = -1;
                 selectedObject.name = "OpenedChest";
+                inventory.canInventory = true;
 
                 break;
         }

@@ -46,6 +46,9 @@ public class OptionPicker : MonoBehaviour
     [SerializeField] public RaticAttack raticAttack;
     [SerializeField] public GameObject raticAttackAction;
     [SerializeField] public GameObject countdownText;
+
+    //Items
+    [SerializeField] Inventory inventory;
     //End turn
     [SerializeField] public bool endTurn;
     [SerializeField] public bool myTurn;
@@ -59,6 +62,7 @@ public class OptionPicker : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
         canGoBack = true;
         firstAid.gameObject.SetActive(false);
         foreach (GameObject obj in styles)
@@ -96,13 +100,14 @@ public class OptionPicker : MonoBehaviour
                 }
             }
         }
-        
+        inventory = GameObject.FindWithTag("InventorySystem").GetComponent<Inventory>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
+       
         if (myTurn)
         {
 

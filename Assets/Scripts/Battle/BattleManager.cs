@@ -52,6 +52,9 @@ public class BattleManager : MonoBehaviour
     [SerializeField] public int RaticDef;
     [SerializeField] public int CetusSP;
     [SerializeField] public int RaticSP;
+    [SerializeField] public GameObject CetusHPObject;
+    [SerializeField] public GameObject RaticHPObject;
+
 
     [SerializeField] public Text CetusHPVisual;
     [SerializeField] public Text RaticHPVisual;
@@ -74,6 +77,7 @@ public class BattleManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
        
         currentPartyTurn = 1;
         cetusOptionPicker.myTurn = true;
@@ -112,6 +116,15 @@ public class BattleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CetusHPObject = GameObject.FindWithTag("CetusHP");
+
+        RaticHPObject = GameObject.FindWithTag("RaticHP");
+
+        CetusHPVisual = CetusHPObject.gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
+        CetusSPVisual = CetusHPObject.gameObject.transform.GetChild(1).gameObject.GetComponent<Text>();
+
+        RaticHPVisual = RaticHPObject.gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
+        RaticSPVisual = RaticHPObject.gameObject.transform.GetChild(1).gameObject.GetComponent<Text>();
         if (cetusOptionPicker.styles.Length == 1)
         {
             hellfallObject.SetActive(false);
