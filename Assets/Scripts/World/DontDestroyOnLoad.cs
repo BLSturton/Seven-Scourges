@@ -9,15 +9,14 @@ public class DontDestroyOnLoad : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
-      
+        isBattle = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Battle") && isBattle == false)
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Battle") && isBattle == true)
         {
-         
             foreach (GameObject obj in childMove)
             {
                 obj.transform.SetParent(null);

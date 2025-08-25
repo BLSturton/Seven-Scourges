@@ -1,7 +1,9 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class Inventory : MonoBehaviour
 {
     [SerializeField] public List<string> itemList;
@@ -27,21 +29,19 @@ public class Inventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      if(Input.GetKeyDown(KeyCode.J) && !inventoryOn && canInventory) 
+      if(Input.GetKeyDown(KeyCode.J) && !inventoryOn && canInventory && SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Battle")) 
         {
             OpenInventory();
          
         }
-        if (Input.GetKeyDown(KeyCode.J) && inventoryOn) 
+        if (Input.GetKeyDown(KeyCode.J) && inventoryOn && SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Battle")) 
         {
             inventoryImage.SetActive(false);
             inventoryOn = false;
-
         }
     }
     public void OpenInventory() 
     {
-        inventoryOn = true;
         inventoryImage.SetActive(true);
 
         foreach (GameObject obj in itemVisual)
@@ -49,14 +49,12 @@ public class Inventory : MonoBehaviour
             if (obj == itemVisual[0] && itemList.Count >= 0)
             {
                 obj.GetComponent<TextMeshProUGUI>().text = itemList[0];
-                Debug.Log("Texton");
             }
 
 
             if (obj == itemVisual[1] && itemList.Count >= 1)
             {
                 obj.GetComponent<TextMeshProUGUI>().text = itemList[1];
-                Debug.Log("Texton");
 
             }
 
@@ -105,7 +103,14 @@ public class Inventory : MonoBehaviour
             {
                 obj.GetComponent<TextMeshProUGUI>().text = itemList[9];
             }
-
+            StartCoroutine(openWait());
         }
+
+    }
+    public IEnumerator openWait()
+    {
+        yield return new WaitForSeconds(.2f);
+        inventoryOn = true;
+
     }
 }

@@ -341,13 +341,15 @@ public class OptionPicker : MonoBehaviour
                             break;
                         case 2:
                             itemOn = true;
+                            
                             itemPicker.transform.SetAsLastSibling();
                             inventory.gameObject.GetComponent<RectTransform>().position = GameObject.FindWithTag("InventorySpawn").GetComponent<RectTransform>().position;
-                            itemPicker.SetActive(true);
+                            
 
                             inventory.OpenInventory();
                             inventory.gameObject.SetActive(true);
                             inventory.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                            inventory.gameObject.transform.GetChild(0).GetComponent<RectTransform>().position = GameObject.FindWithTag("InventorySpawn").GetComponent<RectTransform>().position;
                             break;
                     }
                 }
@@ -593,14 +595,41 @@ public class OptionPicker : MonoBehaviour
                 switch (itemNumber)
                 {
                     case 0:
-                        itemPicker.transform.position = inventory.itemVisual[0].transform.position - new Vector3(1, -1, 0);
+                        itemPicker.transform.position = inventory.itemVisual[0].transform.position - new Vector3(200, -50, 0);
 
                         break;
                     case 1:
-                        itemPicker.transform.position = inventory.itemVisual[1].transform.position - new Vector3(1, -1, 0);
+                        itemPicker.transform.position = inventory.itemVisual[1].transform.position - new Vector3(200, -50, 0);
                         break;
-                    
+                    case 2:
+                        itemPicker.transform.position = inventory.itemVisual[2].transform.position - new Vector3(200, -50, 0);
 
+                        break;
+                    case 3:
+                        itemPicker.transform.position = inventory.itemVisual[3].transform.position - new Vector3(200, -50, 0);
+                        break;
+                    case 4:
+                        itemPicker.transform.position = inventory.itemVisual[4].transform.position - new Vector3(200, -50, 0);
+
+                        break;
+                    case 5:
+                        itemPicker.transform.position = inventory.itemVisual[5].transform.position - new Vector3(200, -50, 0);
+                        break;
+                    case 6:
+                        itemPicker.transform.position = inventory.itemVisual[6].transform.position - new Vector3(200, -50, 0);
+
+                        break;
+                    case 7:
+                        itemPicker.transform.position = inventory.itemVisual[7].transform.position - new Vector3(200, -50, 0);
+                        break;
+                    case 8:
+                        itemPicker.transform.position = inventory.itemVisual[8].transform.position - new Vector3(200, -50, 0);
+                        break;
+                    case 9:
+                        itemPicker.transform.position = inventory.itemVisual[9].transform.position - new Vector3(200, -50, 0);
+
+                        break;
+               
                 }
             }
         }
