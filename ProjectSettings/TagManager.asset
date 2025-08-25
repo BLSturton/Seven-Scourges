@@ -12,6 +12,11 @@ TagManager:
   - InventorySystem
   - CetusHP
   - RaticHP
+  - WordTaunt
+  - Canvas
+  - CetusHPSpawn
+  - RaticHPSpawn
+  - InventorySpawn
   layers:
   - Default
   - TransparentFX

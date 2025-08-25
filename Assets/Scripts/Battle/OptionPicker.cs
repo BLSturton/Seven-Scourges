@@ -49,6 +49,10 @@ public class OptionPicker : MonoBehaviour
 
     //Items
     [SerializeField] Inventory inventory;
+    [SerializeField] public bool itemOn;
+    [SerializeField] public int itemNumber;
+    [SerializeField] public int maxItem;
+    [SerializeField] public GameObject itemPicker;
     //End turn
     [SerializeField] public bool endTurn;
     [SerializeField] public bool myTurn;
@@ -335,6 +339,16 @@ public class OptionPicker : MonoBehaviour
                                 obj.SetActive(true);
                             }
                             break;
+                        case 2:
+                            itemOn = true;
+                            itemPicker.transform.SetAsLastSibling();
+                            inventory.gameObject.GetComponent<RectTransform>().position = GameObject.FindWithTag("InventorySpawn").GetComponent<RectTransform>().position;
+                            itemPicker.SetActive(true);
+
+                            inventory.OpenInventory();
+                            inventory.gameObject.SetActive(true);
+                            inventory.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                            break;
                     }
                 }
 
@@ -548,6 +562,45 @@ public class OptionPicker : MonoBehaviour
                        
                         break;
                
+                }
+            }
+
+            if (itemOn) 
+            {
+                actionPicked = true;
+    
+                maxItem = inventory.itemList.Count;
+
+                if (Input.GetKeyDown(KeyCode.D) && !selectCooldown)
+                {
+                    if (itemNumber == maxItem)
+                    {
+
+                        selectedOption = inventory.itemVisual[0];
+                        itemNumber = 0;
+                        selectCooldown = true;
+                        StartCoroutine(AttackWait());
+                    }
+                    else
+                    {
+                        selectedOption = inventory.itemVisual[itemNumber + 1];
+                        itemNumber++;
+                        selectCooldown = true;
+
+                        StartCoroutine(AttackWait());
+                    }
+                }
+                switch (itemNumber)
+                {
+                    case 0:
+                        itemPicker.transform.position = inventory.itemVisual[0].transform.position - new Vector3(1, -1, 0);
+
+                        break;
+                    case 1:
+                        itemPicker.transform.position = inventory.itemVisual[1].transform.position - new Vector3(1, -1, 0);
+                        break;
+                    
+
                 }
             }
         }

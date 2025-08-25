@@ -29,61 +29,82 @@ public class Inventory : MonoBehaviour
     {
       if(Input.GetKeyDown(KeyCode.J) && !inventoryOn && canInventory) 
         {
-            inventoryOn = true;
-            inventoryImage.SetActive(true);
-
-            foreach (GameObject obj in itemVisual)
-            {
-                if (obj == itemVisual[0] && itemList.Count >= 0)
-                {
-                    obj.GetComponent<TextMeshProUGUI>().text = itemList[0];
-                  
-                }
-                if (obj == itemVisual[1] && itemList.Count >= 1)
-                {
-                    obj.GetComponent<TextMeshProUGUI>().text = itemList[1];
-                    
-                }
-                if (obj == itemVisual[2] && itemList.Count >= 2)
-                {
-                    obj.GetComponent<TextMeshProUGUI>().text = itemList[2];
-                }
-                if (obj == itemVisual[3] && itemList.Count >= 3)
-                {
-                    obj.GetComponent<TextMeshProUGUI>().text = itemList[3];
-                }
-                if (obj == itemVisual[4] && itemList.Count >= 4)
-                {
-                    obj.GetComponent<TextMeshProUGUI>().text = itemList[4];
-                }
-                if (obj == itemVisual[5] && itemList.Count >= 5)
-                {
-                    obj.GetComponent<TextMeshProUGUI>().text = itemList[5];
-                }
-                if (obj == itemVisual[6] && itemList.Count >= 6)
-                {
-                    obj.GetComponent<TextMeshProUGUI>().text = itemList[6];
-                }
-                if (obj == itemVisual[7] && itemList.Count >= 7)
-                {
-                    obj.GetComponent<TextMeshProUGUI>().text = itemList[7];
-                }
-                if (obj == itemVisual[8] && itemList.Count >= 8)
-                {
-                    obj.GetComponent<TextMeshProUGUI>().text = itemList[8];
-                }
-                if (obj == itemVisual[9] && itemList.Count >= 9)
-                {
-                    obj.GetComponent<TextMeshProUGUI>().text = itemList[9];
-                }
-
-            }
+            OpenInventory();
          
         }
         if (Input.GetKeyDown(KeyCode.J) && inventoryOn) 
         {
             inventoryImage.SetActive(false);
             inventoryOn = false;
+
+        }
+    }
+    public void OpenInventory() 
+    {
+        inventoryOn = true;
+        inventoryImage.SetActive(true);
+
+        foreach (GameObject obj in itemVisual)
+        {
+            if (obj == itemVisual[0] && itemList.Count >= 0)
+            {
+                obj.GetComponent<TextMeshProUGUI>().text = itemList[0];
+                Debug.Log("Texton");
+            }
+
+
+            if (obj == itemVisual[1] && itemList.Count >= 1)
+            {
+                obj.GetComponent<TextMeshProUGUI>().text = itemList[1];
+                Debug.Log("Texton");
+
+            }
+
+
+            if (obj == itemVisual[2] && itemList.Count >= 2)
+            {
+                obj.GetComponent<TextMeshProUGUI>().text = itemList[2];
+            }
+
+
+            if (obj == itemVisual[3] && itemList.Count >= 3)
+            {
+                obj.GetComponent<TextMeshProUGUI>().text = itemList[3];
+            }
+
+
+            if (obj == itemVisual[4] && itemList.Count >= 4)
+            {
+                obj.GetComponent<TextMeshProUGUI>().text = itemList[4];
+            }
+
+
+            if (obj == itemVisual[5] && itemList.Count >= 5)
+            {
+                obj.GetComponent<TextMeshProUGUI>().text = itemList[5];
+            }
+
+            if (obj == itemVisual[6] && itemList.Count >= 6)
+            {
+                obj.GetComponent<TextMeshProUGUI>().text = itemList[6];
+            }
+
+            if (obj == itemVisual[7] && itemList.Count >= 7)
+            {
+                obj.GetComponent<TextMeshProUGUI>().text = itemList[7];
+            }
+
+
+            if (obj == itemVisual[8] && itemList.Count >= 8)
+            {
+                obj.GetComponent<TextMeshProUGUI>().text = itemList[8];
+            }
+
+
+            if (obj == itemVisual[9] && itemList.Count >= 9)
+            {
+                obj.GetComponent<TextMeshProUGUI>().text = itemList[9];
+            }
 
         }
     }

@@ -22,11 +22,13 @@ public class DontDestroyOnLoad : MonoBehaviour
             {
                 obj.transform.SetParent(null);
                 SceneManager.MoveGameObjectToScene(obj, SceneManager.GetSceneByName("Battle"));
+                obj.transform.SetParent(GameObject.FindWithTag("Canvas").transform);
 
             }
 
             isBattle = true;
         }
+      
     }
 
     public void sceneMove() 

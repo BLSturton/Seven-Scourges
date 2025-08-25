@@ -120,6 +120,9 @@ public class BattleManager : MonoBehaviour
 
         RaticHPObject = GameObject.FindWithTag("RaticHP");
 
+        CetusHPObject.GetComponent<RectTransform>().position = GameObject.FindWithTag("CetusHPSpawn").GetComponent<RectTransform>().position;
+        RaticHPObject.GetComponent<RectTransform>().position = GameObject.FindWithTag("RaticHPSpawn").GetComponent<RectTransform>().position;
+
         CetusHPVisual = CetusHPObject.gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
         CetusSPVisual = CetusHPObject.gameObject.transform.GetChild(1).gameObject.GetComponent<Text>();
 
