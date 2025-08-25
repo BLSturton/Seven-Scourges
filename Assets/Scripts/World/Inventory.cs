@@ -94,6 +94,10 @@ public class Inventory : MonoBehaviour
         }
         else 
         {
+            if (Input.GetKeyDown(KeyCode.K) && inventoryPickerOn) 
+            {
+                UseItem();
+            }
             if (Input.GetKeyDown(KeyCode.D) && inventoryPickerOn)
             {
                 if (partySelected == partyListMax)
@@ -198,5 +202,30 @@ public class Inventory : MonoBehaviour
             itemPicked = false;
         }
         
+    }
+
+    public void UseItem() 
+    {
+        if (itemList[selectedItem - 1] == "Dried Meat") 
+        {
+            Debug.Log("Meating my shit");
+        }
+        if (itemList[selectedItem - 1] == "Mead")
+        {
+            Debug.Log("Meading my shit");
+        }
+        itemList.Remove(itemList[selectedItem - 1]);
+        itemVisual[selectedItem - 1].GetComponent<TextMeshProUGUI>().text = " ";
+        inventoryImage.SetActive(false);
+        inventoryPicker.SetActive(false);
+
+        inventoryOn = false;
+        inventoryPickerOn = false;
+        playerMove.canMove = true;
+        cetusHP.transform.position = cetusHPSpawn1.transform.position;
+        raticHP.transform.position = raticHPSpawn1.transform.position;
+        cetusHP.transform.SetAsFirstSibling();
+        raticHP.transform.SetAsFirstSibling();
+        itemPicked = false;
     }
 }
