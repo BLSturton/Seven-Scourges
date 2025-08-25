@@ -5,6 +5,7 @@ public class DontDestroyOnLoad : MonoBehaviour
 {
     [SerializeField] public bool isBattle;
     [SerializeField] public GameObject[] childMove;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

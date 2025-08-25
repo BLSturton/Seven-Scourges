@@ -49,6 +49,8 @@ public class OptionPicker : MonoBehaviour
 
     //Items
     [SerializeField] Inventory inventory;
+    [SerializeField] public bool itemOn;
+
     //End turn
     [SerializeField] public bool endTurn;
     [SerializeField] public bool myTurn;
@@ -334,6 +336,11 @@ public class OptionPicker : MonoBehaviour
                             {
                                 obj.SetActive(true);
                             }
+                            break;
+                        case 2:
+                            itemOn = true;
+                            inventory.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+
                             break;
                     }
                 }
