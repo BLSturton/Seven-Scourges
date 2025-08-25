@@ -12,6 +12,8 @@ TagManager:
   - InventorySystem
   - CetusHP
   - RaticHP
+  - WordTaunt
+  - BattleUI
   layers:
   - Default
   - TransparentFX

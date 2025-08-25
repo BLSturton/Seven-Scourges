@@ -1930,8 +1930,8 @@ MonoBehaviour:
   RaticDef: 0
   CetusSP: 6
   RaticSP: 6
-  CetusHPSpawn: {fileID: 1033917042}
-  RaticHPSpawn: {fileID: 1831780353}
+  CetusHPObject: {fileID: 0}
+  RaticHPObject: {fileID: 0}
   CetusHPVisual: {fileID: 0}
   RaticHPVisual: {fileID: 0}
   CetusSPVisual: {fileID: 0}
@@ -5854,7 +5854,7 @@ GameObject:
   - component: {fileID: 767813158}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: BattleUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

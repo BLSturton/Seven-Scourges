@@ -5,6 +5,7 @@ public class BattleStart : MonoBehaviour
 {
     [SerializeField] private string battleSceneName = "Battle";
     [SerializeField] private GameObject uiCanvas; // Assign your Canvas in the inspector
+    [SerializeField] DontDestroyOnLoad dontDestroyOnLoad;
 
     private bool isTransitioning = false;
 
