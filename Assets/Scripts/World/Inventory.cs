@@ -51,7 +51,7 @@ public class Inventory : MonoBehaviour
         maxItem = itemList.Count;
         if(itemPicked == false) 
         {
-            if (Input.GetKeyDown(KeyCode.K) && inventoryPickerOn)
+            if (Input.GetKeyDown(KeyCode.K) && inventoryPickerOn && maxItem != 0)
             {
                 cetusHP.transform.position = cetusHPSpawn2.transform.position;
                 raticHP.transform.position = raticHPSpawn2.transform.position;
@@ -63,13 +63,13 @@ public class Inventory : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.D) && inventoryPickerOn)
             {
-                if (selectedItem == maxItem)
+                if (selectedItem == maxItem && maxItem != 0)
                 {
                     selectedItem = 1;
                     inventoryPicker.transform.position = itemVisual[selectedItem - 1].transform.GetChild(0).transform.position;
 
                 }
-                else
+                else if(maxItem != 0)
                 {
                     selectedItem++;
                     inventoryPicker.transform.position = itemVisual[selectedItem - 1].transform.GetChild(0).transform.position;
@@ -78,13 +78,13 @@ public class Inventory : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.A) && inventoryPickerOn)
             {
-                if (selectedItem == 1)
+                if (selectedItem == 1 && maxItem != 0)
                 {
                     selectedItem = maxItem;
                     inventoryPicker.transform.position = itemVisual[selectedItem - 1].transform.GetChild(0).transform.position;
 
                 }
-                else
+                else if (maxItem != 0)
                 {
                     selectedItem--;
                     inventoryPicker.transform.position = itemVisual[selectedItem - 1].transform.GetChild(0).transform.position;
@@ -94,11 +94,11 @@ public class Inventory : MonoBehaviour
         }
         else 
         {
-            if (Input.GetKeyDown(KeyCode.K) && inventoryPickerOn) 
+            if (Input.GetKeyDown(KeyCode.K) && inventoryPickerOn && maxItem != 0) 
             {
                 UseItem();
-            }
-            if (Input.GetKeyDown(KeyCode.D) && inventoryPickerOn)
+            } 
+            if (Input.GetKeyDown(KeyCode.D) && inventoryPickerOn && maxItem != 0)
             {
                 if (partySelected == partyListMax)
                 {
@@ -215,9 +215,16 @@ public class Inventory : MonoBehaviour
             Debug.Log("Meading my shit");
         }
         itemList.Remove(itemList[selectedItem - 1]);
-        itemVisual[selectedItem - 1].GetComponent<TextMeshProUGUI>().text = " ";
+
         inventoryImage.SetActive(false);
         inventoryPicker.SetActive(false);
+
+        foreach (GameObject obj in itemVisual) 
+        {
+            obj.GetComponent<TextMeshProUGUI>().text = " ";
+
+        }
+
 
         inventoryOn = false;
         inventoryPickerOn = false;
