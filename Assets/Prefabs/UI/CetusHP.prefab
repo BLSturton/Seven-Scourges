@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 3624883333867335131}
   - component: {fileID: 5422423612916002290}
   - component: {fileID: 3954169510886088842}
+  - component: {fileID: 47506114397442193}
   m_Layer: 5
   m_Name: CetusHP
   m_TagString: Untagged
@@ -156,6 +157,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &47506114397442193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2820625816450033606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b86c348f96cb9a488cc039f53b2dff5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 6
+  MaxHP: 10
+  SP: 3
+  MaxSP: 6
+  HPCounter: {fileID: 2237848974087905831}
+  SPCounter: {fileID: 6571218460327595190}
 --- !u!1 &6571218460327595190
 GameObject:
   m_ObjectHideFlags: 0

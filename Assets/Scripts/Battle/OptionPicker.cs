@@ -340,7 +340,7 @@ public class OptionPicker : MonoBehaviour
                         case 2:
                             itemOn = true;
                             inventory.gameObject.transform.GetChild(0).gameObject.SetActive(true);
-
+                            inventory.BattleOpen();
                             break;
                     }
                 }

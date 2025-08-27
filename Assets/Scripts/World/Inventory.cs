@@ -28,6 +28,8 @@ public class Inventory : MonoBehaviour
     [SerializeField] public GameObject raticHPSpawn1;
     [SerializeField] public GameObject cetusHPSpawn2;
     [SerializeField] public GameObject raticHPSpawn2;
+
+    [SerializeField] BattleManager battleManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -37,6 +39,12 @@ public class Inventory : MonoBehaviour
         inventoryPicker.SetActive(false);
         cetusHP.transform.position = cetusHPSpawn1.transform.position;
         raticHP.transform.position = raticHPSpawn1.transform.position;
+        if(SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Battle")) 
+        {
+            battleManager = transform.Find("BattleManager").gameObject.GetComponent<BattleManager>();
+
+        }
+
     }
     private void Awake()
     {
@@ -208,11 +216,50 @@ public class Inventory : MonoBehaviour
     {
         if (itemList[selectedItem - 1] == "Dried Meat") 
         {
-            Debug.Log("Meating my shit");
+            if(partySelected == 1 && cetusHP.GetComponent<HPWorld>().HP != cetusHP.GetComponent<HPWorld>().MaxHP) 
+            {
+                cetusHP.GetComponent<HPWorld>().HP = cetusHP.GetComponent<HPWorld>().HP + 2;
+                if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Battle")) 
+                {
+                    battleManager.CetusHP = battleManager.CetusHP + 2;
+                }
+
+                    if (cetusHP.GetComponent<HPWorld>().HP > cetusHP.GetComponent<HPWorld>().MaxHP) 
+                {
+                    cetusHP.GetComponent<HPWorld>().HP = cetusHP.GetComponent<HPWorld>().MaxHP;
+                    if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Battle"))
+                    {
+                        battleManager.CetusHP = cetusHP.GetComponent<HPWorld>().MaxHP;
+                    }
+                }
+            }
+            if (partySelected == 2 && raticHP.GetComponent<HPWorld>().HP != raticHP.GetComponent<HPWorld>().MaxHP)
+            {
+                raticHP.GetComponent<HPWorld>().HP = raticHP.GetComponent<HPWorld>().HP + 2;
+                if (raticHP.GetComponent<HPWorld>().HP > raticHP.GetComponent<HPWorld>().MaxHP)
+                {
+                    raticHP.GetComponent<HPWorld>().HP = raticHP.GetComponent<HPWorld>().MaxHP;
+                }
+            }
         }
         if (itemList[selectedItem - 1] == "Mead")
         {
-            Debug.Log("Meading my shit");
+            if (partySelected == 1 && cetusHP.GetComponent<HPWorld>().SP != cetusHP.GetComponent<HPWorld>().MaxSP)
+            {
+                cetusHP.GetComponent<HPWorld>().SP = cetusHP.GetComponent<HPWorld>().SP + 2;
+                if (cetusHP.GetComponent<HPWorld>().SP > cetusHP.GetComponent<HPWorld>().MaxSP)
+                {
+                    cetusHP.GetComponent<HPWorld>().SP = cetusHP.GetComponent<HPWorld>().MaxSP;
+                }
+            }
+            if (partySelected == 2 && raticHP.GetComponent<HPWorld>().HP != raticHP.GetComponent<HPWorld>().MaxHP)
+            {
+                raticHP.GetComponent<HPWorld>().SP = raticHP.GetComponent<HPWorld>().SP + 2;
+                if (raticHP.GetComponent<HPWorld>().SP > raticHP.GetComponent<HPWorld>().MaxSP)
+                {
+                    raticHP.GetComponent<HPWorld>().SP = raticHP.GetComponent<HPWorld>().MaxSP;
+                }
+            }
         }
         itemList.Remove(itemList[selectedItem - 1]);
 
@@ -234,5 +281,63 @@ public class Inventory : MonoBehaviour
         cetusHP.transform.SetAsFirstSibling();
         raticHP.transform.SetAsFirstSibling();
         itemPicked = false;
+    }
+
+    public void BattleOpen() 
+    {
+        selectedItem = 1;
+        inventoryPicker.transform.position = itemVisual[selectedItem - 1].transform.GetChild(0).transform.position;
+
+        playerMove.canMove = false;
+        inventoryOn = true;
+        inventoryImage.SetActive(true);
+        inventoryPicker.SetActive(true);
+        inventoryPickerOn = true;
+        foreach (GameObject obj in itemVisual)
+        {
+            if (obj == itemVisual[0] && itemList.Count >= 0)
+            {
+                obj.GetComponent<TextMeshProUGUI>().text = itemList[0];
+
+            }
+            if (obj == itemVisual[1] && itemList.Count >= 1)
+            {
+                obj.GetComponent<TextMeshProUGUI>().text = itemList[1];
+
+            }
+            if (obj == itemVisual[2] && itemList.Count >= 2)
+            {
+                obj.GetComponent<TextMeshProUGUI>().text = itemList[2];
+            }
+            if (obj == itemVisual[3] && itemList.Count >= 3)
+            {
+                obj.GetComponent<TextMeshProUGUI>().text = itemList[3];
+            }
+            if (obj == itemVisual[4] && itemList.Count >= 4)
+            {
+                obj.GetComponent<TextMeshProUGUI>().text = itemList[4];
+            }
+            if (obj == itemVisual[5] && itemList.Count >= 5)
+            {
+                obj.GetComponent<TextMeshProUGUI>().text = itemList[5];
+            }
+            if (obj == itemVisual[6] && itemList.Count >= 6)
+            {
+                obj.GetComponent<TextMeshProUGUI>().text = itemList[6];
+            }
+            if (obj == itemVisual[7] && itemList.Count >= 7)
+            {
+                obj.GetComponent<TextMeshProUGUI>().text = itemList[7];
+            }
+            if (obj == itemVisual[8] && itemList.Count >= 8)
+            {
+                obj.GetComponent<TextMeshProUGUI>().text = itemList[8];
+            }
+            if (obj == itemVisual[9] && itemList.Count >= 9)
+            {
+                obj.GetComponent<TextMeshProUGUI>().text = itemList[9];
+            }
+
+        }
     }
 }

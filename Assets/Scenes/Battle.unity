@@ -1921,15 +1921,17 @@ MonoBehaviour:
   CetusToRatic: 0
   enemyAttacks: {fileID: 0}
   enemyTurnEnd: 0
-  CetusHP: 8
-  RaticHP: 9
-  CetusMaxHP: 10
-  RaticMaxHP: 10
+  CetusHP: 0
+  RaticHP: 0
+  CetusMaxHP: 0
+  RaticMaxHP: 0
+  CetusMaxSP: 0
+  RaticMaxSP: 0
   damageValue: 0
   CetusDef: 0
   RaticDef: 0
-  CetusSP: 6
-  RaticSP: 6
+  CetusSP: 0
+  RaticSP: 0
   CetusHPObject: {fileID: 0}
   RaticHPObject: {fileID: 0}
   CetusHPVisual: {fileID: 0}
@@ -8768,6 +8770,7 @@ MonoBehaviour:
   raticAttackAction: {fileID: 1818019868}
   countdownText: {fileID: 148085422}
   inventory: {fileID: 0}
+  itemOn: 0
   endTurn: 0
   myTurn: 0
   optionOn: 0
@@ -12210,6 +12213,7 @@ MonoBehaviour:
   raticAttackAction: {fileID: 1818019868}
   countdownText: {fileID: 148085422}
   inventory: {fileID: 0}
+  itemOn: 0
   endTurn: 0
   myTurn: 0
   optionOn: 0

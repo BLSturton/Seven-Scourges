@@ -47,6 +47,8 @@ public class BattleManager : MonoBehaviour
     [SerializeField] public int RaticHP;
     [SerializeField] public int CetusMaxHP;
     [SerializeField] public int RaticMaxHP;
+    [SerializeField] public int CetusMaxSP;
+    [SerializeField] public int RaticMaxSP;
     [SerializeField] public int damageValue;
     [SerializeField] public int CetusDef;
     [SerializeField] public int RaticDef;
@@ -77,8 +79,21 @@ public class BattleManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        CetusHPObject = GameObject.FindWithTag("CetusHP");
 
-       
+        RaticHPObject = GameObject.FindWithTag("RaticHP");
+
+        CetusMaxHP = CetusHPObject.GetComponent<HPWorld>().MaxHP;
+        CetusMaxSP = CetusHPObject.GetComponent<HPWorld>().MaxSP;
+
+        CetusHP = CetusHPObject.GetComponent<HPWorld>().HP;
+        CetusSP = CetusHPObject.GetComponent<HPWorld>().SP;
+
+        RaticMaxHP = RaticHPObject.GetComponent<HPWorld>().MaxHP;
+        RaticMaxSP = RaticHPObject.GetComponent<HPWorld>().MaxSP;
+
+        RaticHP = RaticHPObject.GetComponent<HPWorld>().HP;
+        RaticSP = RaticHPObject.GetComponent<HPWorld>().SP;
         currentPartyTurn = 1;
         cetusOptionPicker.myTurn = true;
 
@@ -116,9 +131,7 @@ public class BattleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CetusHPObject = GameObject.FindWithTag("CetusHP");
-
-        RaticHPObject = GameObject.FindWithTag("RaticHP");
+    
 
         CetusHPVisual = CetusHPObject.gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
         CetusSPVisual = CetusHPObject.gameObject.transform.GetChild(1).gameObject.GetComponent<Text>();
