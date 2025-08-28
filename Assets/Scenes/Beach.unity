@@ -1059,7 +1059,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 47506114397442193, guid: 65798fa6bb23e8149a2c4c7101db148c, type: 3}
       propertyPath: HP
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2820625816450033606, guid: 65798fa6bb23e8149a2c4c7101db148c, type: 3}
       propertyPath: m_Name
@@ -4783,7 +4783,6 @@ MonoBehaviour:
   raticHPSpawn1: {fileID: 2134053033}
   cetusHPSpawn2: {fileID: 146088056}
   raticHPSpawn2: {fileID: 951382343}
-  battleManager: {fileID: 0}
 --- !u!1 &1812233187
 GameObject:
   m_ObjectHideFlags: 0

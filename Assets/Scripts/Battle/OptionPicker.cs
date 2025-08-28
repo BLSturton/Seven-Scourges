@@ -109,7 +109,15 @@ public class OptionPicker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        if (inventory.inventoryBattleUsed) 
+        {
+            endTurn = true;
+            myTurn = false;
+            inventory.inventoryBattleUsed = false;
+            inventory.battleWait = false;
+            itemOn = false;
+
+        }
         if (myTurn)
         {
 
@@ -339,6 +347,7 @@ public class OptionPicker : MonoBehaviour
                             break;
                         case 2:
                             itemOn = true;
+                            actionPicked = true;
                             inventory.gameObject.transform.GetChild(0).gameObject.SetActive(true);
                             inventory.BattleOpen();
                             break;

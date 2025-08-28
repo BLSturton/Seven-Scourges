@@ -83,17 +83,7 @@ public class BattleManager : MonoBehaviour
 
         RaticHPObject = GameObject.FindWithTag("RaticHP");
 
-        CetusMaxHP = CetusHPObject.GetComponent<HPWorld>().MaxHP;
-        CetusMaxSP = CetusHPObject.GetComponent<HPWorld>().MaxSP;
-
-        CetusHP = CetusHPObject.GetComponent<HPWorld>().HP;
-        CetusSP = CetusHPObject.GetComponent<HPWorld>().SP;
-
-        RaticMaxHP = RaticHPObject.GetComponent<HPWorld>().MaxHP;
-        RaticMaxSP = RaticHPObject.GetComponent<HPWorld>().MaxSP;
-
-        RaticHP = RaticHPObject.GetComponent<HPWorld>().HP;
-        RaticSP = RaticHPObject.GetComponent<HPWorld>().SP;
+        
         currentPartyTurn = 1;
         cetusOptionPicker.myTurn = true;
 
@@ -131,7 +121,18 @@ public class BattleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    
+
+        CetusMaxHP = CetusHPObject.GetComponent<HPWorld>().MaxHP;
+        CetusMaxSP = CetusHPObject.GetComponent<HPWorld>().MaxSP;
+
+        CetusHP = CetusHPObject.GetComponent<HPWorld>().HP;
+        CetusSP = CetusHPObject.GetComponent<HPWorld>().SP;
+
+        RaticMaxHP = RaticHPObject.GetComponent<HPWorld>().MaxHP;
+        RaticMaxSP = RaticHPObject.GetComponent<HPWorld>().MaxSP;
+
+        RaticHP = RaticHPObject.GetComponent<HPWorld>().HP;
+        RaticSP = RaticHPObject.GetComponent<HPWorld>().SP;
 
         CetusHPVisual = CetusHPObject.gameObject.transform.GetChild(0).gameObject.GetComponent<Text>();
         CetusSPVisual = CetusHPObject.gameObject.transform.GetChild(1).gameObject.GetComponent<Text>();
@@ -408,8 +409,8 @@ public class BattleManager : MonoBehaviour
     {
         if(CetusHP > 0) 
         {
-            CetusHP = CetusHP + CetusDef - damageValue;
-            if(CetusHP <= 0) 
+            CetusHPObject.GetComponent<HPWorld>().HP = CetusHPObject.GetComponent<HPWorld>().HP + CetusDef - damageValue;
+            if (CetusHPObject.GetComponent<HPWorld>().HP <= 0) 
             {
                 CetusDown = true;
             }
@@ -419,8 +420,8 @@ public class BattleManager : MonoBehaviour
     {
         if (RaticHP > 0)
         {
-            RaticHP = RaticHP + RaticDef - damageValue;
-            if (RaticHP <= 0)
+            RaticHPObject.GetComponent<HPWorld>().HP = RaticHPObject.GetComponent<HPWorld>().HP + RaticDef - damageValue;
+            if (RaticHPObject.GetComponent<HPWorld>().HP <= 0)
             {
                RaticDown = true;
             }

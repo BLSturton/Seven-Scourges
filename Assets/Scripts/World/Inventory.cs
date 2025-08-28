@@ -3,6 +3,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
+using System.Collections;
 
 public class Inventory : MonoBehaviour
 {
@@ -29,7 +31,8 @@ public class Inventory : MonoBehaviour
     [SerializeField] public GameObject cetusHPSpawn2;
     [SerializeField] public GameObject raticHPSpawn2;
 
-    [SerializeField] BattleManager battleManager;
+    [SerializeField] public bool inventoryBattleUsed;
+    [SerializeField] public bool battleWait;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,16 +42,13 @@ public class Inventory : MonoBehaviour
         inventoryPicker.SetActive(false);
         cetusHP.transform.position = cetusHPSpawn1.transform.position;
         raticHP.transform.position = raticHPSpawn1.transform.position;
-        if(SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Battle")) 
-        {
-            battleManager = transform.Find("BattleManager").gameObject.GetComponent<BattleManager>();
-
-        }
+        inventoryBattleUsed = false;
+     
 
     }
     private void Awake()
     {
-
+       
 
 
     }
@@ -56,6 +56,7 @@ public class Inventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         maxItem = itemList.Count;
         if(itemPicked == false) 
         {
@@ -65,9 +66,9 @@ public class Inventory : MonoBehaviour
                 raticHP.transform.position = raticHPSpawn2.transform.position;
                 cetusHP.transform.SetAsLastSibling();
                 raticHP.transform.SetAsLastSibling();
-                inventoryPicker.transform.position = cetusHP.transform.position - new Vector3(100, -70);
 
                 itemPicked = true;
+                inventoryPicker.transform.position = cetusHP.transform.position - new Vector3(100, -70);
             }
             if (Input.GetKeyDown(KeyCode.D) && inventoryPickerOn)
             {
@@ -219,18 +220,11 @@ public class Inventory : MonoBehaviour
             if(partySelected == 1 && cetusHP.GetComponent<HPWorld>().HP != cetusHP.GetComponent<HPWorld>().MaxHP) 
             {
                 cetusHP.GetComponent<HPWorld>().HP = cetusHP.GetComponent<HPWorld>().HP + 2;
-                if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Battle")) 
-                {
-                    battleManager.CetusHP = battleManager.CetusHP + 2;
-                }
 
                     if (cetusHP.GetComponent<HPWorld>().HP > cetusHP.GetComponent<HPWorld>().MaxHP) 
                 {
                     cetusHP.GetComponent<HPWorld>().HP = cetusHP.GetComponent<HPWorld>().MaxHP;
-                    if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Battle"))
-                    {
-                        battleManager.CetusHP = cetusHP.GetComponent<HPWorld>().MaxHP;
-                    }
+                  
                 }
             }
             if (partySelected == 2 && raticHP.GetComponent<HPWorld>().HP != raticHP.GetComponent<HPWorld>().MaxHP)
@@ -271,6 +265,7 @@ public class Inventory : MonoBehaviour
             obj.GetComponent<TextMeshProUGUI>().text = " ";
 
         }
+        inventoryBattleUsed = true;
 
 
         inventoryOn = false;
@@ -281,10 +276,16 @@ public class Inventory : MonoBehaviour
         cetusHP.transform.SetAsFirstSibling();
         raticHP.transform.SetAsFirstSibling();
         itemPicked = false;
+
+        
     }
 
     public void BattleOpen() 
     {
+        if(battleWait == false) 
+        {
+            StartCoroutine(BattleOpenWait());
+        }
         selectedItem = 1;
         inventoryPicker.transform.position = itemVisual[selectedItem - 1].transform.GetChild(0).transform.position;
 
@@ -337,7 +338,20 @@ public class Inventory : MonoBehaviour
             {
                 obj.GetComponent<TextMeshProUGUI>().text = itemList[9];
             }
+            if (Input.GetKeyDown(KeyCode.K) && battleWait) 
+            {
+                inventoryPicker.transform.position = cetusHP.transform.position - new Vector3(100, -70);
+                Debug.Log("werk");
 
+            }
         }
     }
+
+    public IEnumerator BattleOpenWait() 
+    {
+        battleWait = false;
+        yield return new WaitForSeconds(.2f);
+        battleWait = true;
+    }
+    
 }
