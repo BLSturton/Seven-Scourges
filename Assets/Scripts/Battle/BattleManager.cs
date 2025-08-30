@@ -76,9 +76,13 @@ public class BattleManager : MonoBehaviour
     [SerializeField] Diagnosis diagnosis;
 
     [SerializeField] public List<string> diagnosisList;
+
+    [SerializeField] Inventory inventory;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        inventory = GameObject.FindWithTag("InventorySystem").GetComponent<Inventory>();
+
         CetusHPObject = GameObject.FindWithTag("CetusHP");
 
         RaticHPObject = GameObject.FindWithTag("RaticHP");
@@ -174,6 +178,7 @@ public class BattleManager : MonoBehaviour
         //SP
         CetusSPVisual.text = CetusSP.ToString();
         RaticSPVisual.text = RaticSP.ToString();
+      
         if (cetusOptionPicker.endTurn || diagnosis.goAgain) 
         {
             if (diagnosis.goAgain) 
@@ -223,6 +228,7 @@ public class BattleManager : MonoBehaviour
             raticOptionPicker.myTurn = false;
             enemyTurn = true;
             raticOptionPicker.endTurn = false;
+            
         }
 
         //Starts enemy turn

@@ -68,6 +68,7 @@ public class Inventory : MonoBehaviour
                 raticHP.transform.SetAsLastSibling();
 
                 itemPicked = true;
+               
                 inventoryPicker.transform.position = cetusHP.transform.position - new Vector3(100, -70);
             }
             if (Input.GetKeyDown(KeyCode.D) && inventoryPickerOn)
@@ -282,12 +283,12 @@ public class Inventory : MonoBehaviour
 
     public void BattleOpen() 
     {
-        if(battleWait == false) 
+      
+        if (battleWait == false) 
         {
             StartCoroutine(BattleOpenWait());
         }
-        selectedItem = 1;
-        inventoryPicker.transform.position = itemVisual[selectedItem - 1].transform.GetChild(0).transform.position;
+       
 
         playerMove.canMove = false;
         inventoryOn = true;
@@ -340,17 +341,20 @@ public class Inventory : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.K) && battleWait) 
             {
-                inventoryPicker.transform.position = cetusHP.transform.position - new Vector3(100, -70);
-                Debug.Log("werk");
+
 
             }
         }
+        selectedItem = 1;
+        inventoryPicker.transform.position = itemVisual[selectedItem - 1].transform.GetChild(0).transform.position;
+       
     }
 
     public IEnumerator BattleOpenWait() 
     {
         battleWait = false;
         yield return new WaitForSeconds(.2f);
+       
         battleWait = true;
     }
     

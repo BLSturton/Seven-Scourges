@@ -111,13 +111,17 @@ public class OptionPicker : MonoBehaviour
     {
         if (inventory.inventoryBattleUsed) 
         {
-            endTurn = true;
-            myTurn = false;
-            inventory.inventoryBattleUsed = false;
-            inventory.battleWait = false;
             itemOn = false;
 
+            myTurn = false;
+            endTurn = true;
+            if(this.gameObject.name == "RaticOptionManager") 
+            {
+                inventory.inventoryBattleUsed = false;
+            }
+              
         }
+     
         if (myTurn)
         {
 
@@ -348,6 +352,8 @@ public class OptionPicker : MonoBehaviour
                         case 2:
                             itemOn = true;
                             actionPicked = true;
+                            inventory.selectedItem = 1;
+                            inventory.inventoryPicker.transform.position = inventory.itemVisual[inventory.selectedItem - 1].transform.GetChild(0).transform.position;
                             inventory.gameObject.transform.GetChild(0).gameObject.SetActive(true);
                             inventory.BattleOpen();
                             break;
