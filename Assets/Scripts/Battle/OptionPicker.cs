@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class OptionPicker : MonoBehaviour
@@ -51,6 +52,9 @@ public class OptionPicker : MonoBehaviour
     [SerializeField] Inventory inventory;
     [SerializeField] public bool itemOn;
 
+
+    //Defend
+    [SerializeField] public bool isDefend;
     //End turn
     [SerializeField] public bool endTurn;
     [SerializeField] public bool myTurn;
@@ -119,7 +123,7 @@ public class OptionPicker : MonoBehaviour
             {
                 inventory.inventoryBattleUsed = false;
             }
-              
+            inventory.inventoryPicker.transform.position = inventory.raticHPSpawn1.transform.position;
         }
      
         if (myTurn)
@@ -195,6 +199,12 @@ public class OptionPicker : MonoBehaviour
                 if (specialOn)
                 {
                     selectedOption = attackOptions[1];
+                }
+                if (itemOn)
+                {
+                    selectedOption = attackOptions[2];
+                    inventory.BattleClose();
+                    itemOn = false;
                 }
                 actionPicked = false;
                 attackOn = false;
@@ -352,10 +362,37 @@ public class OptionPicker : MonoBehaviour
                         case 2:
                             itemOn = true;
                             actionPicked = true;
-                            inventory.selectedItem = 1;
-                            inventory.inventoryPicker.transform.position = inventory.itemVisual[inventory.selectedItem - 1].transform.GetChild(0).transform.position;
+                            inventory.inventoryPicker.transform.position = inventory.itemVisual[0].transform.GetChild(0).transform.position;
+
                             inventory.gameObject.transform.GetChild(0).gameObject.SetActive(true);
                             inventory.BattleOpen();
+                            break;
+                        case 3:
+                            isDefend = true;
+                            if(this.gameObject.name == "CetusOptionManager") 
+                            {
+                                battleManager.CetusDef = battleManager.CetusDef + 1;
+                                if(battleManager.CetusHPObject.GetComponent<HPWorld>().SP != battleManager.CetusHPObject.GetComponent<HPWorld>().MaxSP) 
+                                {
+                                    battleManager.CetusHPObject.GetComponent<HPWorld>().SP = battleManager.CetusHPObject.GetComponent<HPWorld>().SP + 1;
+
+                                }
+                                myTurn = false;
+                                endTurn = true;
+                            }
+                            if (this.gameObject.name == "RaticOptionManager")
+                            {
+                                battleManager.RaticDef = battleManager.RaticDef + 1;
+                                if (battleManager.RaticHPObject.GetComponent<HPWorld>().SP != battleManager.RaticHPObject.GetComponent<HPWorld>().MaxSP) 
+                                {
+                                    battleManager.RaticHPObject.GetComponent<HPWorld>().SP = battleManager.RaticHPObject.GetComponent<HPWorld>().SP + 1;
+
+                                }
+
+                                myTurn = false;
+                                endTurn = true;
+                            }
+                            
                             break;
                     }
                 }

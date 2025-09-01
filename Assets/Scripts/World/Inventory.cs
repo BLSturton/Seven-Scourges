@@ -15,7 +15,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] public bool inventoryOn;
     [SerializeField] public bool inventoryPickerOn;
     [SerializeField] public bool canInventory;
-    [SerializeField] GameObject inventoryImage;
+    [SerializeField] public GameObject inventoryImage;
     [SerializeField] PlayerMove playerMove;
 
     [SerializeField] public int selectedItem;
@@ -247,7 +247,7 @@ public class Inventory : MonoBehaviour
                     cetusHP.GetComponent<HPWorld>().SP = cetusHP.GetComponent<HPWorld>().MaxSP;
                 }
             }
-            if (partySelected == 2 && raticHP.GetComponent<HPWorld>().HP != raticHP.GetComponent<HPWorld>().MaxHP)
+            if (partySelected == 2 && raticHP.GetComponent<HPWorld>().SP != raticHP.GetComponent<HPWorld>().MaxSP)
             {
                 raticHP.GetComponent<HPWorld>().SP = raticHP.GetComponent<HPWorld>().SP + 2;
                 if (raticHP.GetComponent<HPWorld>().SP > raticHP.GetComponent<HPWorld>().MaxSP)
@@ -339,22 +339,33 @@ public class Inventory : MonoBehaviour
             {
                 obj.GetComponent<TextMeshProUGUI>().text = itemList[9];
             }
-            if (Input.GetKeyDown(KeyCode.K) && battleWait) 
-            {
-
-
-            }
+          
         }
-        selectedItem = 1;
-        inventoryPicker.transform.position = itemVisual[selectedItem - 1].transform.GetChild(0).transform.position;
+       
        
     }
 
+    public void BattleClose() 
+    {
+        inventoryPicker.transform.position = itemVisual[0].transform.position;
+        inventoryImage.SetActive(false);
+        inventoryPicker.SetActive(false);
+
+        inventoryOn = false;
+        inventoryPickerOn = false;
+        playerMove.canMove = true;
+        cetusHP.transform.position = cetusHPSpawn1.transform.position;
+        raticHP.transform.position = raticHPSpawn1.transform.position;
+        cetusHP.transform.SetAsFirstSibling();
+        raticHP.transform.SetAsFirstSibling();
+        itemPicked = false;
+    }
     public IEnumerator BattleOpenWait() 
     {
         battleWait = false;
         yield return new WaitForSeconds(.2f);
-       
+        selectedItem = 1;
+        
         battleWait = true;
     }
     

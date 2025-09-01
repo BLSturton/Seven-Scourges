@@ -330,7 +330,19 @@ public class BattleManager : MonoBehaviour
 
     public void newPlayerTurn() 
     {
-        if(cetusOptionPicker.tauntTurns != 0) 
+        if (cetusOptionPicker.isDefend)
+        {
+            CetusDef = CetusDef - 1;
+            cetusOptionPicker.isDefend = false;
+
+        }
+        if (raticOptionPicker.isDefend)
+        {
+            RaticDef = RaticDef - 1;
+            raticOptionPicker.isDefend = false;
+
+        }
+        if (cetusOptionPicker.tauntTurns != 0) 
         {
             cetusOptionPicker.tauntTurns = cetusOptionPicker.tauntTurns - 1;
         }
@@ -420,6 +432,12 @@ public class BattleManager : MonoBehaviour
             {
                 CetusDown = true;
             }
+            if (cetusOptionPicker.isDefend) 
+            {
+                CetusDef = CetusDef - 1;
+                cetusOptionPicker.isDefend = false;
+
+            }
         }
     }
     public void RaticDamage()
@@ -430,6 +448,12 @@ public class BattleManager : MonoBehaviour
             if (RaticHPObject.GetComponent<HPWorld>().HP <= 0)
             {
                RaticDown = true;
+            }
+            if (raticOptionPicker.isDefend)
+            {
+                RaticDef = RaticDef - 1;
+                raticOptionPicker.isDefend = false;
+
             }
         }
     }
