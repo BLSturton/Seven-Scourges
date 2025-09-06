@@ -37,7 +37,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] public Vector3 playerTransform;
 
     [SerializeField] public bool battleStart;
-   
+    [SerializeField] public GameObject[] enemyTroops;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

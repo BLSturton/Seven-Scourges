@@ -298,7 +298,7 @@ public class OptionPicker : MonoBehaviour
                                 }
                             }
                             canGoBack = false;
-
+                            diagnosis.gameObject.SetActive(true);
                             diagnosisOn = true;
                             specialOn = false;
                             

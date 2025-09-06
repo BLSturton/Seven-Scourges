@@ -9,16 +9,21 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] public TextMeshPro hpText;
     [SerializeField] BattleManager battleManager;
     [SerializeField] public bool healthShown;
+    [SerializeField] GameObject battleManagerObject;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        battleManager = transform.Find("BattleManager").gameObject.GetComponent<BattleManager>();
+     
+        battleManagerObject = GameObject.Find("BattleManager");
+        battleManager = battleManagerObject.GetComponent<BattleManager>();
         switch (this.gameObject.tag) 
         {
             case "GoblinRouge":
                 health = 2;
                 break;
         }
+
     }
 
     // Update is called once per frame

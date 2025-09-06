@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
+//using static UnityEditor.Progress;
 using Random = UnityEngine.Random;
 
 public class BattleManager : MonoBehaviour
@@ -23,8 +23,8 @@ public class BattleManager : MonoBehaviour
     [SerializeField] public int currentPartyTurn;
     [SerializeField] public bool enemyTurn;
    
-    [SerializeField] OptionPicker cetusOptionPicker;
-    [SerializeField] OptionPicker raticOptionPicker;
+    [SerializeField] public OptionPicker cetusOptionPicker;
+    [SerializeField] public OptionPicker raticOptionPicker;
  
 
     [SerializeField] GameObject playerBackground;
@@ -41,7 +41,6 @@ public class BattleManager : MonoBehaviour
     [SerializeField] public bool CetusToRatic;
  
 
-    [SerializeField] EnemyAttacks enemyAttacks;
 
     [SerializeField] public bool enemyTurnEnd;
 
@@ -82,6 +81,8 @@ public class BattleManager : MonoBehaviour
     [SerializeField] Inventory inventory;
 
     [SerializeField] Transporter transporter;
+
+    [SerializeField] public GameObject[] enemyLibrary;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -91,7 +92,12 @@ public class BattleManager : MonoBehaviour
 
         RaticHPObject = GameObject.FindWithTag("RaticHP");
 
-        
+        foreach(GameObject obj in inventory.enemyTroops) 
+        {
+            GameObject newObject = Instantiate(obj);
+
+            enemyList.Add(newObject);
+        }
         currentPartyTurn = 1;
         cetusOptionPicker.myTurn = true;
 
@@ -109,6 +115,7 @@ public class BattleManager : MonoBehaviour
         }
         if (enemyList.Count == 1)
         {
+            Debug.Log("Moved");
             enemyList[0].transform.position = new Vector2(6.2f, -.36f);
         }
         if (enemyList.Count == 2)
@@ -290,6 +297,7 @@ public class BattleManager : MonoBehaviour
             }
            if(enemyList.Count == 1) 
             {
+               
                 enemyList[0].gameObject.GetComponent<EnemyAttacks>().attackLead = true;
                 enemyList[0].gameObject.GetComponent<EnemyAttacks>().AttackSelector();
                

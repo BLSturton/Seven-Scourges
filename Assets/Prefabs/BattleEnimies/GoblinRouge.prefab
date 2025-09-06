@@ -38,7 +38,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.9, y: -0.14}
+  m_AnchoredPosition: {x: 6.2, y: -0.36}
   m_SizeDelta: {x: 0.75, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &7331341053610923341
@@ -137,7 +137,7 @@ MonoBehaviour:
   myTurn: 0
   attackStarted: 0
   dagger: {fileID: 7777162516969259286, guid: 581f9c7dbc1c6de4f864a925bc67a9a4, type: 3}
-  attackLead: 0
+  attackLead: 1
 --- !u!114 &-4613629243356088540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,11 +150,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6ce59279b1c8094da515156cbb973c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 2
+  health: -3
   healthObj: {fileID: 5566405924253322418}
   hpText: {fileID: 3098057744346074448}
   battleManager: {fileID: 0}
   healthShown: 0
+  battleManagerObject: {fileID: 0}
 --- !u!222 &5887580491106870467
 CanvasRenderer:
   m_ObjectHideFlags: 0

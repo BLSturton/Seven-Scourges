@@ -12,6 +12,9 @@ public class BattleStart : MonoBehaviour
     [SerializeField] Inventory inventory;
 
     [SerializeField] GameObject Player;
+
+    [SerializeField] public GameObject[] enemyTroops;
+
     private bool isTransitioning = false;
 
     private void Start()
@@ -39,6 +42,7 @@ public class BattleStart : MonoBehaviour
         {
             Player = collision.gameObject;
             inventory.playerTransform = Player.transform.position;
+            inventory.enemyTroops = enemyTroops;
             battleStart = true;
             inventory.battleStart = true;
             SceneManager.LoadScene("battle");

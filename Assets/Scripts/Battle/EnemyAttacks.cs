@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 using static UnityEngine.Rendering.DebugUI;
 
 public class EnemyAttacks : MonoBehaviour
@@ -21,6 +22,7 @@ public class EnemyAttacks : MonoBehaviour
     {
         battleManagerObject = GameObject.Find("BattleManager");
         battleManager = battleManagerObject.GetComponent<BattleManager>();
+        cetusOptionPicker = battleManager.cetusOptionPicker;
     }
 
     // Update is called once per frame
@@ -66,21 +68,42 @@ public class EnemyAttacks : MonoBehaviour
     }
     public IEnumerator TripleKnife() 
     {
-        for (int i = 0; i < 3; i++) 
+        for (int i = 0; i < 3; i++)
         {
             yield return new WaitForSeconds(.1f);
 
-            float knifeSpeed = 5f;
+            float knifeSpeed = 4f;
             GameObject knifeMain = Instantiate(dagger, transform.position, Quaternion.identity);
-            knifeMain.transform.rotation = Quaternion.Euler(0, 0, -180f);
 
-            float timer = 0f;
-            while (timer < 1.8f)
+            // Calculate and store direction
+            Vector3 directionMain = (battleManager.targetDodger.transform.position - knifeMain.transform.position).normalized;
+
+            // Rotate knife to face player
+            knifeMain.transform.right = directionMain;
+
+            GameObject knifeRight = Instantiate(dagger, transform.position, Quaternion.identity);
+
+            Vector3 directionRight = Quaternion.Euler(0, 0, -10f) * (battleManager.targetDodger.transform.position - knifeRight.transform.position).normalized; float timer = 0f;
+            knifeRight.transform.right = directionRight;
+
+            GameObject knifeLeft = Instantiate(dagger, transform.position, Quaternion.identity);
+            Vector3 directionLeft = Quaternion.Euler(0, 0, 10f) * (battleManager.targetDodger.transform.position - knifeRight.transform.position).normalized; float timer2 = 0f;
+            knifeLeft.transform.right = directionLeft;
+
+            while (timer < 3f)
             {
                 timer += Time.deltaTime;
-                knifeMain.transform.Translate(Vector2.down * knifeSpeed * Time.deltaTime, Space.World);
+
+                // Move in the calculated direction
+                knifeMain.transform.position += directionMain * Time.deltaTime * knifeSpeed;
+                knifeRight.transform.position += (directionRight * Time.deltaTime * knifeSpeed);
+                knifeLeft.transform.position += (directionLeft * Time.deltaTime * knifeSpeed);
+
                 yield return null;
             }
+            Destroy(knifeMain);
+            Destroy(knifeRight);
+            Destroy(knifeLeft);
         }
         battleManager.enemyTurnEnd = true;
 

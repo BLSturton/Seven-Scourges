@@ -24,6 +24,8 @@ public class TextScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        inventory = GameObject.FindWithTag("InventorySystem").GetComponent<Inventory>();
+
         Scene scene = SceneManager.GetActiveScene();
         if(scene == SceneManager.GetSceneByName("Beach")) 
         {
@@ -97,14 +99,14 @@ public class TextScript : MonoBehaviour
             case 0:
                 playerMove.canMove = false;
                 characterFace.GetComponent<UnityEngine.UI.Image>().sprite = faceList[1];
-                dialog = new DialogData("Oh I'm scourging it", "Cetus");
+                dialog = new DialogData("What are we, some kind of Seven Scourges?", "Cetus");
                 dialogManager.Show(dialog);
                 break;
             case 1:
                 dialogManager.Hide();
                 characterFace.GetComponent<UnityEngine.UI.Image>().sprite = faceList[3];
 
-                dialog = new DialogData("Literally scourging my shit rn", "Cetus");
+                dialog = new DialogData("Literally some kind of Seven Scourges prototype?", "Cetus");
                 dialogManager.Show(dialog);
                 break;
             case 2:
