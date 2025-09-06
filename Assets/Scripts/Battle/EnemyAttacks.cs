@@ -72,7 +72,7 @@ public class EnemyAttacks : MonoBehaviour
         {
             yield return new WaitForSeconds(.1f);
 
-            float knifeSpeed = 4f;
+            float knifeSpeed = 5f;
             GameObject knifeMain = Instantiate(dagger, transform.position, Quaternion.identity);
 
             // Calculate and store direction
@@ -83,14 +83,14 @@ public class EnemyAttacks : MonoBehaviour
 
             GameObject knifeRight = Instantiate(dagger, transform.position, Quaternion.identity);
 
-            Vector3 directionRight = Quaternion.Euler(0, 0, -10f) * (battleManager.targetDodger.transform.position - knifeRight.transform.position).normalized; float timer = 0f;
+            Vector3 directionRight = Quaternion.Euler(0, 0, -15f) * (battleManager.targetDodger.transform.position - knifeRight.transform.position).normalized; float timer = 0f;
             knifeRight.transform.right = directionRight;
 
             GameObject knifeLeft = Instantiate(dagger, transform.position, Quaternion.identity);
-            Vector3 directionLeft = Quaternion.Euler(0, 0, 10f) * (battleManager.targetDodger.transform.position - knifeRight.transform.position).normalized; float timer2 = 0f;
+            Vector3 directionLeft = Quaternion.Euler(0, 0, 15f) * (battleManager.targetDodger.transform.position - knifeRight.transform.position).normalized; float timer2 = 0f;
             knifeLeft.transform.right = directionLeft;
 
-            while (timer < 3f)
+            while (timer < 2f)
             {
                 timer += Time.deltaTime;
 
@@ -101,13 +101,18 @@ public class EnemyAttacks : MonoBehaviour
 
                 yield return null;
             }
-            Destroy(knifeMain);
-            Destroy(knifeRight);
-            Destroy(knifeLeft);
+           
         }
         battleManager.enemyTurnEnd = true;
+        GameObject[] objectsToDestroy = GameObject.FindGameObjectsWithTag("GoblinRougeAttack");
 
+        // Iterate through the array and destroy each GameObject
+        foreach (GameObject obj in objectsToDestroy)
+        {
+            Destroy(obj);
+        }
     }
+   
     public IEnumerator AttackOneSupport() 
     {
         yield return new WaitForSeconds(3);
