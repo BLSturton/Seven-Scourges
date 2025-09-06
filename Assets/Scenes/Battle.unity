@@ -1875,6 +1875,7 @@ GameObject:
   m_Component:
   - component: {fileID: 382845794}
   - component: {fileID: 382845793}
+  - component: {fileID: 382845795}
   m_Layer: 0
   m_Name: BattleManager
   m_TagString: Untagged
@@ -1896,8 +1897,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyList:
   - {fileID: 1988192300}
-  - {fileID: 861121176}
-  - {fileID: 1496361374}
   partyList:
   - {fileID: 2054320997}
   - {fileID: 499284208}
@@ -1946,6 +1945,8 @@ MonoBehaviour:
   hellfallObject: {fileID: 2003708709}
   diagnosis: {fileID: 32473318}
   diagnosisList: []
+  inventory: {fileID: 0}
+  transporter: {fileID: 382845795}
 --- !u!4 &382845794
 Transform:
   m_ObjectHideFlags: 0
@@ -1961,6 +1962,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &382845795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382845792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e537971d7dafda548a1bc5938aba1e82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entryBox: {fileID: 0}
+  exitBox: {fileID: 0}
+  player: {fileID: 0}
+  playerMove: {fileID: 0}
+  fadeimage: {fileID: 0}
 --- !u!1 &432940537
 GameObject:
   m_ObjectHideFlags: 0
@@ -5947,11 +5965,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &861121176 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2009169208003973547, guid: ee63ae828732c8b4d8aed5b1229cec98, type: 3}
-  m_PrefabInstance: {fileID: 71630729}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &874640918
 GameObject:
   m_ObjectHideFlags: 0
@@ -7835,6 +7848,7 @@ GameObject:
   - component: {fileID: 1171863656}
   - component: {fileID: 1171863655}
   - component: {fileID: 1171863654}
+  - component: {fileID: 1171863657}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -7903,6 +7917,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1171863657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171863653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e537971d7dafda548a1bc5938aba1e82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entryBox: {fileID: 0}
+  exitBox: {fileID: 0}
+  player: {fileID: 0}
+  playerMove: {fileID: 0}
+  fadeimage: {fileID: 0}
 --- !u!1 &1196593304
 GameObject:
   m_ObjectHideFlags: 0
@@ -8771,6 +8802,7 @@ MonoBehaviour:
   countdownText: {fileID: 148085422}
   inventory: {fileID: 0}
   itemOn: 0
+  isDefend: 0
   endTurn: 0
   myTurn: 0
   optionOn: 0
@@ -9485,11 +9517,6 @@ Transform:
   - {fileID: 1819895819}
   m_Father: {fileID: 1818019869}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1496361374 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2009169208003973547, guid: ee63ae828732c8b4d8aed5b1229cec98, type: 3}
-  m_PrefabInstance: {fileID: 1553547625}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1519747129 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8206358605457009709, guid: b1e781a67c6f97f4d9cfb50a61f30655, type: 3}
@@ -12214,6 +12241,7 @@ MonoBehaviour:
   countdownText: {fileID: 148085422}
   inventory: {fileID: 0}
   itemOn: 0
+  isDefend: 0
   endTurn: 0
   myTurn: 0
   optionOn: 0

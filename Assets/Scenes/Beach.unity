@@ -502,6 +502,9 @@ MonoBehaviour:
   battleSceneName: Battle
   uiCanvas: {fileID: 0}
   dontDestroyOnLoad: {fileID: 1065326258}
+  playerReturn: {fileID: 0}
+  battleStart: 0
+  Player: {fileID: 0}
 --- !u!1 &146088056
 GameObject:
   m_ObjectHideFlags: 0
@@ -2130,7 +2133,7 @@ GameObject:
   - component: {fileID: 892842732}
   m_Layer: 5
   m_Name: Fade
-  m_TagString: Untagged
+  m_TagString: FadeBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4797,6 +4800,8 @@ MonoBehaviour:
   raticHPSpawn2: {fileID: 951382343}
   inventoryBattleUsed: 0
   battleWait: 0
+  playerTransform: {x: -86.3, y: -12.5, z: 0}
+  player: {fileID: 0}
 --- !u!1 &1812233187
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,14 +27,17 @@ public class TextScript : MonoBehaviour
         Scene scene = SceneManager.GetActiveScene();
         if(scene == SceneManager.GetSceneByName("Beach")) 
         {
-            //Starts the very first cutscene
-            inText = true;
-            startText = true;
-            textNumber = 0;
-            StartingScene();
-            textName = "Starting Scene";
-            startText = false;
-            FirstScene = false;
+            if (FirstScene) 
+            {
+                //Starts the very first cutscene
+                inText = true;
+                startText = true;
+                textNumber = 0;
+                StartingScene();
+                textName = "Starting Scene";
+                startText = false;
+                FirstScene = false;
+            }
         }
         
 

@@ -12,7 +12,7 @@ public class wordMove : MonoBehaviour
     void Start()
     {
 
-       if(transform.position.x < 0) 
+        if (transform.position.x < 0) 
         {
             onLeft = true;
         }

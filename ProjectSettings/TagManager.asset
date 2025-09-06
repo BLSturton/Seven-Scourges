@@ -14,6 +14,7 @@ TagManager:
   - RaticHP
   - WordTaunt
   - BattleUI
+  - FadeBox
   layers:
   - Default
   - TransparentFX

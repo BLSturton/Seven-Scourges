@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections; 
+using System.Collections;
+using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class Transporter : MonoBehaviour
 {
@@ -15,6 +17,7 @@ public class Transporter : MonoBehaviour
     void Start()
     {
         fadeimage.alpha = 0;
+     
     }
 
     // Update is called once per frame
@@ -38,8 +41,9 @@ public class Transporter : MonoBehaviour
             fadeimage.alpha = fadeimage.alpha + .1f;
             yield return new WaitForSeconds(.01f);
         }
-        player.transform.position = exitBox.transform.position;
-        yield return new WaitForSeconds(1f);
+            player.transform.position = exitBox.transform.position;
+
+            yield return new WaitForSeconds(1f);
         fadeimage.alpha -= Time.deltaTime;
         while (fadeimage.alpha > 0)
         {

@@ -1,10 +1,12 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 using static UnityEditor.Progress;
@@ -78,6 +80,8 @@ public class BattleManager : MonoBehaviour
     [SerializeField] public List<string> diagnosisList;
 
     [SerializeField] Inventory inventory;
+
+    [SerializeField] Transporter transporter;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -150,6 +154,7 @@ public class BattleManager : MonoBehaviour
         if (enemyList.Count == 0) 
         {
             Debug.Log("Your winner :)");
+            StartCoroutine(BattleEnd());
         }
         //Checks if party is down given size
         if(partyList.Count == 1) 
@@ -456,5 +461,12 @@ public class BattleManager : MonoBehaviour
 
             }
         }
+    }
+
+    public IEnumerator BattleEnd() 
+    {
+
+        yield return new WaitForSeconds(.2f);
+        SceneManager.LoadScene("Beach");
     }
 }

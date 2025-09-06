@@ -33,6 +33,11 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] public bool inventoryBattleUsed;
     [SerializeField] public bool battleWait;
+
+    [SerializeField] public Vector3 playerTransform;
+
+    [SerializeField] public bool battleStart;
+   
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -43,7 +48,9 @@ public class Inventory : MonoBehaviour
         cetusHP.transform.position = cetusHPSpawn1.transform.position;
         raticHP.transform.position = raticHPSpawn1.transform.position;
         inventoryBattleUsed = false;
-     
+       
+            
+        
 
     }
     private void Awake()
@@ -369,4 +376,5 @@ public class Inventory : MonoBehaviour
         battleWait = true;
     }
     
+  
 }
