@@ -48,7 +48,7 @@ namespace Doublsb.Dialog
         public AudioSource CallAudio;
 
         [Header("Preference")]
-        public float Delay = 0.1f;
+        public float Delay;
 
         [Header("Selector")]
         public GameObject Selector;
@@ -61,6 +61,9 @@ namespace Doublsb.Dialog
         [HideInInspector]
         public string Result;
 
+        [SerializeField] public bool textDone;
+
+        [SerializeField] TextScript dialog;
         //================================================
         //Private Method
         //================================================
@@ -71,7 +74,9 @@ namespace Doublsb.Dialog
         private float _lastDelay;
         private Coroutine _textingRoutine;
         private Coroutine _printingRoutine;
+        private Coroutine _printCoroutine;
 
+        
         //================================================
         //Public Method
         //================================================
@@ -322,8 +327,10 @@ namespace Doublsb.Dialog
             _currentDelay = _lastDelay;
         }
 
+  
         private IEnumerator _print(string Text)
         {
+            textDone = false;
             _current_Data.PrintText += _current_Data.Format.OpenTagger;
 
             for (int i = 0; i < Text.Length; i++)
@@ -332,9 +339,12 @@ namespace Doublsb.Dialog
                 Printer_Text.text = _current_Data.PrintText + _current_Data.Format.CloseTagger;
 
                 if (Text[i] != ' ') Play_ChatSE();
-                if (_currentDelay != 0) yield return new WaitForSeconds(_currentDelay);
-            }
 
+                if (Delay != 0) yield return new WaitForSeconds(Delay);
+                // Use the public Delay property directly instead of _currentDelay
+             
+            }
+            textDone = true;
             _current_Data.PrintText += _current_Data.Format.CloseTagger;
         }
 

@@ -21,6 +21,8 @@ public class TextScript : MonoBehaviour
 
     [SerializeField] Diagnosis diagnosis;
     [SerializeField] Inventory inventory;
+
+    [SerializeField] public bool skipText;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -50,19 +52,20 @@ public class TextScript : MonoBehaviour
     void Update()
     {
         //Advances text number when in a scene
-        if (Input.GetKeyDown(KeyCode.K) && inText)
+        if (Input.GetKeyDown(KeyCode.K) && inText && dialogManager.textDone)
         {
-            textNumber = textNumber + 1;
-            switch (textName)
-            {
-                case "Starting Scene":
-                    StartingScene();
-                    break;
-                case "GoblinRouge":
-                    GoblinRougeDiagnosis();
-                    break;
-            }
+            dialogManager.Delay = .05f;
 
+            textNumber = textNumber + 1;
+            startText = true;
+
+        }
+        if (Input.GetKeyDown(KeyCode.K) && inText && !dialogManager.textDone)
+        {
+           
+            dialogManager.Delay = 0;
+            dialogManager.textDone = true;
+            StartCoroutine(skipDelay());
         }
         if (startText) 
         {
@@ -100,7 +103,6 @@ public class TextScript : MonoBehaviour
                 playerMove.canMove = false;
                 characterFace.GetComponent<UnityEngine.UI.Image>().sprite = faceList[1];
                 dialog = new DialogData("What are we, some kind of Seven Scourges?", "Cetus");
-                dialog.isSkippable = false;
                 dialogManager.Show(dialog);
                 break;
             case 1:
@@ -275,5 +277,15 @@ public class TextScript : MonoBehaviour
 
                 break;
         }
+    }
+
+    public IEnumerator skipDelay() 
+    {
+        Debug.Log("Huh");
+               
+
+        yield return new WaitForSeconds(.001f);
+       
+        dialogManager.textDone = true;
     }
 }
