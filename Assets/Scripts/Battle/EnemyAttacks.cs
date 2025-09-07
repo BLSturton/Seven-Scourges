@@ -51,7 +51,7 @@ public class EnemyAttacks : MonoBehaviour
             {
                 if (this.gameObject.CompareTag("GoblinRouge"))
                 {
-                    StartCoroutine(AttackOneSupport());
+                    StartCoroutine(GoblinRougeSupport());
                 }
             }
         
@@ -71,7 +71,7 @@ public class EnemyAttacks : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             yield return new WaitForSeconds(.1f);
-
+      
             float knifeSpeed = 5f;
             GameObject knifeMain = Instantiate(dagger, transform.position, Quaternion.identity);
 
@@ -89,13 +89,21 @@ public class EnemyAttacks : MonoBehaviour
             GameObject knifeLeft = Instantiate(dagger, transform.position, Quaternion.identity);
             Vector3 directionLeft = Quaternion.Euler(0, 0, 15f) * (battleManager.targetDodger.transform.position - knifeRight.transform.position).normalized; float timer2 = 0f;
             knifeLeft.transform.right = directionLeft;
-
+            if (battleManager.enemyList.Count != 1)
+            {
+                Destroy(knifeMain);
+            }
             while (timer < 2f)
             {
                 timer += Time.deltaTime;
 
                 // Move in the calculated direction
-                knifeMain.transform.position += directionMain * Time.deltaTime * knifeSpeed;
+                if (battleManager.enemyList.Count == 1) 
+                {
+                    knifeMain.transform.position += directionMain * Time.deltaTime * knifeSpeed;
+
+                }
+
                 knifeRight.transform.position += (directionRight * Time.deltaTime * knifeSpeed);
                 knifeLeft.transform.position += (directionLeft * Time.deltaTime * knifeSpeed);
 
@@ -113,10 +121,37 @@ public class EnemyAttacks : MonoBehaviour
         }
     }
    
-    public IEnumerator AttackOneSupport() 
+    public IEnumerator GoblinRougeSupport() 
     {
-        yield return new WaitForSeconds(3);
-       
+        yield return new WaitForSeconds(.1f);
+        for (int i = 0; i < 3; i++) 
+        {
+            float knifeSpeed = 5f;
+            GameObject knifeMain = Instantiate(dagger, transform.position, Quaternion.identity);
+
+            // Calculate and store direction
+            Vector3 directionMain = (battleManager.targetDodger.transform.position - knifeMain.transform.position).normalized;
+            knifeMain.transform.right = directionMain;
+
+            float timer = 0f;
+            while (timer < 2f)
+            {
+                timer += Time.deltaTime;
+
+                // Move in the calculated direction
+                knifeMain.transform.position += directionMain * Time.deltaTime * knifeSpeed;
+
+                yield return null;
+            }
+        }
+        GameObject[] objectsToDestroy = GameObject.FindGameObjectsWithTag("GoblinRougeAttack");
+        foreach (GameObject obj in objectsToDestroy)
+        {
+            Destroy(obj);
+        }
+
     }
 
 }
+
+
