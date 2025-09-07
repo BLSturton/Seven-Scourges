@@ -33,6 +33,8 @@ public class TextScript : MonoBehaviour
         {
             if (FirstScene) 
             {
+
+                playerMove.canMove = false;
                 //Starts the very first cutscene
                 inText = true;
                 startText = true;
@@ -74,6 +76,7 @@ public class TextScript : MonoBehaviour
             switch (textName)
             { 
                 case "Starting Scene":
+
                     StartingScene();
                     break;
                 case "Chest":

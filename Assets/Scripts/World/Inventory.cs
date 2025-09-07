@@ -39,7 +39,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] public bool battleStart;
     [SerializeField] public GameObject[] enemyTroops;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         inventoryOn = false;
         inventoryPickerOn = false;
@@ -53,12 +53,7 @@ public class Inventory : MonoBehaviour
         
 
     }
-    private void Awake()
-    {
-       
-
-
-    }
+  
 
     // Update is called once per frame
     void Update()
