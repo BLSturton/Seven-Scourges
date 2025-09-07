@@ -100,6 +100,7 @@ public class TextScript : MonoBehaviour
                 playerMove.canMove = false;
                 characterFace.GetComponent<UnityEngine.UI.Image>().sprite = faceList[1];
                 dialog = new DialogData("What are we, some kind of Seven Scourges?", "Cetus");
+                dialog.isSkippable = false;
                 dialogManager.Show(dialog);
                 break;
             case 1:
