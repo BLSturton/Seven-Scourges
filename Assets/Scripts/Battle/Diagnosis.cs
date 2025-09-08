@@ -30,7 +30,7 @@ public class Diagnosis : MonoBehaviour
     [SerializeField] public bool goAgain;
 
     [SerializeField] BattleManager battleManager;
-    
+    [SerializeField] Inventory inventory;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -189,6 +189,10 @@ public class Diagnosis : MonoBehaviour
             case "GoblinRouge":
                 dialouge.textName = "GoblinRouge";
                 dialouge.startText = true;
+                if(inventory.enemyTattles.Contains("GoblinRouge") == false)
+                {
+                    inventory.enemyTattles.Add("GoblinRouge");
+                }
                     break;
         }
     }

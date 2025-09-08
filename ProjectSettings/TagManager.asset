@@ -15,6 +15,7 @@ TagManager:
   - WordTaunt
   - BattleUI
   - FadeBox
+  - Dialog
   layers:
   - Default
   - TransparentFX

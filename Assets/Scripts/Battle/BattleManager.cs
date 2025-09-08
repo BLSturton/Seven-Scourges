@@ -199,6 +199,7 @@ public class BattleManager : MonoBehaviour
                     raticOptionPicker.myTurn = true;
                     raticOptionPicker.endTurn = false;
                     raticOptionPicker.actionPicked = false;
+                raticOptionPicker.selectedOption = raticOptionPicker.attackOptions[1];
                     CetusToRatic = true;
                     foreach (GameObject obj in raticOptionPicker.attackOptions)
                     {

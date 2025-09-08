@@ -11,11 +11,18 @@ public class PlayerMove : MonoBehaviour
     public Animator CetusAnim;
 
     public BoxCollider2D interactBox;
-    private void Start()
+
+    [SerializeField] TextScript dialog;
+    private void Awake()
     {
+        dialog = GameObject.FindWithTag("Dialog").GetComponent<TextScript>();
         rb = GetComponent<Rigidbody2D>();
         CetusAnim.SetBool("Idle", true);
-        canMove = true;
+        if(dialog.FirstScene == false) 
+        {
+            canMove = true;
+
+        }
     }
     // Update is called once per frame
     void Update()

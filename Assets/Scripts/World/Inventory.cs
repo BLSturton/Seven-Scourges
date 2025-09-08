@@ -1,10 +1,11 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
-using System.Collections;
+using UnityEditor.SearchService;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
@@ -38,6 +39,9 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] public bool battleStart;
     [SerializeField] public GameObject[] enemyTroops;
+
+    //Some other shit idk
+    [SerializeField] public List<string> enemyTattles;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -48,12 +52,23 @@ public class Inventory : MonoBehaviour
         cetusHP.transform.position = cetusHPSpawn1.transform.position;
         raticHP.transform.position = raticHPSpawn1.transform.position;
         inventoryBattleUsed = false;
-       
-            
-        
+
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Beach")) 
+        {
+            foreach(GameObject enemy in enemyTroops) 
+            {
+                if(enemy.tag == "GoblinRouge" && enemyTattles.Contains("GoblinRouge"))
+                    {
+                    enemy.transform.GetChild(0).gameObject.SetActive(true);
+                    }
+            }
+        }
+
+
+
 
     }
-  
+
 
     // Update is called once per frame
     void Update()

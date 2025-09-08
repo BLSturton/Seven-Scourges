@@ -47,7 +47,8 @@ public class OptionPicker : MonoBehaviour
     [SerializeField] public RaticAttack raticAttack;
     [SerializeField] public GameObject raticAttackAction;
     [SerializeField] public GameObject countdownText;
-
+    [SerializeField] public GameObject specailSpawn1;
+    [SerializeField] public GameObject specailSpawn2;
     //Items
     [SerializeField] Inventory inventory;
     [SerializeField] public bool itemOn;
@@ -598,12 +599,13 @@ public class OptionPicker : MonoBehaviour
                 }
                 switch (styleNumber)
                 {
+                    
                     case 0:
-                            enemyPicker.transform.position = styles[0].transform.position - new Vector3(1, -1, 0);                       
+                        enemyPicker.transform.position = specailSpawn1.transform.position;                       
                     
                         break;
                     case 1:
-                        enemyPicker.transform.position = styles[1].transform.position - new Vector3(1, -1, 0);
+                        enemyPicker.transform.position = specailSpawn2.transform.position;
                        
                         break;
                

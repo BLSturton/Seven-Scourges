@@ -154,7 +154,7 @@ MonoBehaviour:
   healthObj: {fileID: 5566405924253322418}
   hpText: {fileID: 3098057744346074448}
   battleManager: {fileID: 0}
-  healthShown: 0
+  healthShown: 1
   battleManagerObject: {fileID: 0}
 --- !u!222 &5887580491106870467
 CanvasRenderer:

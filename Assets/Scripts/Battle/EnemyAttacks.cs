@@ -103,13 +103,34 @@ public class EnemyAttacks : MonoBehaviour
                     knifeMain.transform.position += directionMain * Time.deltaTime * knifeSpeed;
 
                 }
+                if (knifeLeft != null) 
+                {
+                    knifeLeft.transform.position += (directionLeft * Time.deltaTime * knifeSpeed);
 
-                knifeRight.transform.position += (directionRight * Time.deltaTime * knifeSpeed);
-                knifeLeft.transform.position += (directionLeft * Time.deltaTime * knifeSpeed);
+                }
+                if(knifeRight != null) 
+                {
+                    knifeRight.transform.position += (directionRight * Time.deltaTime * knifeSpeed);
+
+                }
 
                 yield return null;
             }
-           
+           if(timer > 2f) 
+            {
+                if(knifeMain != null) 
+                {
+                    Destroy(knifeMain);
+                }
+                if (knifeLeft!= null)
+                {
+                    Destroy(knifeLeft);
+                }
+                if (knifeRight!= null)
+                {
+                    Destroy(knifeRight);
+                }
+            }
         }
         battleManager.enemyTurnEnd = true;
         GameObject[] objectsToDestroy = GameObject.FindGameObjectsWithTag("GoblinRougeAttack");
