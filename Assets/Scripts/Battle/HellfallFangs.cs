@@ -26,8 +26,7 @@ public class HellfallFangs : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        swords.Find(obj => obj.name == "Sword1").SetActive(true);
-        swords.Find(obj => obj.name == "Sword2").SetActive(true);
+   
 
     }
 
@@ -58,12 +57,19 @@ public class HellfallFangs : MonoBehaviour
     }
     public void StartAttack() 
     {
+        hitLeft = false;
+        hitRight = false;
+        missedLeft = false;
+        missedRight = false;
         this.gameObject.SetActive(true);
         foreach (GameObject obj in swords) 
         {
-            if(obj == swords[0]) 
+            obj.SetActive(true);
+
+            if (obj == swords[0]) 
             {
                 obj.transform.position = spawn1.transform.position;
+                
             }
             if (obj == swords[1])
             {

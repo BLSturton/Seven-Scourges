@@ -344,6 +344,12 @@ public class BattleManager : MonoBehaviour
 
     public void newPlayerTurn() 
     {
+        cetusOptionPicker.selectedOption = cetusOptionPicker.attackOptions[0];
+        cetusOptionPicker.optionNumber = 0;
+        cetusOptionPicker.selectedOption.transform.localPosition = new Vector2(cetusOptionPicker.selectedOption.transform.localPosition.x, cetusOptionPicker.selectedOption.transform.localPosition.y + 1);
+        raticOptionPicker.selectedOption = raticOptionPicker.attackOptions[0];
+        raticOptionPicker.optionNumber = 0;
+        raticOptionPicker.selectedOption.transform.localPosition = new Vector2(raticOptionPicker.selectedOption.transform.localPosition.x, raticOptionPicker.selectedOption.transform.localPosition.y + 1);
         if (cetusOptionPicker.isDefend)
         {
             CetusDef = CetusDef - 1;

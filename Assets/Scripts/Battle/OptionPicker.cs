@@ -195,20 +195,16 @@ public class OptionPicker : MonoBehaviour
 
                 }
                 //Come back and add item and defend
-                if (attackOn) 
+                if (itemOn) 
                 {
-                    selectedOption = attackOptions[0];  
-                }
-                if (specialOn)
-                {
-                    selectedOption = attackOptions[1];
-                }
-                if (itemOn)
-                {
-                    selectedOption = attackOptions[2];
                     inventory.BattleClose();
-                    itemOn = false;
+                    inventory.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+
                 }
+                selectedOption = attackOptions[0];
+                optionNumber = 0;
+                selectedOption.transform.localPosition = new Vector2(selectedOption.transform.localPosition.x, selectedOption.transform.localPosition.y + 1);
+
                 actionPicked = false;
                 attackOn = false;
                 specialOn = false;
@@ -348,6 +344,8 @@ public class OptionPicker : MonoBehaviour
                 }
                 if (!actionPicked)
                 {
+                    selectedOption.transform.localPosition = new Vector2(selectedOption.transform.localPosition.x, selectedOption.transform.localPosition.y - 1);
+ 
                     switch (optionNumber)
                     {
                         case 0:

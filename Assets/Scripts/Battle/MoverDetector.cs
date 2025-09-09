@@ -30,7 +30,7 @@ public class MoverDetector : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-
+        Debug.Log("GUT NIW IUEGFIUASGHF");
         hitNow = true;
         if(collision.CompareTag("WordTaunt")) 
         {

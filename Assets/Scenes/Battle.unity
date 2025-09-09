@@ -1370,10 +1370,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitBox: {fileID: 243209249}
   hitNow: 0
-  taunt: {fileID: 0}
+  taunt: {fileID: 28875113}
   wordHit: 0
-  touchedWord: {fileID: 0}
-  firstAid: {fileID: 0}
+  touchedWord: {fileID: 1112498789}
+  firstAid: {fileID: 1384577950}
 --- !u!1 &252370645
 GameObject:
   m_ObjectHideFlags: 0
@@ -7353,10 +7353,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitBox: {fileID: 1105651876}
   hitNow: 0
-  taunt: {fileID: 0}
+  taunt: {fileID: 28875113}
   wordHit: 0
-  touchedWord: {fileID: 0}
-  firstAid: {fileID: 0}
+  touchedWord: {fileID: 1112498789}
+  firstAid: {fileID: 1384577950}
 --- !u!1 &1112498789
 GameObject:
   m_ObjectHideFlags: 0
@@ -8749,6 +8749,8 @@ MonoBehaviour:
   optionOn: 0
   canGoBack: 0
   targetEnemy: {fileID: 0}
+  cetusHP: {fileID: 0}
+  raticHP: {fileID: 0}
 --- !u!1 &1344018213
 GameObject:
   m_ObjectHideFlags: 0
@@ -12396,6 +12398,8 @@ MonoBehaviour:
   optionOn: 0
   canGoBack: 0
   targetEnemy: {fileID: 0}
+  cetusHP: {fileID: 0}
+  raticHP: {fileID: 0}
 --- !u!4 &2082054971
 Transform:
   m_ObjectHideFlags: 0
