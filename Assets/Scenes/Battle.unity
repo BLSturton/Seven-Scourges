@@ -336,6 +336,7 @@ MonoBehaviour:
   DialogAsset: {fileID: 1112834119}
   goAgain: 0
   battleManager: {fileID: 382845793}
+  inventory: {fileID: 0}
 --- !u!1 &70812455
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,7 +547,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 654.53, y: -1189}
+  m_AnchoredPosition: {x: 654.53, y: -733}
   m_SizeDelta: {x: 2731.71, y: 272.13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &152648066
@@ -8892,6 +8893,8 @@ MonoBehaviour:
   SnipsHit: 0
   raticOptionPicker: {fileID: 2082054970}
   battleManager: {fileID: 382845793}
+  cetusHP: {fileID: 0}
+  raticHP: {fileID: 0}
 --- !u!1 &1389778814
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,13 +13,16 @@ public class BattleStart : MonoBehaviour
     [SerializeField] Inventory inventory;
 
     [SerializeField] GameObject Player;
-
+    [SerializeField] GameObject thisEnemy;
     [SerializeField] public GameObject[] enemyTroops;
 
     private bool isTransitioning = false;
 
+    [SerializeField] public bool fightDelay;
     private void Start()
     {
+        fightDelay = false;
+        StartCoroutine(startDelay());
         inventory = GameObject.FindWithTag("InventorySystem").gameObject.GetComponent<Inventory>();
          
         // If not assigned, try to find the canvas automatically
@@ -26,31 +30,37 @@ public class BattleStart : MonoBehaviour
         {
             uiCanvas = GameObject.Find("Canvas");
         }
-        if(inventory.battleStart == true) 
+        if(inventory.battleStart == true && inventory.fightingEnemy == thisEnemy.ToString()) 
         {
             Player = GameObject.FindWithTag("Player");
             Player.transform.position = inventory.playerTransform;
-            inventory.battleStart = false;
-            Destroy(this.gameObject);
+            Destroy(gameObject);
             Player = null;
+            inventory.battleStart = false;
+
         }
     }
    
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && !isTransitioning)
+        if (collision.gameObject.CompareTag("Player") && !isTransitioning && fightDelay)
         {
             Player = collision.gameObject;
             inventory.playerTransform = Player.transform.position;
             inventory.enemyTroops = enemyTroops;
             battleStart = true;
             inventory.battleStart = true;
+            inventory.fightingEnemy = thisEnemy.ToString();
             SceneManager.LoadScene("battle");
             
 
         }
     }
 
+    public IEnumerator startDelay() 
+    {
+        yield return new WaitForSeconds(.3f);
+        fightDelay = true;
+    }
+  }
 
-
-}

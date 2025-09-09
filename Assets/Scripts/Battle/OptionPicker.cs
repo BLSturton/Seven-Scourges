@@ -65,11 +65,13 @@ public class OptionPicker : MonoBehaviour
     [SerializeField] public bool canGoBack;
     [SerializeField] public GameObject targetEnemy;
 
-
+    [SerializeField] public GameObject cetusHP;
+    [SerializeField] public GameObject raticHP;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        cetusHP = GameObject.FindWithTag("CetusHP");
+        raticHP = GameObject.FindWithTag("RaticHP");
         canGoBack = true;
         firstAid.gameObject.SetActive(false);
         foreach (GameObject obj in styles)
@@ -270,7 +272,7 @@ public class OptionPicker : MonoBehaviour
                     {
                         if(this.gameObject.name == "CetusOptionManager" && battleManager.CetusSP >= 2) 
                         {
-                            battleManager.CetusSP = battleManager.CetusSP - 2;
+                           cetusHP.gameObject.GetComponent<HPWorld>().SP = battleManager.CetusSP - 2;
                             styleBox.SetActive(false);
                             foreach (GameObject obj in styles)
                             {
@@ -288,7 +290,7 @@ public class OptionPicker : MonoBehaviour
                         }
                         if (this.gameObject.name == "RaticOptionManager" && battleManager.RaticSP >= 2)
                         {
-                            battleManager.RaticSP = battleManager.RaticSP - 2;
+                            raticHP.gameObject.GetComponent<HPWorld>().SP = battleManager.RaticSP - 2;
                             styleBox.SetActive(false);
                             foreach (GameObject obj in styles)
                             {
@@ -310,7 +312,7 @@ public class OptionPicker : MonoBehaviour
                     {
                         if (this.gameObject.name == "CetusOptionManager" && battleManager.CetusSP >= 3)
                         {
-                            battleManager.CetusSP = battleManager.CetusSP - 3;
+                            cetusHP.gameObject.GetComponent<HPWorld>().SP = battleManager.CetusSP - 3;
                             styleBox.SetActive(false);
                             foreach (GameObject obj in styles)
                             {
@@ -328,7 +330,7 @@ public class OptionPicker : MonoBehaviour
                         }
                         if (this.gameObject.name == "RaticOptionManager" && battleManager.RaticSP >= 3)
                         {
-                            battleManager.RaticSP = battleManager.RaticSP - 3;
+                            raticHP.gameObject.GetComponent<HPWorld>().SP = battleManager.RaticSP - 3;
                             styleBox.SetActive(false);
                             foreach (GameObject obj in styles)
                             {

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -32,6 +31,9 @@ public class Inventory : MonoBehaviour
     [SerializeField] public GameObject cetusHPSpawn2;
     [SerializeField] public GameObject raticHPSpawn2;
 
+    [SerializeField] public GameObject cetusPicker;
+    [SerializeField] public GameObject raticPicker;
+
     [SerializeField] public bool inventoryBattleUsed;
     [SerializeField] public bool battleWait;
 
@@ -39,6 +41,7 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] public bool battleStart;
     [SerializeField] public GameObject[] enemyTroops;
+    [SerializeField] public string fightingEnemy;
 
     //Some other shit idk
     [SerializeField] public List<string> enemyTattles;
@@ -53,16 +56,7 @@ public class Inventory : MonoBehaviour
         raticHP.transform.position = raticHPSpawn1.transform.position;
         inventoryBattleUsed = false;
 
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Beach")) 
-        {
-            foreach(GameObject enemy in enemyTroops) 
-            {
-                if(enemy.tag == "GoblinRouge" && enemyTattles.Contains("GoblinRouge"))
-                    {
-                    enemy.transform.GetChild(0).gameObject.SetActive(true);
-                    }
-            }
-        }
+       
 
 
 
@@ -73,7 +67,16 @@ public class Inventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Beach"))
+        {
+            foreach (GameObject enemy in enemyTroops)
+            {
+                if (enemy.tag == "GoblinRouge" && enemyTattles.Contains("GoblinRouge"))
+                {
+                    enemy.transform.GetChild(0).gameObject.SetActive(true);
+                }
+            }
+        }
         maxItem = itemList.Count;
         if(itemPicked == false) 
         {
@@ -86,7 +89,7 @@ public class Inventory : MonoBehaviour
 
                 itemPicked = true;
                
-                inventoryPicker.transform.position = cetusHP.transform.position - new Vector3(100, -70);
+                inventoryPicker.transform.position = cetusPicker.transform.position;
             }
             if (Input.GetKeyDown(KeyCode.D) && inventoryPickerOn)
             {
@@ -130,13 +133,13 @@ public class Inventory : MonoBehaviour
                 if (partySelected == partyListMax)
                 {
                     partySelected = 1;
-                    inventoryPicker.transform.position = cetusHP.transform.position - new Vector3(100, -70);
+                    inventoryPicker.transform.position = cetusPicker.transform.position;
 
                 }
                 else
                 {
                     partySelected++;
-                    inventoryPicker.transform.position = raticHP.transform.position - new Vector3(100, -70);
+                    inventoryPicker.transform.position = raticPicker.transform.position;
 
                 }
             }
@@ -145,13 +148,13 @@ public class Inventory : MonoBehaviour
                 if (partySelected == 1)
                 {
                     partySelected = 2;
-                    inventoryPicker.transform.position = raticHP.transform.position - new Vector3(100, -70);
+                    inventoryPicker.transform.position = raticPicker.transform.position;
 
                 }
                 else
                 {
                     partySelected--;
-                    inventoryPicker.transform.position = cetusHP.transform.position - new Vector3(100, -70);
+                    inventoryPicker.transform.position = cetusPicker.transform.position;
 
                 }
             }

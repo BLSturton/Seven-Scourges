@@ -21,9 +21,14 @@ public class FirstAid : MonoBehaviour
 
     [SerializeField] OptionPicker raticOptionPicker;
     [SerializeField] BattleManager battleManager;
+
+    [SerializeField] public GameObject cetusHP;
+    [SerializeField] public GameObject raticHP;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        cetusHP = GameObject.FindWithTag("CetusHP");
+        raticHP = GameObject.FindWithTag("RaticHP");
     }
 
     // Update is called once per frame
@@ -101,14 +106,14 @@ public class FirstAid : MonoBehaviour
             {
                 if (battleManager.CetusHP < battleManager.CetusMaxHP) 
                 {
-                    battleManager.CetusHP = battleManager.CetusHP + 1;
+                    cetusHP.GetComponent<HPWorld>().HP = cetusHP.GetComponent<HPWorld>().HP + 1;
                 }
             }
             if (raticOptionPicker.enemyNumber == 1)
             {
                 if (battleManager.RaticHP < battleManager.RaticMaxHP)
                 {
-                    battleManager.RaticHP = battleManager.RaticHP + 1;
+                    raticHP.GetComponent<HPWorld>().HP = raticHP.GetComponent<HPWorld>().HP + 1;
                 }
             }
         }
@@ -118,22 +123,22 @@ public class FirstAid : MonoBehaviour
             {
                 if (battleManager.CetusHP == battleManager.CetusMaxHP -1)
                 {
-                    battleManager.CetusHP = battleManager.CetusHP + 1;
+                    cetusHP.GetComponent<HPWorld>().HP = cetusHP.GetComponent<HPWorld>().HP + 1;
                 }
                 if (battleManager.CetusHP < battleManager.CetusMaxHP -1)
                 {
-                    battleManager.CetusHP = battleManager.CetusHP + 2;
+                    cetusHP.GetComponent<HPWorld>().HP = cetusHP.GetComponent<HPWorld>().HP + 2;  
                 }
             }
             if (raticOptionPicker.enemyNumber == 1)
             {
                 if (battleManager.RaticHP == battleManager.RaticMaxHP - 1)
                 {
-                    battleManager.RaticHP = battleManager.RaticHP + 1;
+                    raticHP.GetComponent<HPWorld>().HP = raticHP.GetComponent<HPWorld>().HP + 1;
                 }
                 if (battleManager.RaticHP < battleManager.RaticMaxHP - 1)
                 {
-                    battleManager.RaticHP = battleManager.RaticHP + 2;
+                    raticHP.GetComponent<HPWorld>().HP = raticHP.GetComponent<HPWorld>().HP + 2;
                 }
             }
         }

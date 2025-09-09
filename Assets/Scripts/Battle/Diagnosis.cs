@@ -34,6 +34,8 @@ public class Diagnosis : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        inventory = GameObject.FindWithTag("InventorySystem").GetComponent<Inventory>();
+
         this.gameObject.SetActive(false);
     }
 
@@ -191,7 +193,7 @@ public class Diagnosis : MonoBehaviour
                 dialouge.startText = true;
                 if(inventory.enemyTattles.Contains("GoblinRouge") == false)
                 {
-                    inventory.enemyTattles.Add("GoblinRouge");
+                    inventory.enemyTattles.Add("GoblinRouge");  
                 }
                     break;
         }

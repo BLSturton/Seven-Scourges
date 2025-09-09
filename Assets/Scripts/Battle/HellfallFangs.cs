@@ -26,6 +26,9 @@ public class HellfallFangs : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        swords.Find(obj => obj.name == "Sword1").SetActive(true);
+        swords.Find(obj => obj.name == "Sword2").SetActive(true);
+
     }
 
     // Update is called once per frame
@@ -44,8 +47,9 @@ public class HellfallFangs : MonoBehaviour
         {
             hitRight = true;
             swords.Find(obj => obj.name == "Sword2").SetActive(false);
+            Debug.Log("hot!");
         }
-        if (Input.GetKeyDown(KeyCode.K) && moverRight.hitNow == false)
+        if (Input.GetKeyDown(KeyCode.L) && moverRight.hitNow == false)
         {
             missedRight = true;
         }
@@ -76,7 +80,7 @@ public class HellfallFangs : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(1f, 1.5f));
             swords[0].GetComponent<Rigidbody2D>().gravityScale = Random.Range(gravityScale, gravityScale + 1f);
             yield return new WaitForSeconds(.2f);
-            swords[1].GetComponent<Rigidbody2D>().gravityScale = gravityScale + 1f;
+        swords[1].GetComponent<Rigidbody2D>().gravityScale = Random.Range(gravityScale + .5f, gravityScale + 1.5f);
         yield return new WaitForSeconds(1f);
         EndAttack();
     }
