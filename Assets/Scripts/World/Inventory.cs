@@ -43,6 +43,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] public GameObject[] enemyTroops;
     [SerializeField] public string fightingEnemy;
 
+    [SerializeField] public bool cantMove;
     //Some other shit idk
     [SerializeField] public List<string> enemyTattles;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -164,7 +165,7 @@ public class Inventory : MonoBehaviour
             selectedItem = 1;
             inventoryPicker.transform.position = itemVisual[selectedItem - 1].transform.GetChild(0).transform.position;
 
-            playerMove.canMove = false;
+            cantMove = true;
             inventoryOn = true;
             inventoryImage.SetActive(true);
             inventoryPicker.SetActive(true);
@@ -224,7 +225,7 @@ public class Inventory : MonoBehaviour
 
                 inventoryOn = false;
                 inventoryPickerOn = false;
-                playerMove.canMove = true;
+            cantMove = true;
             cetusHP.transform.position = cetusHPSpawn1.transform.position;
             raticHP.transform.position = raticHPSpawn1.transform.position;
             cetusHP.transform.SetAsFirstSibling();
@@ -291,7 +292,7 @@ public class Inventory : MonoBehaviour
 
         inventoryOn = false;
         inventoryPickerOn = false;
-        playerMove.canMove = true;
+       cantMove = false;
         cetusHP.transform.position = cetusHPSpawn1.transform.position;
         raticHP.transform.position = raticHPSpawn1.transform.position;
         cetusHP.transform.SetAsFirstSibling();
@@ -310,7 +311,7 @@ public class Inventory : MonoBehaviour
         }
        
 
-        playerMove.canMove = false;
+        
         inventoryOn = true;
         inventoryImage.SetActive(true);
         inventoryPicker.SetActive(true);
@@ -373,7 +374,7 @@ public class Inventory : MonoBehaviour
 
         inventoryOn = false;
         inventoryPickerOn = false;
-        playerMove.canMove = true;
+        
         cetusHP.transform.position = cetusHPSpawn1.transform.position;
         raticHP.transform.position = raticHPSpawn1.transform.position;
         cetusHP.transform.SetAsFirstSibling();

@@ -28,14 +28,12 @@ public class CooldownWipe : MonoBehaviour
     public void StartCooldown()
     {
         gameObject.SetActive(true);
-        cooldownTimer = cooldownDuration;
-        isOnCooldown = true;
-        cooldownMaterial.SetFloat("_FillAmount", 1f); // Reset to full
+    
     }
 
     void Update()
     {
-        
+           
         if (isOnCooldown)
         {
             cooldownTimer -= Time.deltaTime;
@@ -45,14 +43,14 @@ public class CooldownWipe : MonoBehaviour
             if (cooldownTimer <= 0)
             {
                 isOnCooldown = false;
-                gameObject.SetActive(false);
             }
         }
         if (battleManager.turnReset == true) 
         {
+            Debug.Log("Working");
             isOnCooldown = false;
-            gameObject.SetActive(false);
-           
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+
         }
     }
     

@@ -68,7 +68,7 @@ public class OptionPicker : MonoBehaviour
     [SerializeField] public GameObject cetusHP;
     [SerializeField] public GameObject raticHP;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         cetusHP = GameObject.FindWithTag("CetusHP");
         raticHP = GameObject.FindWithTag("RaticHP");
@@ -87,6 +87,7 @@ public class OptionPicker : MonoBehaviour
         countdownText.SetActive(false);
         selectedOption = attackOptions[0];
         optionNumber = 0;
+        
         selectedOption.transform.localPosition = new Vector2(selectedOption.transform.localPosition.x, selectedOption.transform.localPosition.y + 1);
         enemyPicker.SetActive(false);
        if(this.gameObject.name == "CetusOptionManager") 

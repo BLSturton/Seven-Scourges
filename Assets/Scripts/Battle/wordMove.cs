@@ -25,6 +25,7 @@ public class wordMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (onLeft) 
         {
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(5f, transform.position.y), Random.Range(wordSpeed, wordSpeed+2) * Time.deltaTime);

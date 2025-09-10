@@ -65,9 +65,9 @@ public class CetusSwordSpin : MonoBehaviour
         boxCollider.enabled = false;
 
         isSafe = false;
-        cooldownWipe.StartCooldown();
-        yield return new WaitForSeconds(coolDownTimer);
-        isSpin = false;
+        cooldownWipe.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+
+
 
     }
 

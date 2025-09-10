@@ -133,10 +133,10 @@ public class BattleMove : MonoBehaviour
         this.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
 
         isDash = false;
-        cooldownWipe.StartCooldown();
+        cooldownWipe.gameObject.GetComponent<SpriteRenderer>().enabled = true;
 
-        yield return new WaitForSeconds(ultCoolDown); // Cooldown before can dash again
-        canDash = true;
+
+
 
     }
     public void OnTriggerEnter2D(Collider2D collision)

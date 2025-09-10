@@ -11,10 +11,13 @@ public class PlayerMove : MonoBehaviour
     public Animator CetusAnim;
 
     public BoxCollider2D interactBox;
+    [SerializeField] public Inventory inventory;
 
     [SerializeField] TextScript dialog;
     private void Awake()
     {
+        inventory = GameObject.FindWithTag("InventorySystem").gameObject.GetComponent<Inventory>();
+
         dialog = GameObject.FindWithTag("Dialog").GetComponent<TextScript>();
         rb = GetComponent<Rigidbody2D>();
         CetusAnim.SetBool("Idle", true);
@@ -27,13 +30,21 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (inventory.cantMove == true)
+        {
+            canMove = true;
+        }
+        if (inventory.inventoryOn) 
+        {
+            canMove = false;
+        }
         //This section detects movement by input, and then plays the animations depending on the input.
-        if (canMove) 
+        if (canMove)
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
         }
-        else 
+        else
         {
             movement = new Vector2(0, 0);
         }

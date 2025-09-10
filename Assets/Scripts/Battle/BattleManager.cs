@@ -130,7 +130,8 @@ public class BattleManager : MonoBehaviour
             enemyList[2].transform.position = new Vector2(5.3f, -3.7f);
 
         }
-       
+
+      
     }
 
     // Update is called once per frame
@@ -199,8 +200,12 @@ public class BattleManager : MonoBehaviour
                     raticOptionPicker.myTurn = true;
                     raticOptionPicker.endTurn = false;
                     raticOptionPicker.actionPicked = false;
-                raticOptionPicker.selectedOption = raticOptionPicker.attackOptions[1];
-                    CetusToRatic = true;
+
+                raticOptionPicker.selectedOption = raticOptionPicker.attackOptions[0];
+                raticOptionPicker.optionNumber = 0;
+                raticOptionPicker.selectedOption.transform.localPosition = new Vector2(raticOptionPicker.selectedOption.transform.localPosition.x, raticOptionPicker.selectedOption.transform.localPosition.y + 1);
+
+                CetusToRatic = true;
                     foreach (GameObject obj in raticOptionPicker.attackOptions)
                     {
                         if (obj != null)
