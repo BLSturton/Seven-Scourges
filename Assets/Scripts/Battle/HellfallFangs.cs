@@ -57,6 +57,8 @@ public class HellfallFangs : MonoBehaviour
     }
     public void StartAttack() 
     {
+        cetusOptionPicker.animator.SetBool("HellfallStart", true);
+
         hitLeft = false;
         hitRight = false;
         missedLeft = false;
@@ -122,8 +124,27 @@ public class HellfallFangs : MonoBehaviour
             target2 = battleManager.enemyList[Random.Range(0, battleManager.enemyList.Count)];
             target2.GetComponent<EnemyHealth>().health = target2.GetComponent<EnemyHealth>().health - 2;
         }
-        this.gameObject.SetActive(false);
+        StartCoroutine(attackAnimation());
         actionBox.SetActive(false);
+        
+
+    }
+
+    public IEnumerator attackAnimation() 
+    {
+        if(hitLeft || hitRight) 
+        {
+            cetusOptionPicker.animator.SetBool("HellfallRelease", true);
+            yield return new WaitForSeconds(.2f);
+            cetusOptionPicker.animator.SetBool("HellfallRelease", false);
+
+        }
+        if(!hitRight && !hitRight) 
+        {
+            cetusOptionPicker.animator.SetBool("HellfallStart", false);
+
+        }
+        this.gameObject.SetActive(false);
         cetusOptionPicker.endTurn = true;
         cetusOptionPicker.myTurn = false;
     }

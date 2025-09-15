@@ -118,9 +118,7 @@ public class CetusAttack : MonoBehaviour
 
     public void StartAttack() 
     {
-        gameObject.GetComponent<SpriteRenderer>().enabled = true;
-        moverBall.SetActive(true);
-        targetBall.SetActive(true);
+       
         enemyHealth = cetusOptionPicker.targetEnemy.gameObject.GetComponent<EnemyHealth>();
         moveSpeed = 6;
         targetBall.transform.position = TargetWayPoints1[Random.Range(0, 3)].transform.position;
@@ -150,8 +148,7 @@ public class CetusAttack : MonoBehaviour
             StartCoroutine(attackWait());
 
         
-        hitFirstTarget = false;
-        hitSecondTarget = false;
+       
         attackFailed = false;
         actionBox.SetActive(false);
         targetBall.SetActive(false);
@@ -165,20 +162,25 @@ public class CetusAttack : MonoBehaviour
         {
           
             cetusOptionPicker.animator.SetBool("AttackHalf", true);
-
+            yield return new WaitForSeconds(.2f);
+            cetusOptionPicker.animator.SetBool("AttackHalf", false);
         }
         if (hitSecondTarget)
         {
-        
+            Debug.Log("Sexellent");
             cetusOptionPicker.animator.SetBool("AttackFull", true);
 
+            yield return new WaitForSeconds(.6f);
+            cetusOptionPicker.animator.SetBool("AttackFull", false);
 
         }
-        yield return new WaitForSeconds(.07f);
-        cetusOptionPicker.animator.SetBool("AttackHalf", false);
-        yield return new WaitForSeconds(.21f);
-        cetusOptionPicker.animator.SetBool("AttackFull", false);
+        hitFirstTarget = false;
+        hitSecondTarget = false;
         cetusOptionPicker.endTurn = true;
         cetusOptionPicker.myTurn = false;
+        gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        moverBall.SetActive(true);
+        targetBall.SetActive(true);
+        gameObject.SetActive(false);
     }
 }
