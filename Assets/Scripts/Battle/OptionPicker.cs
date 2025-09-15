@@ -67,9 +67,18 @@ public class OptionPicker : MonoBehaviour
 
     [SerializeField] public GameObject cetusHP;
     [SerializeField] public GameObject raticHP;
+
+    //Animations
+    [SerializeField] public Animator animator;
+    [SerializeField] public string thisAnimator;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
+        if(this.gameObject.name == "CetusOptionManager") 
+        {
+           
+            thisAnimator = "Cetus";
+        }
         cetusHP = GameObject.FindWithTag("CetusHP");
         raticHP = GameObject.FindWithTag("RaticHP");
         canGoBack = true;

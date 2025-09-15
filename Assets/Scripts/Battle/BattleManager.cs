@@ -446,6 +446,8 @@ public class BattleManager : MonoBehaviour
                 obj.SetActive(true); 
             }
         }
+      
+
     }
 
     public void CetusDamage() 

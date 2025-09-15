@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -117,6 +118,9 @@ public class CetusAttack : MonoBehaviour
 
     public void StartAttack() 
     {
+        gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        moverBall.SetActive(true);
+        targetBall.SetActive(true);
         enemyHealth = cetusOptionPicker.targetEnemy.gameObject.GetComponent<EnemyHealth>();
         moveSpeed = 6;
         targetBall.transform.position = TargetWayPoints1[Random.Range(0, 3)].transform.position;
@@ -140,14 +144,41 @@ public class CetusAttack : MonoBehaviour
             Debug.Log("Exellent!~");
             enemyHealth.health = enemyHealth.health - 2;
 
+
         }
+       
+            StartCoroutine(attackWait());
+
+        
         hitFirstTarget = false;
         hitSecondTarget = false;
         attackFailed = false;
         actionBox.SetActive(false);
-        this.gameObject.SetActive(false);
+        targetBall.SetActive(false);
+        moverBall.SetActive(false);
+        gameObject.GetComponent<SpriteRenderer>().enabled = false; 
+    }
+  
+    public IEnumerator attackWait()
+    {
+        if (hitFirstTarget && !hitSecondTarget)
+        {
+          
+            cetusOptionPicker.animator.SetBool("AttackHalf", true);
+
+        }
+        if (hitSecondTarget)
+        {
+        
+            cetusOptionPicker.animator.SetBool("AttackFull", true);
+
+
+        }
+        yield return new WaitForSeconds(.07f);
+        cetusOptionPicker.animator.SetBool("AttackHalf", false);
+        yield return new WaitForSeconds(.21f);
+        cetusOptionPicker.animator.SetBool("AttackFull", false);
         cetusOptionPicker.endTurn = true;
         cetusOptionPicker.myTurn = false;
     }
-  
 }
