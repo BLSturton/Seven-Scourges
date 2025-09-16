@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -45,6 +46,8 @@ public class Taunt : MonoBehaviour
 
     public void StartAttack() 
     {
+        cetusOptionPicker.animator.SetBool("TauntStart", true);
+
         mover.SetActive(true);
         mover.transform.position = moverSpawn.transform.position;
         actionBox.SetActive(true);
@@ -76,6 +79,7 @@ public class Taunt : MonoBehaviour
 
             cetusOptionPicker.tauntTurns = 2;
         }
+        StartCoroutine(attackAnimation());
         GameObject[] objectsToDestroy = GameObject.FindGameObjectsWithTag("WordTaunt");
 
         // Loop through the array and destroy each GameObject
@@ -86,10 +90,8 @@ public class Taunt : MonoBehaviour
         mover.SetActive(false);
         wordsHit = 0;
         actionBox.SetActive(false);
-        this.gameObject.SetActive(false);
         countDown.gameObject.SetActive(false);
-        cetusOptionPicker.endTurn = true;
-        cetusOptionPicker.myTurn = false;
+      
     }
     public void FixedUpdate()
     {
@@ -109,7 +111,9 @@ public class Taunt : MonoBehaviour
         }
     }
     public IEnumerator CountDown()
-    {
+
+    { 
+                countDown.text = "7";
         yield return new WaitForSeconds(1f);
         countDown.text = "6";
         yield return new WaitForSeconds(1f);
@@ -127,5 +131,24 @@ public class Taunt : MonoBehaviour
 
         EndAttack();
     }
+    public IEnumerator attackAnimation()
+    {
+        if (wordsHit >= 5) 
+        {
+            cetusOptionPicker.animator.SetBool("TauntRelease", true);
+            yield return new WaitForSeconds(.4f);
+            cetusOptionPicker.animator.SetBool("TauntRelease", false);
+            cetusOptionPicker.animator.SetBool("TauntStart", false);
 
+        }
+
+        else
+        {
+            cetusOptionPicker.animator.SetBool("TauntStart", false);
+
+        }
+        this.gameObject.SetActive(false);
+        cetusOptionPicker.endTurn = true;
+        cetusOptionPicker.myTurn = false;
+    }
 }

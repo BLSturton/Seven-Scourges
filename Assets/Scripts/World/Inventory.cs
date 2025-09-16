@@ -46,6 +46,10 @@ public class Inventory : MonoBehaviour
     [SerializeField] public bool cantMove;
     //Some other shit idk
     [SerializeField] public List<string> enemyTattles;
+
+    [SerializeField] public OptionPicker cetusOptionPicker;
+    [SerializeField] public OptionPicker raticOptionPicker;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -56,8 +60,8 @@ public class Inventory : MonoBehaviour
         cetusHP.transform.position = cetusHPSpawn1.transform.position;
         raticHP.transform.position = raticHPSpawn1.transform.position;
         inventoryBattleUsed = false;
+     
 
-       
 
 
 
@@ -68,6 +72,14 @@ public class Inventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Battle")) 
+        {
+
+            cetusOptionPicker = GameObject.Find("CetusOptionManager").GetComponent<OptionPicker>();
+            raticOptionPicker = GameObject.Find("RaticOptionManager").GetComponent<OptionPicker>();
+        }
+
+
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Beach"))
         {
             foreach (GameObject enemy in enemyTroops)
@@ -127,6 +139,8 @@ public class Inventory : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.K) && inventoryPickerOn && maxItem != 0) 
             {
+                StartCoroutine(itemAnimation());
+
                 UseItem();
             } 
             if (Input.GetKeyDown(KeyCode.D) && inventoryPickerOn && maxItem != 0)
@@ -368,6 +382,7 @@ public class Inventory : MonoBehaviour
 
     public void BattleClose() 
     {
+
         inventoryPicker.transform.position = itemVisual[0].transform.position;
         inventoryImage.SetActive(false);
         inventoryPicker.SetActive(false);
@@ -389,6 +404,25 @@ public class Inventory : MonoBehaviour
         
         battleWait = true;
     }
-    
-  
+
+    public IEnumerator itemAnimation()
+    {
+        Debug.Log("Wuja");
+
+        if (cetusOptionPicker.myTurn)
+        {
+            cetusOptionPicker.animator.SetBool("Item", true);
+            yield return new WaitForSeconds(.7f);
+            cetusOptionPicker.animator.SetBool("Item", false);
+            cetusOptionPicker.myTurn = false;
+        }
+        if (raticOptionPicker.myTurn)
+        {
+            raticOptionPicker.animator.SetBool("Item", true);
+            yield return new WaitForSeconds(.7f);
+            raticOptionPicker.animator.SetBool("Item", false);
+            raticOptionPicker.myTurn = false;
+        }
+
+    }
 }

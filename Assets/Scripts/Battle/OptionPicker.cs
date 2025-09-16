@@ -130,7 +130,6 @@ public class OptionPicker : MonoBehaviour
         {
             itemOn = false;
 
-            myTurn = false;
             endTurn = true;
             if(this.gameObject.name == "RaticOptionManager") 
             {
@@ -380,8 +379,10 @@ public class OptionPicker : MonoBehaviour
                             break;
                         case 3:
                             isDefend = true;
+                            animator.SetBool("Defend", true);
                             if(this.gameObject.name == "CetusOptionManager") 
                             {
+                                
                                 battleManager.CetusDef = battleManager.CetusDef + 1;
                                 if(battleManager.CetusHPObject.GetComponent<HPWorld>().SP != battleManager.CetusHPObject.GetComponent<HPWorld>().MaxSP) 
                                 {
