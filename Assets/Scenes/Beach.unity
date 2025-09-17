@@ -1948,7 +1948,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4094011681938070648, guid: d536fa71dd00cf349a228e41212ace48, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 16.08496
+      value: 16.084976
       objectReference: {fileID: 0}
     - target: {fileID: 4094011683009168357, guid: d536fa71dd00cf349a228e41212ace48, type: 3}
       propertyPath: m_Text
@@ -5109,7 +5109,10 @@ MonoBehaviour:
   battleStart: 0
   enemyTroops: []
   fightingEnemy: 
+  cantMove: 0
   enemyTattles: []
+  cetusOptionPicker: {fileID: 0}
+  raticOptionPicker: {fileID: 0}
 --- !u!1 &1812233187
 GameObject:
   m_ObjectHideFlags: 0

@@ -170,7 +170,7 @@ public class CetusAttack : MonoBehaviour
             Debug.Log("Sexellent");
             cetusOptionPicker.animator.SetBool("AttackFull", true);
 
-            yield return new WaitForSeconds(.6f);
+            yield return new WaitForSeconds(.5f);
             cetusOptionPicker.animator.SetBool("AttackFull", false);
 
         }
