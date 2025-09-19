@@ -169,7 +169,10 @@ public class Diagnosis : MonoBehaviour
     public void EndAttack()
     {
         actionBox.SetActive(false);
-
+        foreach(GameObject obj in books) 
+        {
+            obj.SetActive(false);
+        }
         switch (booksHit) 
         {
             case 0:
@@ -214,13 +217,17 @@ public class Diagnosis : MonoBehaviour
         {
             case "GoblinRouge":
                 dialouge.textName = "GoblinRouge";
-                dialouge.startText = true;
+
                 if(inventory.enemyTattles.Contains("GoblinRouge") == false)
                 {
+
                     inventory.enemyTattles.Add("GoblinRouge");  
                 }
                     break;
         }
+        
+        dialouge.startText = true;
+        
     }
 
     public void EndAttackForReal()

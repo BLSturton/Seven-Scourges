@@ -165,7 +165,8 @@ public class TextScript : MonoBehaviour
                 characterFace.enabled = false;
                 textName = "None";
                 inText = false;
-                textNumber = -1;
+                textNumber = 0;
+
                 diagnosis.EndAttackForReal();
 
                 break;
