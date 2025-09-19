@@ -1875,6 +1875,7 @@ MonoBehaviour:
   transporter: {fileID: 382845795}
   enemyLibrary:
   - {fileID: 2009169208003973547, guid: ee63ae828732c8b4d8aed5b1229cec98, type: 3}
+  CetusSolo: 0
 --- !u!4 &382845794
 Transform:
   m_ObjectHideFlags: 0
@@ -6449,10 +6450,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitBox: {fileID: 933255742}
   hitNow: 0
-  taunt: {fileID: 0}
+  taunt: {fileID: 28875113}
   wordHit: 0
   touchedWord: {fileID: 0}
-  firstAid: {fileID: 0}
+  firstAid: {fileID: 1384577950}
 --- !u!1 &940907571
 GameObject:
   m_ObjectHideFlags: 0
@@ -10900,8 +10901,8 @@ MonoBehaviour:
   boneTopPoint: {fileID: 2090148301}
   boneBottomPoint: {fileID: 660785800}
   countDown: {fileID: 148085423}
-  sawSpeed: 1.3
-  reverseSpeed: 0.7
+  sawSpeed: 2.5
+  reverseSpeed: 1
   boneSpeed1: 1
   boneSpeed2: 1.5
   attackFailed: 0

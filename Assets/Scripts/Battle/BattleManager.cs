@@ -83,10 +83,21 @@ public class BattleManager : MonoBehaviour
     [SerializeField] Transporter transporter;
 
     [SerializeField] public GameObject[] enemyLibrary;
+
+    [SerializeField] public bool CetusSolo;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        inventory = GameObject.FindWithTag("InventorySystem").GetComponent<Inventory>();
+        if(partyList.Count == 2) 
+        {
+            CetusSolo = false;
+        }
+        else 
+        {
+            CetusSolo = true;
+        }
+            inventory = GameObject.FindWithTag("InventorySystem").GetComponent<Inventory>();
 
         CetusHPObject = GameObject.FindWithTag("CetusHP");
 
@@ -165,21 +176,23 @@ public class BattleManager : MonoBehaviour
             StartCoroutine(BattleEnd());
         }
         //Checks if party is down given size
-        if(partyList.Count == 1) 
+        if(CetusSolo) 
         {
             if (CetusDown) 
             {
                 Debug.Log("Game over man!");
             }
         }
-        if (partyList.Count == 2)
+        else
         {
             if (CetusDown)
             {
+                cetusOptionPicker.animator.SetBool("Down", true);
+
                 partyDodgeList.RemoveAll(item => item.name == "CetusDodge");
                 partyList.RemoveAll(item => item.name == "Cetus");
             }
-            if (RaticDown) 
+            if (RaticDown)
             {
                 partyDodgeList.RemoveAll(item => item.name == "RaticDodge");
                 partyList.RemoveAll(item => item.name == "Ratic");
@@ -232,6 +245,7 @@ public class BattleManager : MonoBehaviour
                             obj.SetActive(true);
                         }
                     }
+                 
                 }
                
             }
@@ -349,6 +363,10 @@ public class BattleManager : MonoBehaviour
 
     public void newPlayerTurn() 
     {
+        if (CetusDown)
+        {
+            CetusSprite.SetActive(true);
+        }
         cetusOptionPicker.animator.SetBool("Defend", false);
         raticOptionPicker.animator.SetBool("Defend", false);
 
@@ -452,7 +470,7 @@ public class BattleManager : MonoBehaviour
       
 
     }
-
+    
     public void CetusDamage() 
     {
         if(CetusHP > 0) 
@@ -461,6 +479,8 @@ public class BattleManager : MonoBehaviour
             if (CetusHPObject.GetComponent<HPWorld>().HP <= 0) 
             {
                 CetusDown = true;
+                cetusOptionPicker.animator.SetBool("Down", true);
+
             }
             if (cetusOptionPicker.isDefend) 
             {
@@ -469,6 +489,7 @@ public class BattleManager : MonoBehaviour
 
             }
         }
+       
     }
     public void RaticDamage()
     {

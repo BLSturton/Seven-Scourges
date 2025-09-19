@@ -1,4 +1,5 @@
 
+using System.Collections;
 using UnityEngine;
 
 public class Diagnosis : MonoBehaviour
@@ -145,24 +146,45 @@ public class Diagnosis : MonoBehaviour
     }
     public void StartAttack() 
     {
-        foreach (GameObject book in books) 
+        this.gameObject.SetActive(true);
+
+        booksHit = 0;
+
+        actionBox.SetActive(true);
+       
+        raticOptionPicker.animator.SetBool("DiagnosisEnd", true);
+
+
+        actionBox.SetActive(true);
+        foreach (GameObject obj in books) 
         {
-            book.SetActive(true);
+            obj.SetActive(true);
         }
+        raticOptionPicker.animator.SetBool("DiagnosisFlip", true);
+
+        
         questionMark.SetActive(true);
         questionMark.transform.position = QuestionMarkSpawns[0].transform.position;
     }
     public void EndAttack()
     {
+        actionBox.SetActive(false);
+
         switch (booksHit) 
         {
             case 0:
                 Debug.Log("Failed!");
+                EndAttackForReal();
+
                 break;
             case 1:
                 Debug.Log("Failed!");
+                EndAttackForReal();
+
+
                 break;
             case 2:
+                StartCoroutine(diagnosisTransition());
                 FindEnemy();
                 if(battleManager.diagnosisList.Contains(raticOptionPicker.targetEnemy.tag.ToString()) == false)
                 {
@@ -171,6 +193,8 @@ public class Diagnosis : MonoBehaviour
                 }
                 break;
             case 3:
+                StartCoroutine(diagnosisTransition());
+
                 FindEnemy();
                 if (battleManager.diagnosisList.Contains(raticOptionPicker.targetEnemy.tag.ToString()) == false)
                 {
@@ -199,13 +223,41 @@ public class Diagnosis : MonoBehaviour
         }
     }
 
-    public void EndAttackForReal() 
+    public void EndAttackForReal()
     {
-        actionBox.SetActive(false);
+        raticOptionPicker.diagnosisActivate = false;
+        raticOptionPicker.diagnosisOn = false;
+
+        book1left = false;
+        book2left = false;
+        book3left = false;
+        raticOptionPicker.animator.SetBool("DiagnosisEnd", true);
+        raticOptionPicker.animator.SetBool("DiagnosisPoint", false);
+        raticOptionPicker.animator.SetBool("DiagnosisFlip", false);
+        raticOptionPicker.animator.Play("New Animation");
         this.gameObject.SetActive(false);
         if (booksHit == 3) 
         {
-            goAgain = true;
+            raticOptionPicker.endTurn = false;
+            raticOptionPicker.myTurn = true;
+            raticOptionPicker.enabled = true;
+            raticOptionPicker.myTurn = true;
+            raticOptionPicker.endTurn = false;
+            raticOptionPicker.actionPicked = false;
+            raticOptionPicker.canGoBack = true;
+            raticOptionPicker.selectedOption = raticOptionPicker.attackOptions[0];
+            raticOptionPicker.optionNumber = 0;
+            raticOptionPicker.selectedOption.transform.localPosition = new Vector2(raticOptionPicker.selectedOption.transform.localPosition.x, raticOptionPicker.selectedOption.transform.localPosition.y + 1);
+
+            battleManager.CetusToRatic = true;
+            foreach (GameObject obj in raticOptionPicker.attackOptions)
+            {
+                if (obj != null)
+                {
+                    obj.SetActive(true);
+                }
+            }
+            goAgain = false;
             booksHit = 0;
 
         }
@@ -216,6 +268,14 @@ public class Diagnosis : MonoBehaviour
             booksHit = 0;
 
         }
+    }
+
+    public IEnumerator diagnosisTransition() 
+    {
+        raticOptionPicker.animator.SetBool("DiagnosisPoint", true);
+        yield return new WaitForSeconds(.2f);
+        raticOptionPicker.animator.SetBool("DiagnosisHold", true);
+
 
     }
 }

@@ -255,15 +255,18 @@ public class Inventory : MonoBehaviour
         {
             if(partySelected == 1 && cetusHP.GetComponent<HPWorld>().HP != cetusHP.GetComponent<HPWorld>().MaxHP) 
             {
+                
                 cetusHP.GetComponent<HPWorld>().HP = cetusHP.GetComponent<HPWorld>().HP + 2;
-
+                
                     if (cetusHP.GetComponent<HPWorld>().HP > cetusHP.GetComponent<HPWorld>().MaxHP) 
                 {
                     cetusHP.GetComponent<HPWorld>().HP = cetusHP.GetComponent<HPWorld>().MaxHP;
                   
                 }
             }
-            if (partySelected == 2 && raticHP.GetComponent<HPWorld>().HP != raticHP.GetComponent<HPWorld>().MaxHP)
+      
+
+                if (partySelected == 2 && raticHP.GetComponent<HPWorld>().HP != raticHP.GetComponent<HPWorld>().MaxHP)
             {
                 raticHP.GetComponent<HPWorld>().HP = raticHP.GetComponent<HPWorld>().HP + 2;
                 if (raticHP.GetComponent<HPWorld>().HP > raticHP.GetComponent<HPWorld>().MaxHP)
@@ -312,8 +315,15 @@ public class Inventory : MonoBehaviour
         cetusHP.transform.SetAsFirstSibling();
         raticHP.transform.SetAsFirstSibling();
         itemPicked = false;
-
-        
+        if (cetusOptionPicker.myTurn)
+        {
+            cetusOptionPicker.myTurn = false;
+            raticOptionPicker.myTurn = true;
+        }
+        if (raticOptionPicker.myTurn)
+        {
+            raticOptionPicker.myTurn = false;
+        }
     }
 
     public void BattleOpen() 
@@ -414,15 +424,14 @@ public class Inventory : MonoBehaviour
             cetusOptionPicker.animator.SetBool("Item", true);
             yield return new WaitForSeconds(.7f);
             cetusOptionPicker.animator.SetBool("Item", false);
-            cetusOptionPicker.myTurn = false;
         }
         if (raticOptionPicker.myTurn)
         {
             raticOptionPicker.animator.SetBool("Item", true);
             yield return new WaitForSeconds(.7f);
             raticOptionPicker.animator.SetBool("Item", false);
-            raticOptionPicker.myTurn = false;
         }
+      
 
     }
 }

@@ -118,7 +118,11 @@ public class CetusAttack : MonoBehaviour
 
     public void StartAttack() 
     {
-       
+        gameObject.GetComponent<SpriteRenderer>().enabled = true;
+
+        actionBox.SetActive(true);
+        targetBall.SetActive(true);
+        moverBall.SetActive(true);
         enemyHealth = cetusOptionPicker.targetEnemy.gameObject.GetComponent<EnemyHealth>();
         moveSpeed = 6;
         targetBall.transform.position = TargetWayPoints1[Random.Range(0, 3)].transform.position;

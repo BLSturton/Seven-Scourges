@@ -37,6 +37,7 @@ public class OptionPicker : MonoBehaviour
     [SerializeField] public int tauntTurns;
     [SerializeField] Diagnosis diagnosis;
     [SerializeField] public bool diagnosisOn;
+    [SerializeField] public bool diagnosisActivate;
     [SerializeField] GameObject CetusStyle;
     [SerializeField] GameObject RaticStyle;
     [SerializeField] GameObject CetusStyle2;
@@ -126,6 +127,10 @@ public class OptionPicker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (diagnosisActivate) 
+        {
+            diagnosis.gameObject.SetActive(true);
+        }
         if (inventory.inventoryBattleUsed) 
         {
             itemOn = false;
@@ -223,15 +228,19 @@ public class OptionPicker : MonoBehaviour
             //Confirm Option
             if (Input.GetKeyDown(KeyCode.K))
             {
-                if (diagnosisOn) 
-                {
 
+                if (diagnosisOn)
+                    {
+                    diagnosisActivate = true;
                     diagnosis.gameObject.SetActive(true);
-                    diagnosis.StartAttack();
-                    diagnosisOn = false;
-                    enemyPicker.SetActive(false);
-                    actionBox.SetActive(true);
-                }
+                        enemyPicker.SetActive(false);
+                        actionBox.SetActive(true);
+                        diagnosis.StartAttack();
+                        diagnosisOn = false;
+                        
+
+                    }
+                
                 if (firstAidOn) 
                 {
                     firstAidOn = false;
@@ -263,9 +272,7 @@ public class OptionPicker : MonoBehaviour
                     if (this.gameObject.name == "RaticOptionManager")
                     {
                         canGoBack = false;
-
-                        raticAttackAction.SetActive(true);
-                        raticAttack.StartAttack();
+                        StartCoroutine(AttackAnimation());
                     }
 
                 }
@@ -305,14 +312,11 @@ public class OptionPicker : MonoBehaviour
                                     obj.SetActive(false);
                                 }
                             }
-                            canGoBack = false;
-                            diagnosis.gameObject.SetActive(true);
-                            diagnosisOn = true;
                             specialOn = false;
-                            
-                           
+                            diagnosisOn = true;
                         }
                     }
+                   
                     if (styleNumber == 1)
                     {
                         if (this.gameObject.name == "CetusOptionManager" && battleManager.CetusSP >= 3)
@@ -416,7 +420,7 @@ public class OptionPicker : MonoBehaviour
             //Attack
             if (attackOn || diagnosisOn)
             {
-            
+               
                 enemyPicker.SetActive(true);
                 //Advance Option
                 if (Input.GetKeyDown(KeyCode.D) && !selectCooldown)
@@ -629,7 +633,16 @@ public class OptionPicker : MonoBehaviour
         }
     }
     
+    public IEnumerator AttackAnimation() 
+    {
+        animator.SetBool("AttackStart", true);
+        yield return new WaitForSeconds(.2f);
 
+        animator.SetBool("AttackTransition", true);
+
+        raticAttackAction.SetActive(true);
+        raticAttack.StartAttack();
+    }
     public IEnumerator AttackWait() 
     {
         yield return new WaitForSeconds(.2f);

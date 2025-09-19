@@ -42,8 +42,13 @@ public class RaticAttack : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.K)) 
         {
-            
+            raticOptionPicker.animator.SetBool("AttackGo", true);   
             boneSaw.transform.position = Vector2.MoveTowards(boneSaw.transform.position, endPoint.transform.position, sawSpeed * Time.deltaTime);
+        }
+        if (Input.GetKeyUp(KeyCode.K)) 
+        {
+            raticOptionPicker.animator.SetBool("AttackGo", false);
+
         }
         else if(boneSaw.transform.position != startPoint.transform.position) 
         {
@@ -139,6 +144,13 @@ public class RaticAttack : MonoBehaviour
 
     public void EndAttack() 
     {
+        raticOptionPicker.animator.SetBool("AttackStart", true);
+        raticOptionPicker.animator.SetBool("AttackTransition", true);
+
+        raticOptionPicker.animator.SetBool("AttackStop", true);
+
+        raticOptionPicker.animator.SetBool("AttackStop", false);
+
         if (attackFailed)
         {
         }
@@ -163,6 +175,13 @@ public class RaticAttack : MonoBehaviour
     }
     public IEnumerator CountDown() 
     {
+        countDown.text = "10";
+        yield return new WaitForSeconds(1f);
+        countDown.text = "9";
+        yield return new WaitForSeconds(1f);
+        countDown.text = "8";
+        yield return new WaitForSeconds(1f);
+        countDown.text = "7";
         yield return new WaitForSeconds(1f);
         countDown.text = "6";
         yield return new WaitForSeconds(1f);
